@@ -1,0 +1,21 @@
+# Overrides applied on top of research.yaml for CI and the end-to-end test.
+# Same code, smaller workload: two universes, two windows and fewer bootstrap
+# draws, so the full pipeline runs in a few minutes on the synthetic fixture.
+universes:
+  - {key: ind10, file: ind10, label: "10 industries"}
+  - {key: ind30, file: ind30, label: "30 industries"}
+backtest:
+  windows: [126, 252]
+  primary_window: 252
+evaluation:
+  mcs:
+    bootstrap_replications: 300
+    period: full
+    min_months: 24
+report:
+  headline_universe: ind30
+  spectrum_universe: ind30
+simulation:
+  dimensions: [10, 30]
+  sample_sizes: [126, 252]
+  replications: 20

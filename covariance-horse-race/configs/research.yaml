@@ -1,0 +1,199 @@
+# Research configuration for covariance-horse-race.
+#
+# Every value in this file is a research choice and carries its reason.
+# Facts defined by the outside world (file availability, sample start dates,
+# the set of portfolios in each file, trading calendars) are discovered from
+# the data at run time and never written here.
+
+data:
+  # Library index page. `chr fetch` reads it first and fails if any file below
+  # is no longer linked, listing the closest links it did find.
+  library_page: https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html
+  base_url: https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/
+  # File names exactly as linked on the library page (case differs between files).
+  files:
+    ind10: 10_Industry_Portfolios_daily_CSV.zip
+    ind30: 30_Industry_Portfolios_daily_CSV.zip
+    ind49: 49_Industry_Portfolios_daily_CSV.zip
+    me_bm100: 100_Portfolios_10x10_Daily_CSV.zip
+    ff3: F-F_Research_Data_Factors_daily_CSV.zip
+    ff5: F-F_Research_Data_5_Factors_2x3_daily_CSV.zip
+    mom: F-F_Momentum_Factor_daily_CSV.zip
+  # Value-weighted returns: equal-weighted portfolios are dominated by microcaps
+  # and would test the estimators on a universe no investor could hold.
+  portfolio_section: value_weighted
+  # Values the library uses to mark a portfolio with no constituents.
+  missing_sentinels: [-99.99, -999.0]
+  # The library publishes percent returns.
+  percent_scale: 100.0
+  # Abort a download larger than this; the largest daily file is a few MB.
+  max_download_bytes: 200_000_000
+  request_timeout_seconds: 120
+  # The library's server drops long transfers now and then; each retry resumes
+  # where the last one stopped, waiting 2, 4, 8, ... seconds between attempts.
+  download_attempts: 8
+  retry_backoff_seconds: 2.0
+
+universes:
+  # Ordered from low to high dimension so the sweep reads left to right.
+  - {key: ind10, file: ind10, label: "10 industries"}
+  - {key: ind30, file: ind30, label: "30 industries"}
+  - {key: ind49, file: ind49, label: "49 industries"}
+  - {key: me_bm100, file: me_bm100, label: "100 size-B/M portfolios"}
+
+factors:
+  # Full-century factor set for the observable factor model.
+  primary: {file: ff3, columns: ["Mkt-RF", "SMB", "HML"]}
+  # Richer set used where it exists (from 1963), reported as a separate model.
+  extended:
+    files: [ff5, mom]
+    columns: ["Mkt-RF", "SMB", "HML", "RMW", "CMA", "Mom"]
+
+backtest:
+  # Monthly rebalancing on the last trading day of each month, the standard
+  # horizon in the covariance-forecasting literature (Ledoit and Wolf, 2017).
+  rebalance: month_end
+  # Estimation windows in trading days: 6 months, 1, 2 and 5 years.
+  windows: [126, 252, 504, 1260]
+  # Window used for the headline comparison and the Model Confidence Set.
+  primary_window: 252
+  # Evaluate every window over the same months so their results are comparable.
+  common_evaluation_sample: true
+  # A forecast is treated as singular if its smallest eigenvalue is below this
+  # fraction of the largest; GMV weights are then undefined for that model-date.
+  singular_tolerance: 1.0e-10
+  annualization_days: 252
+
+portfolio:
+  long_only_solver:
+    # Cap on active-set changes; the method typically needs well under 2N.
+    max_iterations: 1000
+    # KKT tolerance relative to the free-set gradient. Tighter values chase
+    # floating-point noise on forecasts with condition numbers near 1e10.
+    tolerance: 1.0e-9
+
+models:
+  # name: unique key used in results and figures
+  # kind: estimator family
+  # windows: "all" or a list. DCC models run on the primary window only: their
+  #   question is conditional versus unconditional estimation, not the window
+  #   sweep, and running them on every window would multiply the dominant cost
+  #   of the pipeline by the number of windows.
+  # description: one line shown in the README's estimator table
+  - name: sample
+    kind: sample
+    windows: all
+    label: Sample
+    description: Unbiased sample covariance of the window
+  - name: ewma
+    kind: ewma
+    windows: all
+    label: EWMA
+    description: Exponentially weighted covariance with the RiskMetrics daily decay
+    # J.P. Morgan RiskMetrics Technical Document (1996), daily data.
+    params: {decay: 0.94}
+  - name: lw_cc
+    kind: linear_shrinkage
+    windows: all
+    label: LW constant-corr
+    description: >-
+      Ledoit and Wolf (2004), shrinkage toward a constant-correlation target with
+      the estimated optimal intensity
+  - name: lw_nl
+    kind: nonlinear_shrinkage
+    windows: all
+    label: LW nonlinear
+    description: >-
+      Ledoit and Wolf (2020), sample eigenvectors with each eigenvalue replaced by
+      its estimated oracle value
+  - name: ff3
+    kind: observable_factor
+    windows: all
+    label: FF3 factor
+    description: >-
+      Time-series regression on the Fama-French three factors, diagonal residual
+      covariance
+    params: {factor_set: primary}
+  - name: ff6
+    kind: observable_factor
+    windows: all
+    label: FF5+Mom factor
+    description: >-
+      Time-series regression on the five Fama-French factors and momentum, diagonal
+      residual covariance
+    params: {factor_set: extended}
+  - name: pca
+    kind: statistical_factor
+    windows: all
+    label: PCA factor
+    description: >-
+      Principal components plus diagonal remainder, number of factors chosen in each
+      window by Bai and Ng (2002) IC_p2
+    params: {kmax: 10}
+  - name: dcc
+    kind: dcc
+    windows: [252]
+    label: DCC-GARCH
+    description: >-
+      GARCH(1,1) variances and scalar DCC correlations estimated by composite
+      likelihood (Engle, Shephard and Sheppard, 2008)
+    # Re-estimated monthly: freezing parameters would handicap the conditional
+    # models relative to the unconditional ones, which use each new window fully.
+    params: {target: sample, reestimate_every_months: 1}
+  - name: dcc_nl
+    kind: dcc
+    windows: [252]
+    label: DCC-NL
+    description: >-
+      DCC with the correlation target estimated by nonlinear shrinkage (Engle,
+      Ledoit and Wolf, 2019)
+    params: {target: nonlinear_shrinkage, reestimate_every_months: 1}
+
+evaluation:
+  # Model Confidence Set (Hansen, Lunde and Nason, 2011).
+  mcs:
+    alpha: 0.10
+    bootstrap_replications: 2000
+    # Stationary bootstrap mean block length in months: losses are persistent
+    # through volatility regimes, so blocks span about two quarters.
+    mean_block_length: 6
+    # Separate MCS per calendar decade to show which models survive in which era.
+    period: decade
+    # Minimum months in a period for its MCS to be reported.
+    min_months: 60
+  losses: [gmv_variance, gmv_long_only_variance, qlike, frobenius]
+  seed: 20261103
+
+simulation:
+  # Known-covariance study: the truth is fixed, so rankings can be checked
+  # against the right answer. Dimensions mirror the real universes.
+  dimensions: [10, 30, 49, 100]
+  sample_sizes: [126, 252, 504, 1260]
+  replications: 200
+  # Student-t innovations: daily equity returns have excess kurtosis near 6-10.
+  degrees_of_freedom: 5
+  truth:
+    # "parametric" uses the factor structure below; "data" uses the full-sample
+    # covariance of the matching real universe once it has been downloaded.
+    source: parametric
+    parametric:
+      n_factors: 3
+      # Annualized factor volatilities: market, and two style factors.
+      factor_vols: [0.16, 0.08, 0.06]
+      loading_mean: [1.0, 0.0, 0.0]
+      loading_sd: [0.25, 0.5, 0.5]
+      # Annualized idiosyncratic volatility drawn uniformly in this range.
+      idio_vol_range: [0.05, 0.25]
+  models: [sample, ewma, lw_cc, lw_nl, pca]
+  seed: 7
+
+report:
+  figure_dpi: 200
+  # The universe whose results lead the README: the largest industry set is the
+  # hardest problem that still has full history from 1926.
+  headline_universe: ind49
+  # Eigenvalue-spectrum figure: the highest-dimension universe with the primary
+  # window, where the gap between sample and shrunk spectra is widest.
+  spectrum_universe: me_bm100
+  # Loss used for the headline MCS heatmap; the others are reported in tables.
+  headline_loss: gmv_variance

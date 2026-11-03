@@ -1,0 +1,89 @@
+{
+  "source": "Kenneth R. French Data Library",
+  "files": {
+    "ff3": {
+      "key": "ff3",
+      "file": "F-F_Research_Data_Factors_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:19:58+00:00",
+      "bytes": 178326,
+      "sha256": "96c23b88e651cbfff3740a53f8225e59ee39893371e96385a1d8125ec2cd9c89",
+      "csv_member": "F-F_Research_Data_Factors_daily.csv",
+      "csv_sha256": "3f7910502dd6f188748210e5145d95642de1d8cff56c2cf0fa85985299610ff0",
+      "etag": "\"361883762666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:47 GMT"
+    },
+    "ff5": {
+      "key": "ff5",
+      "file": "F-F_Research_Data_5_Factors_2x3_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:20:03+00:00",
+      "bytes": 150489,
+      "sha256": "e58577223032aa45071a46686f7068900c371b516c9eb04e28e974c34264f84f",
+      "csv_member": "F-F_Research_Data_5_Factors_2x3_daily.csv",
+      "csv_sha256": "0128e9cae82bc347b9c2c1670dcf7d2bf1f1c3b87ddd0976ba50d229882d3ceb",
+      "etag": "\"61efb9762666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:47 GMT"
+    },
+    "ind10": {
+      "key": "ind10",
+      "file": "10_Industry_Portfolios_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/10_Industry_Portfolios_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:20:23+00:00",
+      "bytes": 934949,
+      "sha256": "4c79bad80b6f4eee9d08e649ce223d1c51aadd65043b65baca50b54981d38d25",
+      "csv_member": "10_Industry_Portfolios_Daily.csv",
+      "csv_sha256": "01cfe3d5e54f6ddfcc3dc84fb793f10f6b0218fe59f780969f4dca84e72e823e",
+      "etag": "\"fdf546842666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:19:10 GMT"
+    },
+    "ind30": {
+      "key": "ind30",
+      "file": "30_Industry_Portfolios_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/30_Industry_Portfolios_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:21:17+00:00",
+      "bytes": 2599584,
+      "sha256": "e9278f00793c8b6d59f2ef6fd813af97d02ec601bfe8a835b111c6b65c1b24c6",
+      "csv_member": "30_Industry_Portfolios_Daily.csv",
+      "csv_sha256": "7459e31e208d74a6a8517b363b550b5e4be8be7c83a9db2b33a57949a9e42157",
+      "etag": "\"d118977d2666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:59 GMT"
+    },
+    "ind49": {
+      "key": "ind49",
+      "file": "49_Industry_Portfolios_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/49_Industry_Portfolios_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:22:36+00:00",
+      "bytes": 4177116,
+      "sha256": "b9d36d571e968d71f7b03207e7fed6398554f953719b8c1bf3ee3ad8d00e7520",
+      "csv_member": "49_Industry_Portfolios_Daily.csv",
+      "csv_sha256": "a17d6a29387651d009fe56057dbf241f2e676fef4f671de028c1e35b34d8b3a4",
+      "etag": "\"d9b247b2666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:55 GMT"
+    },
+    "me_bm100": {
+      "key": "me_bm100",
+      "file": "100_Portfolios_10x10_Daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/100_Portfolios_10x10_Daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:31:45+00:00",
+      "bytes": 15805142,
+      "sha256": "8fad24e04196408125ac739f7a065c4c799d7094f53cc48f9ee34df5405a0775",
+      "csv_member": "100_Portfolios_10x10_Daily.csv",
+      "csv_sha256": "0011a31397a86ce306f2c7d916ef52f57506e754c136494ace1995aa33a0c85f",
+      "etag": "\"74e136862666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:19:13 GMT"
+    },
+    "mom": {
+      "key": "mom",
+      "file": "F-F_Momentum_Factor_daily_CSV.zip",
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_daily_CSV.zip",
+      "retrieved_at": "2026-11-03T10:31:49+00:00",
+      "bytes": 85338,
+      "sha256": "e56d5bc845544e2993e77353b12c611cfce3149ef754f9b59fc67904ddadd369",
+      "csv_member": "F-F_Momentum_Factor_daily.csv",
+      "csv_sha256": "00b9291e5c7d5c35d4a94b62782a6fe2c0b25ba7999896016474d6d19757b0b4",
+      "etag": "\"8c28d4762666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:47 GMT"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+<#-- Rendered by `chr report` into paper.qmd. Every number comes from results.json. --#>
+{% set h = r.headline %}
+{% set abstract %}
+{% if r.provenance != "library" %}This version was generated from the synthetic CI fixture and its numbers carry no empirical content. {% endif %}We compare {{ r.settings.models | length }} covariance estimators, from the sample covariance to nonlinear shrinkage and dynamic conditional correlation, by the realized risk of the global minimum variance portfolios they produce on daily US portfolio returns from the Kenneth R. French Data Library. On {{ h.universe_label }} over {{ h.start_year }} to {{ h.end_year }} with a {{ h.window }}-day window, {{ h.best_label }} attains the lowest annualized out-of-sample volatility, {{ h.best_vol_pct | num }}%{% if h.sample_vol_pct is defined %} against {{ h.sample_vol_pct | num }}% for the sample covariance{% endif %}.{% if h.mcs_full_size is defined %} The {{ h.mcs_confidence_pct }}% Model Confidence Set retains {{ h.mcs_full_size }} of {{ h.mcs_full_models }} models.{% endif %} A known-covariance simulation reproduces the same estimators in a setting where the true risk of every portfolio is observable.
+{% endset %}
+---
+title: "Which Covariance Forecast Survives a Century?"
+subtitle: "Out-of-sample minimum-variance evaluation with Model Confidence Set inference"
+author: "Ian Wachira"
+date: "{{ r.generated_at[:10] }}"
+abstract: {{ abstract | trim | tojson }}
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fontsize: 10.5pt
+    section-numbering: "1.1"
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Introduction
+
+The covariance matrix is the input every risk model and every mean-variance optimizer shares. Its textbook estimator, the sample covariance, is unbiased entry by entry but its eigenvalues are systematically too dispersed: large ones are overestimated and small ones underestimated, and the error grows with the ratio of assets $N$ to observations $T$. A minimum variance optimizer inverts the matrix, so it loads precisely on the directions whose variance is most underestimated. The literature offers several remedies: shrinkage toward a structured target, factor structure, and conditional models that track changing volatility and correlation.
+
+This study asks a narrow, testable question. Holding the portfolio construction fixed at the global minimum variance (GMV) portfolio, which uses no expected returns, which estimator produces the lowest realized risk out of sample, how does the ranking change with $N/T$, and which estimators cannot be distinguished statistically?
+
+# Data
+
+Returns are daily value-weighted portfolio returns from the Kenneth R. French Data Library: {{ r.settings.universes | map(attribute="label") | list | join_words }}. Factor returns for the observable factor models come from the Fama-French three-factor file and, from {{ r.data.extended_factor_start }}, the five-factor and momentum files. Every file is downloaded over HTTPS, its SHA-256 recorded in a manifest, and parsed structurally rather than by line position. Portfolios with no constituents carry the library's missing-value sentinel; an asset enters an estimation window only if it has a return on every day of that window.
+
+{{ r.tables.coverage }}
+
+: Data coverage as parsed. {#tbl-coverage}
+
+# Method
+
+## Evaluation design
+
+At the last trading day of each month $t$, every model is fitted on the trailing window of $T$ trading days, with $T$ set to {{ r.settings.windows | map('string') | list | join_words }} and forecasts the average daily covariance $H_t$ over the next month. The GMV weights
+
+$$ w_t = \frac{H_t^{-1}\mathbf{1}}{\mathbf{1}^{\top} H_t^{-1}\mathbf{1}} $$
+
+are held fixed through the month, and the long-only variant solves $\min_w w^{\top} H_t w$ subject to $w \ge 0$, $\mathbf{1}^{\top} w = 1$ by accelerated projected gradient. Membership of the estimation window is decided from the window alone, never from the holding period, and the test suite verifies that perturbing returns after a rebalance date leaves that date's weights unchanged.
+
+## Losses
+
+The economic loss is the realized variance of the GMV portfolio. Two statistical losses compare $H_t$ with the realized covariance proxy $\Sigma_t = D^{-1}\sum_d r_d r_d^{\top}$ over the $D$ days of the month: the squared Frobenius distance and the multivariate QLIKE,
+
+$$ L(\Sigma_t, H_t) = \log\lvert H_t\rvert + \operatorname{tr}(H_t^{-1}\Sigma_t). $$
+
+Both rank forecasts consistently when the proxy is conditionally unbiased but noisy (Laurent, Rombouts and Violante, 2013), which matters because $\Sigma_t$ is singular whenever $N > D$.
+
+## Estimators
+
+**Linear shrinkage** (Ledoit and Wolf, 2004) forms $\delta F + (1-\delta) S$ with $F$ the constant-correlation target and $\delta$ the estimated optimal intensity.
+
+**Nonlinear shrinkage** (Ledoit and Wolf, 2020) keeps the sample eigenvectors $u_i$ and replaces each sample eigenvalue $\lambda_i$ by
+
+$$ \tilde d_i = \frac{\lambda_i}{\left(\pi \tfrac{p}{n} \lambda_i \tilde f(\lambda_i)\right)^2 + \left(1 - \tfrac{p}{n} - \pi \tfrac{p}{n}\lambda_i \mathcal{H}_{\tilde f}(\lambda_i)\right)^2}, $$
+
+where $\tilde f$ is an Epanechnikov kernel estimate of the limiting spectral density and $\mathcal{H}_{\tilde f}$ its Hilbert transform, with a separate formula for the null space when $p > n$.
+
+**Factor models** set $H = B \Sigma_f B^{\top} + D$ with $D$ diagonal, using either observable Fama-French factors or principal components, the number of components chosen inside each window by the Bai and Ng (2002) criterion $IC_{p2}$.
+
+**DCC** fits a variance-targeted GARCH(1,1) to each asset and the scalar correlation recursion
+
+$$ Q_t = (1-a-b)\,C + a\, z_{t-1} z_{t-1}^{\top} + b\, Q_{t-1}, \qquad R_t = \operatorname{diag}(Q_t)^{-1/2} Q_t \operatorname{diag}(Q_t)^{-1/2}, $$
+
+estimated by the composite likelihood over contiguous pairs (Engle, Shephard and Sheppard, 2008). DCC-NL replaces the target $C$ by its nonlinear-shrinkage estimate (Engle, Ledoit and Wolf, 2019). Multi-step forecasts use exact GARCH mean reversion and the Engle-Sheppard approximation for correlations.
+
+## Model Confidence Set
+
+Statistical separation uses the Model Confidence Set (Hansen, Lunde and Nason, 2011) with the $T_{\max}$ statistic, elimination of the model with the largest standardized excess loss, and the stationary bootstrap with mean block length {{ r.settings.mcs_mean_block_length }} months and {{ r.settings.mcs_bootstrap_replications }} replications. The set at level $\alpha = {{ r.settings.mcs_alpha }}$ contains every model whose MCS p-value is at least $\alpha$. A comparison only includes models defined in every month of its sample; exclusions are reported, not imputed.
+
+# Results
+
+{{ r.tables.headline }}
+
+: Full-sample out-of-sample performance, {{ h.universe_label }}, {{ h.window }}-day window, {{ h.months }} months. {#tbl-headline}
+
+{% if r.figures.mcs_heatmap is defined %}
+![MCS p-values for the GMV variance loss. Shaded cells are inside the {{ h.mcs_confidence_pct }}% set.](../{{ r.figures.mcs_heatmap[0] }}){#fig-mcs}
+{% endif %}
+
+{% for rec in r.mcs_full %}
+Over the full sample for {{ (r.settings.universes | selectattr("key", "eq", rec.universe) | first).label }}, the {{ h.mcs_confidence_pct }}% set under the {{ rec.loss | loss_name }} loss contains {{ rec.included_labels | join_words }}.
+{% endfor %}
+
+![Excess GMV volatility over the best model, by universe and estimation window.](../{{ r.figures.dimension_sweep[0] }}){#fig-sweep}
+
+Annualized volatility levels for every universe, window and model are in `reports/tables/sweep_vol.md` in the repository.
+
+{% if r.figures.turnover_vs_vol is defined %}
+![Average monthly turnover against realized GMV volatility.](../{{ r.figures.turnover_vs_vol[0] }}){#fig-turnover}
+{% endif %}
+
+{% if r.spectrum is defined %}
+![Sample and nonlinear-shrinkage eigenvalues on the last window of {{ r.spectrum.n_assets }} portfolios.](../{{ r.figures.eigen_spectrum[0] }}){#fig-spectrum}
+
+On the last {{ r.spectrum.window }}-day window ending {{ r.spectrum.end }}, nonlinear shrinkage reduces the condition number from {{ r.spectrum.sample_condition_number | num(0) }} to {{ r.spectrum.shrunk_condition_number | num(0) }}.
+{% endif %}
+
+# Simulation with a known covariance
+
+Real data cannot reveal which forecast was correct. Returns are therefore also drawn from a multivariate Student-t distribution with {{ r.settings.simulation.degrees_of_freedom }} degrees of freedom and a fixed {{ r.settings.simulation.truth.source }} covariance $\Sigma$, for $N$ equal to {{ r.settings.simulation.dimensions | map('string') | list | join_words }} and $T$ equal to {{ r.settings.simulation.sample_sizes | map('string') | list | join_words }}, with {{ r.settings.simulation.replications }} replications per cell. For an estimate $H$ with GMV weights $w_H$, the true risk $w_H^{\top} \Sigma \, w_H$ is compared with that of the oracle weights built from $\Sigma$ itself, $w_\Sigma^{\top} \Sigma \, w_\Sigma$.
+
+{% if r.figures.simulation is defined %}
+![True GMV variance above the oracle in the simulation.](../{{ r.figures.simulation[0] }}){#fig-sim}
+
+The same values are in `reports/tables/simulation_excess_variance.md`, and their standard errors in `reports/results.json`.
+{% endif %}
+
+# Limitations
+
+Portfolio returns are smoother than single-stock returns, so the gaps between estimators understate what a stock-level universe would show; the largest universe, {{ h.max_ratio_universe_label }}, reaches {{ h.max_assets_per_observation | num(2) }} assets per observation. Transaction costs are not charged: turnover is reported beside risk instead. Weights are held fixed within each month so that realized variance isolates forecast quality. The library revised its history when it moved to CRSP's CIZ files in January 2025; every download is hashed, `chr fetch` flags any file whose content changed, and `chr results` rebuilds every number from the revised data.
+
+# Reproducibility
+
+All code, configuration and tests are in the repository. `uv run chr results` downloads the data, verifies it, runs every stage and regenerates this document and the README from the same `results.json`.
+
+# References
+
+- Bai, J. and Ng, S. (2002). Determining the number of factors in approximate factor models. *Econometrica* 70(1), 191-221.
+- Engle, R. (2002). Dynamic conditional correlation. *Journal of Business and Economic Statistics* 20(3), 339-350.
+- Engle, R., Ledoit, O. and Wolf, M. (2019). Large dynamic covariance matrices. *Journal of Business and Economic Statistics* 37(2), 363-375.
+- Engle, R., Shephard, N. and Sheppard, K. (2008). Fitting vast dimensional time-varying covariance models. Working paper, University of Oxford.
+- Engle, R. and Sheppard, K. (2001). Theoretical and empirical properties of dynamic conditional correlation multivariate GARCH. NBER Working Paper 8554.
+- Hansen, P. R., Lunde, A. and Nason, J. M. (2011). The model confidence set. *Econometrica* 79(2), 453-497.
+- Laurent, S., Rombouts, J. and Violante, F. (2013). On loss functions and ranking forecasting performances of multivariate volatility models. *Journal of Econometrics* 173(1), 1-10.
+- Ledoit, O. and Wolf, M. (2004). Honey, I shrunk the sample covariance matrix. *Journal of Portfolio Management* 30(4), 110-119.
+- Ledoit, O. and Wolf, M. (2017). Nonlinear shrinkage of the covariance matrix for portfolio selection: Markowitz meets Goldilocks. *Review of Financial Studies* 30(12), 4349-4388.
+- Ledoit, O. and Wolf, M. (2020). Analytical nonlinear shrinkage of large-dimensional covariance matrices. *Annals of Statistics* 48(5), 3043-3065.
+- Politis, D. and Romano, J. (1994). The stationary bootstrap. *Journal of the American Statistical Association* 89(428), 1303-1313.

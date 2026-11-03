@@ -1,0 +1,13 @@
+# Shape of the synthetic mirror used by CI and the test suite. Synthetic numbers
+# never feed a reported result; they exist to exercise the real code paths.
+start: "2000-01-03"
+# About eight years: enough for the 1260-day window plus a few years of evaluation.
+n_days: 2100
+seed: 11
+columns:
+  ind10: 10
+  ind30: 30
+  ind49: 49
+  me_bm100: 100
+late_start_share: 0.1
+late_start_max_days: 600

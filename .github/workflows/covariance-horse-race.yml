@@ -1,0 +1,81 @@
+name: covariance-horse-race
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "covariance-horse-race/**"
+      - ".github/workflows/covariance-horse-race.yml"
+  pull_request:
+    paths:
+      - "covariance-horse-race/**"
+      - ".github/workflows/covariance-horse-race.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: covariance-horse-race
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  check:
+    name: Lint, types, tests, README drift, audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: covariance-horse-race/uv.lock
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run chr check
+      - run: uv run chr audit
+
+  provenance:
+    name: Results come from the library, not the fixture
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: covariance-horse-race/uv.lock
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run chr check-provenance
+
+  paper:
+    name: Build the paper
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: covariance-horse-race/uv.lock
+      - uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b # v2
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run chr paper
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: covariance-horse-race-paper
+          path: covariance-horse-race/paper/_output/
+          if-no-files-found: error
