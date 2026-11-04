@@ -7,6 +7,7 @@ Empirical finance and econometrics projects by Ian Wachira, AKA TJT-Pro. Each fo
 | Project | Question | CI |
 | --- | --- | --- |
 | [Covariance horse race](covariance-horse-race) | Which covariance forecast gives the lowest out-of-sample risk on a century of daily US portfolio returns, and which models are statistically tied? | [![covariance-horse-race](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/covariance-horse-race.yml/badge.svg)](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/covariance-horse-race.yml) |
+| [The term premium, rebuilt](acm-term-premium) | Can the NY Fed's ACM Treasury term premium be reproduced exactly from public data, how different was it in real time, and does it predict bond returns? | [![acm-term-premium](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/acm-term-premium.yml/badge.svg)](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/acm-term-premium.yml) |
 
 ### [Covariance horse race](covariance-horse-race)
 
@@ -14,16 +15,27 @@ Estimators from the sample covariance through Ledoit-Wolf shrinkage, factor mode
 
 [![Out-of-sample GMV volatility above the best model, by universe and window](covariance-horse-race/reports/figures/dimension_sweep.png)](covariance-horse-race#readme)
 
+### [The term premium, rebuilt](acm-term-premium)
+
+The Adrian-Crump-Moench model is rebuilt from the Federal Reserve Board's Gurkaynak-Sack-Wright yield curve and checked against every series the NY Fed publishes. It is then re-estimated month by month as a user would have seen it at the time, tested as an out-of-sample predictor of bond excess returns against the Cochrane-Piazzesi factor, and used to split long-yield moves on policy-rate change days into expected short rates and term premium. Read the [results](acm-term-premium#readme) or the [paper (PDF)](acm-term-premium/paper/_output/paper/paper.pdf).
+
+[![Term premium rebuilt from public inputs, and its gap to the published series](acm-term-premium/reports/figures/replication.png)](acm-term-premium#readme)
+
 ## Running a project
 
-Each project uses [uv](https://docs.astral.sh/uv/). From the repository root, one command at a time:
+Each project uses [uv](https://docs.astral.sh/uv/). From the repository root, one command at a time, with the project's folder and command name:
+
+| Project | Folder | Command |
+| --- | --- | --- |
+| Covariance horse race | `covariance-horse-race` | `chr` |
+| The term premium, rebuilt | `acm-term-premium` | `acm` |
 
 ```
-cd covariance-horse-race
+cd acm-term-premium
 uv sync
-uv run chr results
-uv run chr check
-uv run chr check-provenance
+uv run acm results
+uv run acm check
+uv run acm check-provenance
 ```
 
 The project README lists what each command does.

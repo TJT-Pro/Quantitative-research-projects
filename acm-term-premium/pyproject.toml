@@ -1,0 +1,79 @@
+[project]
+name = "acm-term-premium"
+version = "1.0.0"
+description = "The Adrian-Crump-Moench Treasury term premium rebuilt from public inputs, validated against the NY Fed series, and tested in real time."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Ian Wachira" }]
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scipy>=1.13",
+    "pyarrow>=17",
+    "python-calamine>=0.3",
+    "pydantic>=2.8",
+    "pyyaml>=6.0.2",
+    "typer>=0.12",
+    "httpx>=0.27",
+    "jinja2>=3.1.4",
+    "matplotlib>=3.9",
+]
+
+[project.scripts]
+acm = "acm_term_premium.cli:app"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "hypothesis>=6.112",
+    "ruff>=0.7",
+    "mypy>=1.13",
+    "pandas-stubs>=2.2",
+    "types-PyYAML>=6.0",
+    "pip-audit>=2.7",
+    "openpyxl>=3.1.5",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/acm_term_premium"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "S", "SIM", "RUF", "NPY", "PD", "PT", "C4", "PL"]
+ignore = [
+    "PLR0913",  # estimators and evaluations carry explicit research parameters
+    "PLR2004",  # tolerances are named where they are asserted
+    "N803",     # matrix arguments follow the paper notation (X, Phi, Sigma)
+    "N806",
+    # pivot and stack raise on duplicate keys, which is the check wanted when
+    # reshaping published series; pivot_table and melt would average or hide them.
+    "PD010",
+    "PD013",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR0915"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["scipy", "scipy.*", "matplotlib", "matplotlib.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"

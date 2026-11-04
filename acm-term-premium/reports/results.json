@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-04T07:46:52+00:00",
+  "config_fingerprint": "cb7fadbe4c9882e8",
+  "provenance": "official",
+  "settings": {
+    "n_factors": 5,
+    "published_years": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "convention": "nyfed",
+    "max_spectral_radius": 0.995,
+    "return_maturities": [
+      6,
+      12,
+      24,
+      36,
+      48,
+      60,
+      72,
+      84,
+      96,
+      108,
+      120
+    ],
+    "short_rate": {
+      "method": "fedfunds_splice",
+      "fit_start": "1982-01",
+      "replace_before": "1982-01"
+    },
+    "bootstrap": {
+      "replications": 500,
+      "block_months": 24,
+      "band": 0.9,
+      "seed": 20261103
+    },
+    "realtime_min_months": 120,
+    "forecasting": {
+      "horizon_months": 12,
+      "maturities": [
+        24,
+        60,
+        120
+      ],
+      "cp_forward_years": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cp_target_years": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "min_train_months": 120,
+      "newey_west_lags": 12
+    },
+    "events_start": "1994-02-04"
+  },
+  "tables": {
+    "validation": "| Series | Maturity (years) | RMSE (bp) | Max abs (bp) | Correlation | Months |\n| --- | --- | ---: | ---: | ---: | --- |\n| Fitted yield | 1 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 2 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 3 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 4 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 5 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 6 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 7 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 8 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 9 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Fitted yield | 10 | 0.0000 | 0.0000 | 1.000000 | 784 |\n| Risk-neutral yield | 1 | 0.0011 | 0.0063 | 1.000000 | 784 |\n| Risk-neutral yield | 2 | 0.0014 | 0.0078 | 1.000000 | 784 |\n| Risk-neutral yield | 3 | 0.0015 | 0.0082 | 1.000000 | 784 |\n| Risk-neutral yield | 4 | 0.0016 | 0.0084 | 1.000000 | 784 |\n| Risk-neutral yield | 5 | 0.0016 | 0.0085 | 1.000000 | 784 |\n| Risk-neutral yield | 6 | 0.0017 | 0.0086 | 1.000000 | 784 |\n| Risk-neutral yield | 7 | 0.0017 | 0.0087 | 1.000000 | 784 |\n| Risk-neutral yield | 8 | 0.0018 | 0.0087 | 1.000000 | 784 |\n| Risk-neutral yield | 9 | 0.0018 | 0.0087 | 1.000000 | 784 |\n| Risk-neutral yield | 10 | 0.0018 | 0.0086 | 1.000000 | 784 |\n| Term premium | 1 | 0.0011 | 0.0063 | 1.000000 | 784 |\n| Term premium | 2 | 0.0014 | 0.0078 | 1.000000 | 784 |\n| Term premium | 3 | 0.0015 | 0.0082 | 1.000000 | 784 |\n| Term premium | 4 | 0.0016 | 0.0084 | 1.000000 | 784 |\n| Term premium | 5 | 0.0016 | 0.0085 | 1.000000 | 784 |\n| Term premium | 6 | 0.0017 | 0.0086 | 1.000000 | 784 |\n| Term premium | 7 | 0.0017 | 0.0087 | 1.000000 | 784 |\n| Term premium | 8 | 0.0018 | 0.0087 | 1.000000 | 784 |\n| Term premium | 9 | 0.0018 | 0.0087 | 1.000000 | 784 |\n| Term premium | 10 | 0.0018 | 0.0086 | 1.000000 | 784 |",
+    "validation_decades": "| Decade | RMSE (bp) | Max abs (bp) |\n| --- | ---: | ---: |\n| 1960s | 0.0012 | 0.0026 |\n| 1970s | 0.0016 | 0.0045 |\n| 1980s | 0.0032 | 0.0086 |\n| 1990s | 0.0010 | 0.0023 |\n| 2000s | 0.0008 | 0.0027 |\n| 2010s | 0.0018 | 0.0028 |\n| 2020s | 0.0020 | 0.0054 |",
+    "revisions": "| Decade | Mean abs revision (bp) |\n| --- | ---: |\n| 1970s | 36.3 |\n| 1980s | 115.4 |\n| 1990s | 108.7 |\n| 2000s | 95.0 |\n| 2010s | 20.5 |\n| 2020s | 14.4 |",
+    "forecasts": "| Bond | Predictor | Months | OOS R2 (%) | Clark-West | p-value |\n| --- | --- | --- | ---: | ---: | ---: |\n| 2-year | ACM term premium (real time) | 522 | 0.42 | 1.03 | 0.152 |\n| 2-year | Cochrane-Piazzesi factor | 522 | -9.62 | 1.20 | 0.115 |\n| 5-year | ACM term premium (real time) | 522 | 0.05 | 1.34 | 0.090 |\n| 5-year | Cochrane-Piazzesi factor | 522 | -13.31 | 1.03 | 0.151 |\n| 10-year | ACM term premium (real time) | 522 | -1.48 | 1.59 | 0.056 |\n| 10-year | Cochrane-Piazzesi factor | 522 | -12.48 | 1.26 | 0.104 |"
+  },
+  "figures": {
+    "replication": [
+      "reports/figures/replication.png",
+      "reports/figures/replication.svg"
+    ],
+    "decomposition": [
+      "reports/figures/decomposition.png",
+      "reports/figures/decomposition.svg"
+    ],
+    "revisions": [
+      "reports/figures/revisions.png",
+      "reports/figures/revisions.svg"
+    ],
+    "forecasts": [
+      "reports/figures/forecasts.png",
+      "reports/figures/forecasts.svg"
+    ],
+    "policy_days": [
+      "reports/figures/policy_days.png",
+      "reports/figures/policy_days.svg"
+    ]
+  },
+  "validation": {
+    "headline_years": 10,
+    "tp_rmse_bp": 0.0018247913995161028,
+    "tp_max_abs_bp": 0.00860750837557156,
+    "max_abs_all_series_bp": 0.008669413860129538,
+    "months": 784,
+    "start": "1961-06-30",
+    "end": "2026-09-30",
+    "daily_days": 16305,
+    "daily_max_abs_bp": 0.009359549399540201,
+    "convention_gap_mean_bp": -6.303915841058052,
+    "convention_gap_max_abs_bp": 6.30391584105959,
+    "splice_gap_mean_abs_bp": 12.012374406951645,
+    "splice_gap_max_abs_bp": 28.887012064649635,
+    "latest_tp_pct": 0.8849933810538869,
+    "latest_date": "2026-09-30"
+  },
+  "splice": {
+    "intercept": 0.002726585290466334,
+    "slope": 0.8913283382258307,
+    "fit_months": 537,
+    "replaced_months": 247,
+    "r_squared": 0.9766843224750945
+  },
+  "uncertainty": {
+    "median_band_width_bp": 121.68729104478479,
+    "latest_lower_pct": 0.5782010449819635,
+    "latest_upper_pct": 1.1766924163058567
+  },
+  "realtime": {
+    "months": 665,
+    "start": "1971-05-28",
+    "mean_abs_revision_bp": 68.689838464586,
+    "max_abs_revision_bp": 405.57994368306345,
+    "max_revision_date": "1980-03-31",
+    "unconstrained_max_abs_revision_bp": 3260.728544721492,
+    "correlation_with_full_sample": 0.8780247310492681,
+    "constrained_months": 31,
+    "constrained_first": "1974-08-30",
+    "constrained_last": "1984-05-31",
+    "largest_ols_spectral_radius": 1.0193184053635709
+  },
+  "forecasts": [
+    {
+      "maturity": 24,
+      "predictor": "acm",
+      "months": 522,
+      "oos_r2": 0.004218976746476866,
+      "clark_west": 1.0271508609766962,
+      "p_value": 0.152174716221267
+    },
+    {
+      "maturity": 24,
+      "predictor": "cp",
+      "months": 522,
+      "oos_r2": -0.09620890278293892,
+      "clark_west": 1.1978923165316642,
+      "p_value": 0.11547947067568731
+    },
+    {
+      "maturity": 60,
+      "predictor": "acm",
+      "months": 522,
+      "oos_r2": 0.0005409513927739917,
+      "clark_west": 1.340972103604988,
+      "p_value": 0.08996475500959344
+    },
+    {
+      "maturity": 60,
+      "predictor": "cp",
+      "months": 522,
+      "oos_r2": -0.13305600941795293,
+      "clark_west": 1.0337459656569326,
+      "p_value": 0.1506274691460987
+    },
+    {
+      "maturity": 120,
+      "predictor": "acm",
+      "months": 522,
+      "oos_r2": -0.014781279708979023,
+      "clark_west": 1.591158145661455,
+      "p_value": 0.05578699476739446
+    },
+    {
+      "maturity": 120,
+      "predictor": "cp",
+      "months": 522,
+      "oos_r2": -0.12482194514713019,
+      "clark_west": 1.2571990550192174,
+      "p_value": 0.10434078270364444
+    }
+  ],
+  "forecast_sample": {
+    "start": "1982-04-30",
+    "end": "2025-09-30"
+  },
+  "events": {
+    "events": 91,
+    "hikes": 52,
+    "cuts": 39,
+    "mean_abs_yield_bp": 5.900832539161207,
+    "mean_abs_expectations_bp": 3.566187291212929,
+    "mean_abs_term_premium_bp": 5.039010424393446,
+    "term_premium_variance_share": 0.7921692456148526,
+    "expectations_variance_share": 0.4206464670468925,
+    "covariance_share": -0.17881124024716144,
+    "all_days_term_premium_variance_share": 0.8283421051251267,
+    "all_days": {
+      "days": 8176,
+      "mean_abs_yield_bp": 4.429598933152859,
+      "mean_abs_expectations_bp": 1.8758252196748644,
+      "mean_abs_term_premium_bp": 3.905506309437105,
+      "term_premium_variance_share": 0.8283421051251267,
+      "expectations_variance_share": 0.2339954445347889,
+      "covariance_share": -0.03275977340640423
+    },
+    "first": "1994-02-04",
+    "last": "2026-09-17"
+  },
+  "runtime": {
+    "estimate": {
+      "seconds": 20.9,
+      "cpu_count": 12,
+      "python": "3.12.10",
+      "machine": "AMD64"
+    }
+  }
+}

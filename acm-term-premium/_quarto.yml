@@ -1,0 +1,7 @@
+# Quarto project rooted here so the paper can reference reports/figures
+# without leaving the Typst sandbox.
+project:
+  type: default
+  render:
+    - paper/paper.qmd
+  output-dir: paper/_output

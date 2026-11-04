@@ -1,0 +1,54 @@
+{
+  "files": {
+    "acm": {
+      "name": "acm",
+      "file": "ACMTermPremium.xls",
+      "url": "https://www.newyorkfed.org/medialibrary/media/research/data_indicators/ACMTermPremium.xls",
+      "retrieved_at": "2026-11-03T12:40:00+00:00",
+      "bytes": 10166784,
+      "sha256": "5050f33b8fb1cf761aeab471bb49af3e0787323f85a0066bd93ea5e77517e2f9",
+      "etag": null,
+      "last_modified": null
+    },
+    "fedfunds": {
+      "name": "fedfunds",
+      "file": "FEDFUNDS.csv",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=FEDFUNDS",
+      "retrieved_at": "2026-11-03T12:40:01+00:00",
+      "bytes": 13975,
+      "sha256": "06ded1625e05391a1407f1d7d721e482e8b62916c6c5fe9491b76d74285ddd69",
+      "etag": null,
+      "last_modified": "Mon, 02 Nov 2026 21:16:50 GMT"
+    },
+    "gsw": {
+      "name": "gsw",
+      "file": "feds200628.csv",
+      "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
+      "retrieved_at": "2026-11-03T12:39:42+00:00",
+      "bytes": 16664803,
+      "sha256": "88cab90e84ad765ab79d9854b33e5813051210f2ac2285eaa6e720149fdd256d",
+      "etag": "\"a8b124624566dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 19:00:07 GMT"
+    },
+    "target": {
+      "name": "target",
+      "file": "DFEDTAR.csv",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTAR",
+      "retrieved_at": "2026-11-03T12:40:02+00:00",
+      "bytes": 172645,
+      "sha256": "323b6d9fb014cdd8b39eab02025bb37111e9497c75fdd24ea1731ed3f360376c",
+      "etag": null,
+      "last_modified": "Wed, 24 Sep 2025 14:43:11 GMT"
+    },
+    "target_upper": {
+      "name": "target_upper",
+      "file": "DFEDTARU.csv",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
+      "retrieved_at": "2026-11-03T12:40:06+00:00",
+      "bytes": 104522,
+      "sha256": "3029614805f9e3d7ee7b22ad0c6378ce8b0e0da195f499a3168dd0efbc84dd7e",
+      "etag": null,
+      "last_modified": "Mon, 02 Nov 2026 13:01:31 GMT"
+    }
+  }
+}

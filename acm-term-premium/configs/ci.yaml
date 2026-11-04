@@ -1,0 +1,16 @@
+# Overrides for CI and the end-to-end test: same code on the synthetic fixture
+# (`acm fixture <folder>`), with settings matched to the fixture's shape.
+data:
+  sources:
+    acm:
+      url: https://www.newyorkfed.org/medialibrary/media/research/data_indicators/ACMTermPremium.xls
+      file: ACMTermPremium.xlsx
+model:
+  short_rate:
+    method: fedfunds_splice
+    fit_start: "1985-01"
+    replace_before: "1985-01"
+uncertainty:
+  replications: 60
+events:
+  start: "1985-01-02"

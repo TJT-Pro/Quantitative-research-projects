@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this code or its results, please cite it as below."
+title: "The term premium, rebuilt and stress-tested"
+authors:
+  - family-names: Wachira
+    given-names: Ian
+license: MIT
+type: software

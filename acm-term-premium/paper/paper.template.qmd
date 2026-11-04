@@ -1,0 +1,105 @@
+<#-- Rendered by `acm report` into paper.qmd. Every number comes from results.json. --#>
+{% set v = r.validation %}
+{% set rt = r.realtime %}
+{% set abstract %}
+{% if r.provenance != "official" %}This version was generated from the synthetic CI fixture and its numbers carry no empirical content. {% endif %}The Adrian, Crump and Moench (2013) Treasury term premium is rebuilt from the Federal Reserve Board's public yield curve and reproduces the New York Fed's published series to within {{ v.max_abs_all_series_bp | num(4) }} basis points for every series, maturity and month from {{ v.start[:4] }} to {{ v.end[:4] }}. Matching requires two estimation conventions absent from the paper; the textbook estimator differs by up to {{ v.convention_gap_max_abs_bp | num(1) }} basis points. Estimated in real time, the {{ v.headline_years }}-year term premium differs from the published history by {{ rt.mean_abs_revision_bp | num(0) }} basis points on average, and short windows around the Volcker disinflation produce VAR dynamics with no mean reversion unless constrained. Out of sample, the real-time term premium is compared with the Cochrane-Piazzesi factor as a predictor of annual bond excess returns.
+{% endset %}
+---
+title: "The Term Premium, Rebuilt and Stress-Tested"
+subtitle: "Exact replication, real-time revisions and out-of-sample content of the ACM term premium"
+author: "Ian Wachira"
+date: "{{ r.generated_at[:10] }}"
+abstract: {{ abstract | trim | tojson }}
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fontsize: 10.5pt
+    section-numbering: "1.1"
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Introduction
+
+A long Treasury yield is the average short rate investors expect over the bond's life plus a term premium that compensates them for bearing duration risk. Neither component is observed. The decomposition published by the Federal Reserve Bank of New York, based on Adrian, Crump and Moench (2013), has become the reference estimate in policy and markets. This note asks three questions: can the published series be reproduced exactly from public inputs, how different was the estimate for someone computing it at the time, and does it contain information about future bond returns that a forecaster could have used?
+
+# Data
+
+The inputs are the daily Svensson curve parameters of Gurkaynak, Sack and Wright (2007), published by the Federal Reserve Board, evaluated at maturities of one to 120 months on the last trading day of each complete month. The curve is fitted to coupon securities, so its one-month point is an extrapolation; before {{ r.settings.short_rate.replace_before[:4] }} it is replaced by its fitted value from a regression on the effective federal funds rate estimated from {{ r.settings.short_rate.fit_start[:4] }} onward{% if r.splice is defined %} ($R^2$ = {{ r.splice.r_squared | num(3) }}, {{ r.splice.replaced_months }} months replaced){% endif %}. The New York Fed workbook is used only as the validation target. Policy-rate change days come from the daily federal funds target and, after it was replaced, the upper end of the target range.
+
+# Model
+
+With $K = {{ r.settings.n_factors }}$ pricing factors $X_t$, the first principal components of demeaned yields scaled to unit variance, the factor dynamics are a VAR(1), $X_{t+1} = \mu + \Phi X_t + v_{t+1}$, with innovation covariance $\Sigma$. One-month log excess returns on bonds of maturities {{ r.settings.return_maturities | join(", ") }} months are regressed jointly on a constant, the innovations and the lagged factors,
+
+$$ rx_{t+1}^{(n-1)} = a_n + \beta_n' v_{t+1} + c_n' X_t + e_{t+1}^{(n)}, $$
+
+and the prices of risk follow from the cross-section of the coefficients,
+
+$$ \lambda_1 = (\beta\beta')^{-1}\beta c, \qquad \lambda_0 = (\beta\beta')^{-1}\beta\left(a + \tfrac{1}{2}\left(B^{*}\operatorname{vec}(\Sigma) + \sigma^2 \iota\right)\right). $$
+
+Log zero prices are affine, $p_t^{(n)} = A_n + B_n' X_t$, with
+
+$$ A_n = A_{n-1} + B_{n-1}'(\mu - \lambda_0) + \tfrac{1}{2}\left(B_{n-1}'\Sigma B_{n-1} + \sigma^2\right) - \delta_0, \qquad B_n' = B_{n-1}'(\Phi - \lambda_1) - \delta_1', $$
+
+where $\delta_0 + \delta_1' X_t$ is the one-month rate. Setting $\lambda_0 = \lambda_1 = 0$ gives risk-neutral yields; the term premium is the fitted yield minus the risk-neutral yield.
+
+# Replication
+
+Fitting this model as written reproduces the published fitted yields but not the published term premium. Two conventions close the gap. First, the VAR intercept is folded into the innovations, $v_{t+1} = X_{t+1} - \Phi X_t$, so the recursions run with $\mu = 0$; because only $\mu - \lambda_0$ enters fitted yields they are unchanged, while risk-neutral yields move. Second, the recursion starts at the one-month bond, $A_1 = -\delta_0$ and $B_1 = -\delta_1$, without a convexity term, and $\Sigma$ uses $T-1$ degrees of freedom. With both, every published series is matched to within {{ v.max_abs_all_series_bp | num(4) }} basis points across {{ v.months }} months; the textbook version is {{ (v.convention_gap_mean_bp | abs) | num(2) }} basis points {{ 'lower' if v.convention_gap_mean_bp < 0 else 'higher' }} on average at {{ v.headline_years }} years. The daily published series is matched to {{ v.daily_max_abs_bp | num(4) }} basis points by pricing daily factors with the monthly estimates.
+
+![{{ v.headline_years }}-year term premium from this code (top) and the largest gap to the published series in each year (bottom).](../{{ r.figures.replication[0] }}){#fig-rep}
+
+{{ r.tables.validation_decades }}
+
+: Replication error of the {{ v.headline_years }}-year term premium by decade. {#tbl-dec}
+
+![Decomposition of the {{ v.headline_years }}-year yield with a 90% moving-block bootstrap band ({{ r.settings.bootstrap.replications }} draws, {{ r.settings.bootstrap.block_months }}-month blocks).](../{{ r.figures.decomposition[0] }}){#fig-dec}
+
+# Real-time estimates
+
+The model is re-estimated on expanding windows ending at each month from {{ rt.start[:4] }}, with the factors re-extracted in each window, and only the end-of-window estimate is kept. The real-time and full-sample {{ v.headline_years }}-year term premia have correlation {{ rt.correlation_with_full_sample | num(2) }}; their mean absolute difference is {{ rt.mean_abs_revision_bp | num(1) }} basis points.
+{% if rt.constrained_months > 0 %}
+In {{ rt.constrained_months }} windows ending between {{ rt.constrained_first[:7] }} and {{ rt.constrained_last[:7] }} the largest root of $\hat\Phi$ exceeds {{ r.settings.max_spectral_radius }} (up to {{ rt.largest_ols_spectral_radius | num(4) }}). Without mean reversion, expectations over {{ v.headline_years }} years are not anchored and the unconstrained real-time term premium differs from the full-sample one by up to {{ rt.unconstrained_max_abs_revision_bp | num(0) }} basis points. In those windows each offending eigenvalue is scaled to the bound, keeping its eigenvector, and the remaining steps are re-estimated given the constrained $\Phi$.
+{% endif %}
+
+![Real-time minus full-sample term premium.](../{{ r.figures.revisions[0] }}){#fig-rev}
+
+{{ r.tables.revisions }}
+
+: Mean absolute revision by decade. {#tbl-rev}
+
+{% if r.forecasts is defined %}
+# Out-of-sample return forecasts
+
+{{ r.settings.forecasting.horizon_months }}-month log excess returns on {{ r.settings.forecasting.maturities | map('years_label') | list | join_words }} bonds are forecast each month from {{ r.forecast_sample.start[:4] }} to {{ r.forecast_sample.end[:4] }} using only returns realized by the forecast date. The ACM forecaster regresses returns on the real-time term premium of the same maturity; the Cochrane-Piazzesi forecaster first regresses the average excess return on bonds of {{ r.settings.forecasting.cp_target_years | map('string') | list | join(", ") }} years on forward rates and then uses the fitted factor. Both are compared with the historical mean using the out-of-sample $R^2$ of Campbell and Thompson (2008) and the Clark and West (2007) statistic with Newey-West errors ({{ r.settings.forecasting.newey_west_lags }} lags).
+
+{{ r.tables.forecasts }}
+
+: Out-of-sample forecast evaluation on a common sample. {#tbl-fc}
+
+![Out-of-sample $R^2$ with one-sided Clark-West p-values.](../{{ r.figures.forecasts[0] }}){#fig-fc}
+{% endif %}
+
+{% if r.events is defined %}
+# Policy-rate change days
+
+On {{ r.events.events }} days between {{ r.events.first[:4] }} and {{ r.events.last[:4] }} when the policy rate changed, the daily {{ v.headline_years }}-year yield change is split into expectations and term premium using the model estimated through the previous month end. The term premium accounts for {{ (100 * r.events.term_premium_variance_share) | num(0) }}% of the variance of yield changes on those days, against {{ (100 * r.events.all_days.term_premium_variance_share) | num(0) }}% on all {{ "{:,}".format(r.events.all_days.days) }} trading days of the period; expected short rates account for {{ (100 * r.events.expectations_variance_share) | num(0) }}% against {{ (100 * r.events.all_days.expectations_variance_share) | num(0) }}%. The mean absolute change in expected short rates is {{ (r.events.mean_abs_expectations_bp / r.events.all_days.mean_abs_expectations_bp) | num(1) }} times its all-day level ({{ r.events.mean_abs_expectations_bp | num(1) }} bp against {{ r.events.all_days.mean_abs_expectations_bp | num(1) }} bp){% if r.events.term_premium_variance_share > r.events.expectations_variance_share %}, yet the term premium remains the larger source of variance on change days{% endif %}.
+
+![Mean absolute daily changes and variance shares on policy-rate change days and on all days.](../{{ r.figures.policy_days[0] }}){#fig-pol}
+{% endif %}
+
+# Limitations
+
+Uncertainty bands hold the factor definition fixed; the estimator's invariance to invertible affine factor transformations makes this innocuous for yields and term premia. Policy days before {{ r.settings.events_start[:4] }} are excluded because decisions were not announced. The source files are revised by their publishers; every download is hashed, `acm fetch` flags any file whose content changed, and `acm results` rebuilds every number from the revised data.
+
+# References
+
+- Adrian, T., Crump, R. K. and Moench, E. (2013). Pricing the term structure with linear regressions. *Journal of Financial Economics* 110(1), 110-138.
+- Campbell, J. Y. and Thompson, S. B. (2008). Predicting excess stock returns out of sample. *Review of Financial Studies* 21(4), 1509-1531.
+- Clark, T. E. and West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. *Journal of Econometrics* 138(1), 291-311.
+- Cochrane, J. H. and Piazzesi, M. (2005). Bond risk premia. *American Economic Review* 95(1), 138-160.
+- Gurkaynak, R. S., Sack, B. and Wright, J. H. (2007). The U.S. Treasury yield curve: 1961 to the present. *Journal of Monetary Economics* 54(8), 2291-2304.
