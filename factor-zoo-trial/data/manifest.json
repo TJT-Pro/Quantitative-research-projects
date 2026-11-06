@@ -1,0 +1,1624 @@
+{
+  "files": {
+    "french/F-F_Momentum_Factor_CSV.zip": {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_CSV.zip",
+      "path": "french/F-F_Momentum_Factor_CSV.zip",
+      "sha256": "27ed60e5b2caa9ea334a261cddfa864a9926f6bf45e9677c95dfd835c5abb315",
+      "bytes": 5603,
+      "retrieved_at": "2026-11-03T15:26:46+00:00",
+      "origin": "official",
+      "etag": "\"a262ee762666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:48 GMT"
+    },
+    "french/F-F_Research_Data_5_Factors_2x3_CSV.zip": {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_CSV.zip",
+      "path": "french/F-F_Research_Data_5_Factors_2x3_CSV.zip",
+      "sha256": "17d7a575e71d6764a70ddec3f8d887756c0eebf3a60f64d6ba95d2adde3fed26",
+      "bytes": 11971,
+      "retrieved_at": "2026-11-03T15:26:45+00:00",
+      "origin": "official",
+      "etag": "\"9879a4762666dd1:0\"",
+      "last_modified": "Tue, 27 Oct 2026 15:18:47 GMT"
+    },
+    "jkp/all_factors/are": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bare%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[are]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "e44f2c8280283a407790f12314a367ebb2ff557eb23eb2468fbd9802a8d75a8e",
+      "bytes": 520825,
+      "retrieved_at": "2026-11-03T15:32:11+00:00",
+      "origin": "official",
+      "etag": "\"b23de4b9053ceb2fa823910fe59fb5cd\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:06 GMT"
+    },
+    "jkp/all_factors/arg": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Barg%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[arg]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "7f8e9839701ff495136dd7f2cbd3961bafe82e6175cd63db07378a20060bcdaf",
+      "bytes": 622346,
+      "retrieved_at": "2026-11-03T15:32:48+00:00",
+      "origin": "official",
+      "etag": "\"35c1d5a35d8940b3852eb0f859373cd1\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:14 GMT"
+    },
+    "jkp/all_factors/aus": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Baus%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[aus]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "fa245175b3bb6a359ef0938e18cbc4bef885b26131abad3ffa9080c30ca115b2",
+      "bytes": 1099578,
+      "retrieved_at": "2026-11-03T15:33:09+00:00",
+      "origin": "official",
+      "etag": "\"a88e099ae68f4581eb8d9035e39deff2\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:22 GMT"
+    },
+    "jkp/all_factors/aut": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Baut%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[aut]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "e2286b66afe85c5966ea7b4fe0ab6014300912f78bb37d319bc1612fc265d054",
+      "bytes": 895675,
+      "retrieved_at": "2026-11-03T15:33:16+00:00",
+      "origin": "official",
+      "etag": "\"577a825930bb17e3cf68828937ee549b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:31 GMT"
+    },
+    "jkp/all_factors/bel": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbel%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[bel]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "697394d314bc30a7ced4db0777b04b07b9b0193695b4099f30d1669425af1f25",
+      "bytes": 961971,
+      "retrieved_at": "2026-11-03T15:33:26+00:00",
+      "origin": "official",
+      "etag": "\"9aa3866737d399560cf52f4ae5db2a29\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:39 GMT"
+    },
+    "jkp/all_factors/bgd": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbgd%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[bgd]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f30f7975585ddeabaa8aa1c4a2eab51b55ad38f828d2e5e95ef133523227fb87",
+      "bytes": 143923,
+      "retrieved_at": "2026-11-03T15:33:28+00:00",
+      "origin": "official",
+      "etag": "\"08321e9c3ef930ffb1e24fad07dfc0ad\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:48 GMT"
+    },
+    "jkp/all_factors/bhr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbhr%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[bhr]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "39383af8db276c7c2d6aed268094f2a28c0309c7000f8ddcce23dd951fda9416",
+      "bytes": 12473,
+      "retrieved_at": "2026-11-03T15:33:29+00:00",
+      "origin": "official",
+      "etag": "\"4401a17faf490ae92d4ac174dff2c610\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:54 GMT"
+    },
+    "jkp/all_factors/bra": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbra%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[bra]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "9a5b47713fa416de29b31b3cc3581e63d47dbb8c07c7788da3f0345bf0c4ef3c",
+      "bytes": 729890,
+      "retrieved_at": "2026-11-03T15:33:38+00:00",
+      "origin": "official",
+      "etag": "\"7d50f53f600dfd93e4abca59c1f6e84a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:57 GMT"
+    },
+    "jkp/all_factors/can": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcan%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[can]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "76fc9e25d3d7e058dd226980461e0de951e4e02243e3405e7f40b52a2a56dbb8",
+      "bytes": 1372342,
+      "retrieved_at": "2026-11-03T15:33:57+00:00",
+      "origin": "official",
+      "etag": "\"864538d6c785fa0dfa239e7cec2e16ba\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:06 GMT"
+    },
+    "jkp/all_factors/che": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bche%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[che]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "274f799781b451de38ea0ba5d576511bb7832b51bdae71664f38a78cf233bb2c",
+      "bytes": 998827,
+      "retrieved_at": "2026-11-03T15:34:15+00:00",
+      "origin": "official",
+      "etag": "\"6c5fb9efe2772d69e3c537d6f06d1101\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:14 GMT"
+    },
+    "jkp/all_factors/chl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bchl%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[chl]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "8ce317d3ff344098958ea86cdb91089dc17af9cc5cfe1e4a2983c116d81a5266",
+      "bytes": 877152,
+      "retrieved_at": "2026-11-03T15:34:24+00:00",
+      "origin": "official",
+      "etag": "\"9862bd6f3c5be5d565f93223e71b87b0\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:22 GMT"
+    },
+    "jkp/all_factors/chn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bchn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[chn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f874f48306db79111313d1408d51f3fa10793f5881c49cddf4f9c41ac8d0dfc1",
+      "bytes": 922628,
+      "retrieved_at": "2026-11-03T15:34:28+00:00",
+      "origin": "official",
+      "etag": "\"bac2f4a4b9b496ec21de01cae004db5e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:31 GMT"
+    },
+    "jkp/all_factors/col": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcol%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[col]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "d61142ac84e1d8bc4f154e5bc72e96812e551aa45db38e15206a07f85ad4a214",
+      "bytes": 489518,
+      "retrieved_at": "2026-11-03T15:34:31+00:00",
+      "origin": "official",
+      "etag": "\"ef98b7cad8a2a73b07745851cf52fdf3\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:39 GMT"
+    },
+    "jkp/all_factors/cyp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcyp%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[cyp]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "98deb5a213702211ebd48cc8c9da0731a5726852e592939a87307ef38b9b1b43",
+      "bytes": 1132,
+      "retrieved_at": "2026-11-03T15:34:31+00:00",
+      "origin": "official",
+      "etag": "\"f23f87a84f0a63dab415b35fb6808350\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:47 GMT"
+    },
+    "jkp/all_factors/cze": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcze%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[cze]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "e3fb4c2c56697638fc87074e5f7fcfad0f8c0f0bf1ab32c5f26ea0dc35a43808",
+      "bytes": 16548,
+      "retrieved_at": "2026-11-03T15:34:32+00:00",
+      "origin": "official",
+      "etag": "\"fa97df1301a592a74848392c927b803a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:48 GMT"
+    },
+    "jkp/all_factors/deu": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdeu%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[deu]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "65e27312a26a9772ae5c3b83271e608db1e4b8efe940dc3a49fad2009f8f8f5b",
+      "bytes": 1086861,
+      "retrieved_at": "2026-11-03T15:34:38+00:00",
+      "origin": "official",
+      "etag": "\"8f33c291df91860a7ee75be22c2607fa\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:51 GMT"
+    },
+    "jkp/all_factors/developed": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdeveloped%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[developed]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "3bf7460655b2a6ba61acffa88cb35958812a58f1d2d5a0669d5626735768715c",
+      "bytes": 960335,
+      "retrieved_at": "2026-11-03T15:29:29+00:00",
+      "origin": "official",
+      "etag": "\"94a227f5b5f2072dd3e1c9372041ebf9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:59 GMT"
+    },
+    "jkp/all_factors/dnk": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdnk%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[dnk]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "ce40b3ca5b88afb923df6fe322de9c9af6c24ffd2883898c3ba046a9bc95bdba",
+      "bytes": 989492,
+      "retrieved_at": "2026-11-03T15:34:46+00:00",
+      "origin": "official",
+      "etag": "\"8418d2ac29bfc26f32986fffe462c695\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:07 GMT"
+    },
+    "jkp/all_factors/egy": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Begy%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[egy]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "26073a5aa18b5185bed27a29d74b9e3f57981fb132d40a43875846caa518330f",
+      "bytes": 503654,
+      "retrieved_at": "2026-11-03T15:34:50+00:00",
+      "origin": "official",
+      "etag": "\"64fbe9d335099d0bb68042775dc1d8c6\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:16 GMT"
+    },
+    "jkp/all_factors/emerging": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bemerging%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[emerging]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "cfd30cb46bf82121fa7029a54fbad747b4a3498d05a55fc2c49ac24375ee29c8",
+      "bytes": 834302,
+      "retrieved_at": "2026-11-03T15:30:29+00:00",
+      "origin": "official",
+      "etag": "\"216e2668c425130f241174e6f2bc78c6\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:24 GMT"
+    },
+    "jkp/all_factors/esp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Besp%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[esp]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "8369b9deb150563f521bddb06fbcd0241dd0714aa2d87347adbfb272d3ed030c",
+      "bytes": 984148,
+      "retrieved_at": "2026-11-03T15:34:57+00:00",
+      "origin": "official",
+      "etag": "\"234b1be8b202348d74ea1311cba92c25\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:32 GMT"
+    },
+    "jkp/all_factors/fin": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfin%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[fin]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "c4eab24477398949a6e0a8657086a1f6e6453bf229b923be6b4bbffbf4daa0a8",
+      "bytes": 961216,
+      "retrieved_at": "2026-11-03T15:35:09+00:00",
+      "origin": "official",
+      "etag": "\"035fa1b4404289e089168287d77c3efe\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:40 GMT"
+    },
+    "jkp/all_factors/fra": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfra%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[fra]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "2854f1c89d86b20915523859e7c1c0ee1d61d5c31163fe955809b03dd045b507",
+      "bytes": 1080328,
+      "retrieved_at": "2026-11-03T15:35:37+00:00",
+      "origin": "official",
+      "etag": "\"8edb37b6b44f03a97464806d8d612c6e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:49 GMT"
+    },
+    "jkp/all_factors/frontier": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfrontier%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[frontier]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "651f90c111faa59960047858f3bd12f67b321aaf25df71777b8a0eb4d6d6a03d",
+      "bytes": 337143,
+      "retrieved_at": "2026-11-03T15:30:39+00:00",
+      "origin": "official",
+      "etag": "\"3285fed321db488de9e3e8d436adeac1\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:57 GMT"
+    },
+    "jkp/all_factors/gbr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bgbr%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[gbr]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "fe56da14e1733227ee45d4b3a14886ab47c0fadfd20bd4ddfd48ae017f6e7e0f",
+      "bytes": 1235297,
+      "retrieved_at": "2026-11-03T15:36:07+00:00",
+      "origin": "official",
+      "etag": "\"757205697d75fc5952e218494f4dd834\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:04 GMT"
+    },
+    "jkp/all_factors/grc": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bgrc%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[grc]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "892558d370a5db5bf99b306db69a4db2a0485de2055fc8ee75896fa0bb408ab5",
+      "bytes": 758061,
+      "retrieved_at": "2026-11-03T15:36:29+00:00",
+      "origin": "official",
+      "etag": "\"15de144ba99a78d1bf54aeb9ef640a1e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:12 GMT"
+    },
+    "jkp/all_factors/hkg": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhkg%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[hkg]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "9f3735bcd5a61093556f25de1ab7b35b2cda61b7211cbee30feb899cda47eb86",
+      "bytes": 1105308,
+      "retrieved_at": "2026-11-03T15:36:56+00:00",
+      "origin": "official",
+      "etag": "\"b8016527622cc05cc481a4b764aacae6\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:20 GMT"
+    },
+    "jkp/all_factors/hrv": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhrv%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[hrv]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "510916cb860611909ef8731c792b7440914360a05a513781184aa3a72a99adf0",
+      "bytes": 70599,
+      "retrieved_at": "2026-11-03T15:36:58+00:00",
+      "origin": "official",
+      "etag": "\"f1c40996940dacd7befc4478d4c222b2\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:29 GMT"
+    },
+    "jkp/all_factors/hun": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhun%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[hun]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "478c2f8b90f7347165d3a4ef2f4044b07faf7265fc190e21b0794d6740664c82",
+      "bytes": 1221,
+      "retrieved_at": "2026-11-03T15:36:59+00:00",
+      "origin": "official",
+      "etag": "\"03ee58d529fbeb2e14fd77f27e7991cb\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:35 GMT"
+    },
+    "jkp/all_factors/idn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bidn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[idn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "39123017bd63558a09941af9890ea139f18df37df1dca49c06cd17d0c9c9e7f4",
+      "bytes": 922971,
+      "retrieved_at": "2026-11-03T15:37:40+00:00",
+      "origin": "official",
+      "etag": "\"211bcc40777804c200ab0399e12a0447\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:36 GMT"
+    },
+    "jkp/all_factors/ind": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bind%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[ind]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "963ed9031f73f07bfa2482655b04e36dedea5d775b4492b0e7fb3ddcfaceb5e3",
+      "bytes": 894891,
+      "retrieved_at": "2026-11-03T15:37:55+00:00",
+      "origin": "official",
+      "etag": "\"f4ea4894efe5961cd8a2f1615dfe9c9f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:44 GMT"
+    },
+    "jkp/all_factors/irl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Birl%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[irl]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "004f636f63230adb3512613ebd4fa4bbe5ec355e615d30a690006e5810e062d8",
+      "bytes": 742768,
+      "retrieved_at": "2026-11-03T15:38:10+00:00",
+      "origin": "official",
+      "etag": "\"d03cdc49d4a0b8063612940d4ff59a14\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:52 GMT"
+    },
+    "jkp/all_factors/irn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Birn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[irn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "54e2c9243e9a07b1766cd5bd378ac7a5851a4ed98fb5c6058a583c17c614bde8",
+      "bytes": 704,
+      "retrieved_at": "2026-11-03T15:38:11+00:00",
+      "origin": "official",
+      "etag": "\"24e9c958736c4beb7144eaa712ccb1fa\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:00 GMT"
+    },
+    "jkp/all_factors/isl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bisl%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[isl]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "51ee4f7df06f944dba542314c96822e65728f51af99ef17ce6157f09ff2c30e9",
+      "bytes": 45121,
+      "retrieved_at": "2026-11-03T15:38:12+00:00",
+      "origin": "official",
+      "etag": "\"4edc8f5632a7fa28dc86cf7ebaefd53c\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:01 GMT"
+    },
+    "jkp/all_factors/isr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bisr%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[isr]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "9bfc1d48b4b71c0d6338fd60da694af7c5176294c8301284de875e3c6afaa43e",
+      "bytes": 816498,
+      "retrieved_at": "2026-11-03T15:38:34+00:00",
+      "origin": "official",
+      "etag": "\"0b7555cab3e02e368d0f1beaad3cd1ae\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:05 GMT"
+    },
+    "jkp/all_factors/ita": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bita%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[ita]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "27f92eb18b8383254d90a33d4a79aa9966f0cfa5fff1c3108f175493cb0e697a",
+      "bytes": 1017009,
+      "retrieved_at": "2026-11-03T15:38:57+00:00",
+      "origin": "official",
+      "etag": "\"a67b0fe5652b6921838b6ca73e1219bb\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:14 GMT"
+    },
+    "jkp/all_factors/jam": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjam%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[jam]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "08e4c7704837ee226b228c9f35e54afbb14010303dfae08c1911e13400d45def",
+      "bytes": 4733,
+      "retrieved_at": "2026-11-03T15:38:58+00:00",
+      "origin": "official",
+      "etag": "\"20763c83c3223f792eeec0c0f01e6d63\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:22 GMT"
+    },
+    "jkp/all_factors/jor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjor%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[jor]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "5f008a460c3dd2a67c63567406928fe85dbdde44671c20eb3995ff4f6af637b7",
+      "bytes": 50632,
+      "retrieved_at": "2026-11-03T15:38:59+00:00",
+      "origin": "official",
+      "etag": "\"1b6bbec3e703a2243d2fd3b0e6544359\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:26 GMT"
+    },
+    "jkp/all_factors/jpn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjpn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[jpn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "69902544c8b1b349b049aca0305428b6f9be871c7c50232e0ba28bf1039502d4",
+      "bytes": 1207935,
+      "retrieved_at": "2026-11-03T15:39:18+00:00",
+      "origin": "official",
+      "etag": "\"1adf21a0abdc63e73de74d0232e56250\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:31 GMT"
+    },
+    "jkp/all_factors/ken": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bken%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[ken]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f21709c555f2e28b74624bda5685cd594e599cd8e0fa7d235f4266df16385eb9",
+      "bytes": 25782,
+      "retrieved_at": "2026-11-03T15:39:20+00:00",
+      "origin": "official",
+      "etag": "\"fcd2fa0bc09390b84844ee8126b56ff9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:39 GMT"
+    },
+    "jkp/all_factors/kor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bkor%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[kor]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "4506513504a5ec65f714bcb4bd9a8005f2bc24d1cdfe26668d2a8e0b00bfb4a4",
+      "bytes": 962031,
+      "retrieved_at": "2026-11-03T15:39:24+00:00",
+      "origin": "official",
+      "etag": "\"c697de57b2d6972803a1c7ffad6c6385\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:44 GMT"
+    },
+    "jkp/all_factors/kwt": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bkwt%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[kwt]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "ff97eaf2e766439b9310e4a83471fb07415aa731f5ed572764a13632be8ee5d4",
+      "bytes": 571130,
+      "retrieved_at": "2026-11-03T15:39:31+00:00",
+      "origin": "official",
+      "etag": "\"730cd21d3a6e979467ddd73f3fa9abd2\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:52 GMT"
+    },
+    "jkp/all_factors/lka": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Blka%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[lka]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "bb2e9b83c6233d8754249ed6ab56b329aa0bce19baa6fa30cd8cbcca3f4520e9",
+      "bytes": 9967,
+      "retrieved_at": "2026-11-03T15:39:32+00:00",
+      "origin": "official",
+      "etag": "\"d2d64bff37653f2332c6dea293b02267\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:00 GMT"
+    },
+    "jkp/all_factors/lux": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Blux%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[lux]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "803c37f608db97981d248f3fc85119fb33cdf8863fd1dd19450b2f3fdc7922ae",
+      "bytes": 4758,
+      "retrieved_at": "2026-11-03T15:39:32+00:00",
+      "origin": "official",
+      "etag": "\"b5654df6c8206e55e586f2c3648fe695\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:04 GMT"
+    },
+    "jkp/all_factors/mar": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmar%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[mar]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "b1689f00d722fc25d0ceedadf4c6b746c443ce51321b45f3d272b6e3f64a26d1",
+      "bytes": 519429,
+      "retrieved_at": "2026-11-03T15:39:42+00:00",
+      "origin": "official",
+      "etag": "\"199e5c175eebc166cca36d85db29f4c7\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:07 GMT"
+    },
+    "jkp/all_factors/mex": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmex%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[mex]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f0db6121e8f2c8324a224cbcc67896b81af54567e682e3e600653911e4bf9fe2",
+      "bytes": 875616,
+      "retrieved_at": "2026-11-03T15:39:54+00:00",
+      "origin": "official",
+      "etag": "\"02e56cf50b7a00db3e33a4a93b43d639\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:14 GMT"
+    },
+    "jkp/all_factors/mys": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmys%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[mys]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "3d09d0825a0ba8c1ccd4f600a95e34c0a16502b04ff3a6934ca3ae0eaf824215",
+      "bytes": 1052353,
+      "retrieved_at": "2026-11-03T15:40:17+00:00",
+      "origin": "official",
+      "etag": "\"2cf864d4a15c919b97bfdd98a34f1fc9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:22 GMT"
+    },
+    "jkp/all_factors/nga": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnga%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[nga]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "a3722989f5df5fbd52f1116d8ca1f357798de4433112efbd769001fe1abf0b3d",
+      "bytes": 333607,
+      "retrieved_at": "2026-11-03T15:40:29+00:00",
+      "origin": "official",
+      "etag": "\"8b9c4b07df8323e4352e8b79fc706f99\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:31 GMT"
+    },
+    "jkp/all_factors/nld": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnld%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[nld]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "2325cc617c46c4b54dca474f102fc9c0638f15ba0f1cbae30666971d7e50f15d",
+      "bytes": 1002164,
+      "retrieved_at": "2026-11-03T15:40:53+00:00",
+      "origin": "official",
+      "etag": "\"3cfe55e3deea3df13c120b00a761fe06\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:38 GMT"
+    },
+    "jkp/all_factors/nor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnor%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[nor]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "4b8afff95e85924560cc10e1740ec39d42f026a7a94b78810fdf7d8a010d3d86",
+      "bytes": 984394,
+      "retrieved_at": "2026-11-03T15:41:03+00:00",
+      "origin": "official",
+      "etag": "\"69ee94ea7b34608973d84fa00bb22651\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:46 GMT"
+    },
+    "jkp/all_factors/nzl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnzl%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[nzl]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "ad8a99238173d271190529be8aadd0b2b62cae4254786940f7775847a2c72768",
+      "bytes": 863619,
+      "retrieved_at": "2026-11-03T15:41:15+00:00",
+      "origin": "official",
+      "etag": "\"405f26788cc2a47f703c528f1ce33a2d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:54 GMT"
+    },
+    "jkp/all_factors/omn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bomn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[omn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "7f6211a02c6d08ea3b3b8436217af044a08d0aaaff5756ec177d357d2bd74778",
+      "bytes": 106896,
+      "retrieved_at": "2026-11-03T15:41:17+00:00",
+      "origin": "official",
+      "etag": "\"f35251a713b5788cebeac21a279f98aa\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:02 GMT"
+    },
+    "jkp/all_factors/pak": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bpak%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[pak]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "85b0ac1d836d9aa26f6e2b6ef9d88683f3a1d8b739c32d3ae7f378039e116639",
+      "bytes": 501158,
+      "retrieved_at": "2026-11-03T15:41:29+00:00",
+      "origin": "official",
+      "etag": "\"48e9b87546baa0724e084854edd455c7\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:07 GMT"
+    },
+    "jkp/all_factors/per": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bper%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[per]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "61c4fd0dabe70f744bbc7940d778fe662612b8603885945fb286f9630c816355",
+      "bytes": 490706,
+      "retrieved_at": "2026-11-03T15:41:41+00:00",
+      "origin": "official",
+      "etag": "\"798099a2ba74e0aea19248ba6d4c52a4\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:14 GMT"
+    },
+    "jkp/all_factors/phl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bphl%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[phl]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "d51c0471709642dd6d95ef172299bfec4101e85770f6debd73e298eda770f412",
+      "bytes": 746982,
+      "retrieved_at": "2026-11-03T15:42:01+00:00",
+      "origin": "official",
+      "etag": "\"acf703ff14b7a94407ba96cbcc1f3462\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:21 GMT"
+    },
+    "jkp/all_factors/pol": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bpol%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[pol]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "25ad4641ec7b7c6eeafee36222231fc79e1fd5a1eafd508135e15e806e9faac8",
+      "bytes": 731305,
+      "retrieved_at": "2026-11-03T15:42:24+00:00",
+      "origin": "official",
+      "etag": "\"cd5b158c19c0b81377ee3f3d7340ff3d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:30 GMT"
+    },
+    "jkp/all_factors/prt": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bprt%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[prt]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "d4c139eef4460db9bcb672bdfbf367919d6ebe83b1bc376ba1f436c7ee2fa1d9",
+      "bytes": 727935,
+      "retrieved_at": "2026-11-03T15:42:48+00:00",
+      "origin": "official",
+      "etag": "\"2ce28665b71c7cfc8b8f1036fa6d3b28\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:38 GMT"
+    },
+    "jkp/all_factors/qat": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bqat%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[qat]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "d7bf8774136230ae33b6adaba4d324dca04991e1498463dc92fdaaa5ce1db714",
+      "bytes": 470336,
+      "retrieved_at": "2026-11-03T15:43:09+00:00",
+      "origin": "official",
+      "etag": "\"2b2c19c7e6937e112a10ec42357e9c93\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:46 GMT"
+    },
+    "jkp/all_factors/rou": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Brou%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[rou]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "add2246094bfa7b8abaf69d05d7ae31eba75786dfd05ae86fe561ca7bf48abf4",
+      "bytes": 75311,
+      "retrieved_at": "2026-11-03T15:43:13+00:00",
+      "origin": "official",
+      "etag": "\"857e3a88bd0a8263d189e747d26bc8ee\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:53 GMT"
+    },
+    "jkp/all_factors/rus": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Brus%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[rus]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "d8d7e7102dbc92949fb7dbcd9c127a6095a06526702152d53171cdd0f5ac1c1f",
+      "bytes": 626995,
+      "retrieved_at": "2026-11-03T15:43:34+00:00",
+      "origin": "official",
+      "etag": "\"a32427bc41893ddcfbb645624c5aa08d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:58 GMT"
+    },
+    "jkp/all_factors/sau": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsau%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[sau]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "10ce0590c2d435db2d34519928761dc95b0eaf2c23698bde8171609488b49e16",
+      "bytes": 645243,
+      "retrieved_at": "2026-11-03T15:43:47+00:00",
+      "origin": "official",
+      "etag": "\"8f350b91ab657ae2bda9fd2645dcf45f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:06 GMT"
+    },
+    "jkp/all_factors/sgp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsgp%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[sgp]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "5cd23b9e1f1dd87924860b22d6e7ca341942db0e46d72aa5aadb0efddd4ce631",
+      "bytes": 1043171,
+      "retrieved_at": "2026-11-03T15:44:18+00:00",
+      "origin": "official",
+      "etag": "\"2d56888005a76adc0adb6149c76efd36\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:14 GMT"
+    },
+    "jkp/all_factors/svn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsvn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[svn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "481f549de07e8e2e4df286dde4429d16e3cf053bbffab7a5a17b0b921894ca89",
+      "bytes": 30031,
+      "retrieved_at": "2026-11-03T15:44:21+00:00",
+      "origin": "official",
+      "etag": "\"7444bf82011b19b255bdbb935dbcab39\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:22 GMT"
+    },
+    "jkp/all_factors/swe": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bswe%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[swe]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "a9f4560b938903c94c71a770bf3933a9ce6cf47952cef8ebfbf2ab8cfe7cd1f8",
+      "bytes": 1057811,
+      "retrieved_at": "2026-11-03T15:45:07+00:00",
+      "origin": "official",
+      "etag": "\"64ea1c1342a47294b9ede894c49ae7bd\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:28 GMT"
+    },
+    "jkp/all_factors/tha": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btha%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[tha]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "35d47b75de974fd22d11f112d05ef7b091e8d4f579455d6e9da9be7d9a76d3f0",
+      "bytes": 950885,
+      "retrieved_at": "2026-11-03T15:45:42+00:00",
+      "origin": "official",
+      "etag": "\"76b9396384597ccc96c815119f37cdff\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:37 GMT"
+    },
+    "jkp/all_factors/tto": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btto%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[tto]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "01e17751ae379f1c7d087368b7c2b159d835562d2acb17f522980ed2693e126e",
+      "bytes": 33464,
+      "retrieved_at": "2026-11-03T15:45:44+00:00",
+      "origin": "official",
+      "etag": "\"1c6a48fd425f30091fa22e1058d6199f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:45 GMT"
+    },
+    "jkp/all_factors/tur": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btur%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[tur]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "97fc5db304dab8df8d8cf4e806feb29c2484468142983f08edbae6ef03f66224",
+      "bytes": 841643,
+      "retrieved_at": "2026-11-03T15:46:12+00:00",
+      "origin": "official",
+      "etag": "\"443e70d53dd90f99e78842cdfed5cab5\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:49 GMT"
+    },
+    "jkp/all_factors/twn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btwn%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[twn]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "be5b9ef31fcb57b1a0bba0ab2a1eca667ba331ec08542dc15d04674d1d694d6f",
+      "bytes": 963250,
+      "retrieved_at": "2026-11-03T15:47:25+00:00",
+      "origin": "official",
+      "etag": "\"e84532ae935887344cc673150ac4fe4d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:57 GMT"
+    },
+    "jkp/all_factors/ukr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bukr%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[ukr]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "00c0899e01591bb8e6fc10d864776d596a6fa3566094166f63f65c5c8715d3f4",
+      "bytes": 16832,
+      "retrieved_at": "2026-11-03T15:47:27+00:00",
+      "origin": "official",
+      "etag": "\"20f4810949b8ed9b0ed8ce050db4ff98\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:06 GMT"
+    },
+    "jkp/all_factors/usa": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Busa%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[usa]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f766aa2c7db1f97594f79f9063275161b7038e936db9ea960eac6eb7ec27ca80",
+      "bytes": 2674337,
+      "retrieved_at": "2026-11-03T15:28:34+00:00",
+      "origin": "official",
+      "etag": "\"e599f2933b27422df2e4a6f67dbe5c80\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:09 GMT"
+    },
+    "jkp/all_factors/ven": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bven%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[ven]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "7ccb67f61eca7668426f27305fdd228b1ac3ba14da668bd565a3250e138f751f",
+      "bytes": 19561,
+      "retrieved_at": "2026-11-03T15:47:29+00:00",
+      "origin": "official",
+      "etag": "\"9adf5b59f0d5162fd2422989f1dc9077\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:18 GMT"
+    },
+    "jkp/all_factors/vnm": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bvnm%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[vnm]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "f79ed7ae9ad60310a6f4fa8e59e6ca9442522806a656eb20a0a4d98e371f3353",
+      "bytes": 403980,
+      "retrieved_at": "2026-11-03T15:47:41+00:00",
+      "origin": "official",
+      "etag": "\"869be6f26ef25b62f76d46a4edf5f7ea\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:22 GMT"
+    },
+    "jkp/all_factors/world": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bworld%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[world]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "b8d6ae7b24b39838597fc2a2a41954087e3d4f734ae73b5538eb91725068ec72",
+      "bytes": 2063724,
+      "retrieved_at": "2026-11-03T15:31:58+00:00",
+      "origin": "official",
+      "etag": "\"6c1f9947c38f8c0fe2e3848974d73f7c\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:29 GMT"
+    },
+    "jkp/all_factors/zaf": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bzaf%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[zaf]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "3be7fa75a0af24e9738ceefc459fd0d16e1210361600b2f2af1ad3ab7840d4ed",
+      "bytes": 1021157,
+      "retrieved_at": "2026-11-03T15:48:15+00:00",
+      "origin": "official",
+      "etag": "\"a716518db0fa47f14c2318e41dd5fd53\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:47 GMT"
+    },
+    "jkp/all_factors/zwe": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bzwe%5D_%5Ball_factors%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/all_factors/[zwe]_[all_factors]_[monthly]_[vw_cap].zip",
+      "sha256": "0ba4cec24b48f9eb54c2526d1ab005469fca2aea63d840199943028871817654",
+      "bytes": 55158,
+      "retrieved_at": "2026-11-03T15:48:18+00:00",
+      "origin": "official",
+      "etag": "\"5d5fbb41582eaaeacfb2c9feb814b07a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:55 GMT"
+    },
+    "jkp/availability.json": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/availability.json",
+      "path": "jkp/availability.json",
+      "sha256": "3a5647ad2c053c88410b4cdcddd0377405bb2cb30c3e3932905064d7ba322ca2",
+      "bytes": 287565,
+      "retrieved_at": "2026-11-03T15:26:44+00:00",
+      "origin": "official",
+      "etag": "\"9fcc2ee284f9d14dfbf3546706bc8d4e\"",
+      "last_modified": "Tue, 04 Aug 2026 03:27:36 GMT"
+    },
+    "jkp/mkt/are": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bare%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[are]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "000867536ec2dc9d43c4dba4200eca1b7a03d5486fb39c9e4098a784e0fb55f6",
+      "bytes": 4849,
+      "retrieved_at": "2026-11-03T15:32:12+00:00",
+      "origin": "official",
+      "etag": "\"d22db9fc4002e8e7585e7bb9e27c1201\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:10 GMT"
+    },
+    "jkp/mkt/arg": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Barg%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[arg]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "7b947f5b60f315f9e1589f8198d0bacf51b4f25fef7b8d88b893b6313b85bec9",
+      "bytes": 7038,
+      "retrieved_at": "2026-11-03T15:32:49+00:00",
+      "origin": "official",
+      "etag": "\"ba283a6e0b64859bc25c32b958bc7db5\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:17 GMT"
+    },
+    "jkp/mkt/aus": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Baus%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[aus]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "373efe8c88ed69106232e5c2d8771b2ec82bd2ceb5032fea24a203592b55eda9",
+      "bytes": 8064,
+      "retrieved_at": "2026-11-03T15:33:10+00:00",
+      "origin": "official",
+      "etag": "\"f90bc3a6facd5a1c300d7ec347705d6d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:26 GMT"
+    },
+    "jkp/mkt/aut": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Baut%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[aut]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "14d2c4137ad7ed53d5a2c8983a16b457b7d5368fa3e6b335deacc42103e31cd4",
+      "bytes": 7552,
+      "retrieved_at": "2026-11-03T15:33:16+00:00",
+      "origin": "official",
+      "etag": "\"2e465d8ec19c24a44e3cc1fec779a7ca\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:34 GMT"
+    },
+    "jkp/mkt/bel": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbel%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[bel]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "af04201022e15a610659dbd843b681f5612d8c72c8ff7ec1bbe0cb8c95ed30cb",
+      "bytes": 7606,
+      "retrieved_at": "2026-11-03T15:33:26+00:00",
+      "origin": "official",
+      "etag": "\"81b7e5e737ccf87fcded7cb6ed4591de\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:43 GMT"
+    },
+    "jkp/mkt/bgd": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbgd%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[bgd]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a88a9aed8398b3935b3c68a2a26bba00526556ae091118632d2b99e94b6b8044",
+      "bytes": 4711,
+      "retrieved_at": "2026-11-03T15:33:28+00:00",
+      "origin": "official",
+      "etag": "\"c05656de0580c524d54a9120ca30ba28\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:50 GMT"
+    },
+    "jkp/mkt/bhr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbhr%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[bhr]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "5e5a7f6da5d73bf51b9857d10cae6022cba4980c7c36b254b88b8570ac65ec3b",
+      "bytes": 4762,
+      "retrieved_at": "2026-11-03T15:33:29+00:00",
+      "origin": "official",
+      "etag": "\"d21262a83b207733e1a461a845898e9f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:22:55 GMT"
+    },
+    "jkp/mkt/bra": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bbra%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[bra]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "d3e401546a5aa0473ccc19994eb07c734167b7c6f87cc0f7a4616b0d329ec6fe",
+      "bytes": 7233,
+      "retrieved_at": "2026-11-03T15:33:39+00:00",
+      "origin": "official",
+      "etag": "\"e386987fa5bc823e77d47c439f01e30d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:01 GMT"
+    },
+    "jkp/mkt/can": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcan%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[can]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "1b7dc0bec82057a6fd4d259d50d792d0b928ec6945287fdad8c309a1d44ed24a",
+      "bytes": 8804,
+      "retrieved_at": "2026-11-03T15:33:58+00:00",
+      "origin": "official",
+      "etag": "\"2bfa9c79b3bf57daf01b9464c37df5c9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:09 GMT"
+    },
+    "jkp/mkt/che": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bche%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[che]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "2e9b2371132aac13cdd52849c660e1e41d2edfda33da9aa74a974d3458a470f9",
+      "bytes": 7674,
+      "retrieved_at": "2026-11-03T15:34:16+00:00",
+      "origin": "official",
+      "etag": "\"169a112f59dec7f74f01958a3dfc8d58\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:18 GMT"
+    },
+    "jkp/mkt/chl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bchl%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[chl]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "f93350c6c3bd204f4eb82103c3da6cf8fda30a48b15a922f5b7f2ca8f3a2aeec",
+      "bytes": 7115,
+      "retrieved_at": "2026-11-03T15:34:24+00:00",
+      "origin": "official",
+      "etag": "\"5564226cfa68648cdf8e0bfd3bbe81d9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:26 GMT"
+    },
+    "jkp/mkt/chn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bchn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[chn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "ab17c27a10b8484b34e57c1cb5d04c65c2bfe2137f4c97d52749cbbfee463e6e",
+      "bytes": 7137,
+      "retrieved_at": "2026-11-03T15:34:28+00:00",
+      "origin": "official",
+      "etag": "\"b31b0fb0efa041a4db01996cd8120b45\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:34 GMT"
+    },
+    "jkp/mkt/col": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcol%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[col]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "6a5b400ed1f1e448d10d5b4823c9afc23f4f8b52bd75b1dbc4fe471d313194c6",
+      "bytes": 6887,
+      "retrieved_at": "2026-11-03T15:34:31+00:00",
+      "origin": "official",
+      "etag": "\"893aedf242e7057911443fe54eb2da9f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:42 GMT"
+    },
+    "jkp/mkt/cyp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcyp%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[cyp]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "e73946874e4c24cd0e80f6c3cdb43ea0328bd2eea2cc7c577fe95bf0af8c7f68",
+      "bytes": 6088,
+      "retrieved_at": "2026-11-03T15:34:31+00:00",
+      "origin": "official",
+      "etag": "\"1b65cdbdca514fa27973cea89f27643b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:47 GMT"
+    },
+    "jkp/mkt/cze": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bcze%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[cze]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "c9c8b6f47872d1b7ba8bbef974cecf4bed071105ed03fa4a90084344c26cc335",
+      "bytes": 5945,
+      "retrieved_at": "2026-11-03T15:34:32+00:00",
+      "origin": "official",
+      "etag": "\"8fc404889560a7718f6ab209d8dd78a7\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:49 GMT"
+    },
+    "jkp/mkt/deu": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdeu%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[deu]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "1f95a7d7e5195811bdf498ded111251dd2bb3a002288460af87d76f1ebb6d1a1",
+      "bytes": 7922,
+      "retrieved_at": "2026-11-03T15:34:39+00:00",
+      "origin": "official",
+      "etag": "\"730e1be2313086a0a94ce9bc3c0d5a83\"",
+      "last_modified": "Tue, 04 Aug 2026 05:23:54 GMT"
+    },
+    "jkp/mkt/developed": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdeveloped%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[developed]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "0db7934fa8554ea50ba3db12b49877d770c00d8d36f1652973ed8a771cefed25",
+      "bytes": 7256,
+      "retrieved_at": "2026-11-03T15:29:31+00:00",
+      "origin": "official",
+      "etag": "\"c0299ba36faf9739abde529a75d321d2\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:03 GMT"
+    },
+    "jkp/mkt/dnk": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bdnk%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[dnk]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "9dd0068431f231addd04710cc0eebbd07e0f22869b06230c29ad0e285436b795",
+      "bytes": 7649,
+      "retrieved_at": "2026-11-03T15:34:46+00:00",
+      "origin": "official",
+      "etag": "\"985e6d656cca2d40ba8ba878b25a6892\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:11 GMT"
+    },
+    "jkp/mkt/egy": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Begy%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[egy]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "d891b9e863f61394994a0c566c5ea7db4073ded84581a6724ca4f242c1e1df41",
+      "bytes": 5632,
+      "retrieved_at": "2026-11-03T15:34:50+00:00",
+      "origin": "official",
+      "etag": "\"c4a86105237cd883accc8f4b88e3abe4\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:20 GMT"
+    },
+    "jkp/mkt/emerging": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bemerging%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[emerging]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "c6ed81bcdedf6c5eb4cd586feb8c3ad9a36668eda83ab3dd66f2078947f296d1",
+      "bytes": 7353,
+      "retrieved_at": "2026-11-03T15:30:30+00:00",
+      "origin": "official",
+      "etag": "\"efd5f0c7d1f0ae70cc4b21bb43d274ac\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:27 GMT"
+    },
+    "jkp/mkt/esp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Besp%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[esp]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "d0f9b943502af5b5720cdb3ce5e34088c124f968be5d641d1f91e2816caa1174",
+      "bytes": 7683,
+      "retrieved_at": "2026-11-03T15:34:59+00:00",
+      "origin": "official",
+      "etag": "\"d703e83bbd51e2d3dc7d3013855b2e20\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:36 GMT"
+    },
+    "jkp/mkt/fin": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfin%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[fin]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "4ccaab8d763a100a0f7b42110c942c19517772d27735d43f1986f250c73f9d68",
+      "bytes": 7532,
+      "retrieved_at": "2026-11-03T15:35:12+00:00",
+      "origin": "official",
+      "etag": "\"da774c8d6be78742aaf987cd2e9892bc\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:44 GMT"
+    },
+    "jkp/mkt/fra": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfra%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[fra]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "accb5474513251e7242cf11955335d045ac5ac1617e5d1c2f232a768692f8e74",
+      "bytes": 7874,
+      "retrieved_at": "2026-11-03T15:35:37+00:00",
+      "origin": "official",
+      "etag": "\"59360003c292d42ca2711911dafee676\"",
+      "last_modified": "Tue, 04 Aug 2026 05:24:52 GMT"
+    },
+    "jkp/mkt/frontier": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bfrontier%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[frontier]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "aa60b2732e1d3a3af431bafacee2b29e9be7958b8f6e0115430c805a2145325d",
+      "bytes": 6046,
+      "retrieved_at": "2026-11-03T15:30:40+00:00",
+      "origin": "official",
+      "etag": "\"10e8ebef29dcda575dafc90e6f6dec8a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:00 GMT"
+    },
+    "jkp/mkt/gbr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bgbr%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[gbr]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "deeeb4ca880676e85d4a0b60204a79c26006ad1e6a9b1ff3c96c6fe981c22f91",
+      "bytes": 8135,
+      "retrieved_at": "2026-11-03T15:36:07+00:00",
+      "origin": "official",
+      "etag": "\"63ad3783fd3c02a821723e05ae29193b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:07 GMT"
+    },
+    "jkp/mkt/grc": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bgrc%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[grc]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "94479c8b26413eb708ddab462018fb463878e67d1cbfe3c45644888950e489cd",
+      "bytes": 7236,
+      "retrieved_at": "2026-11-03T15:36:29+00:00",
+      "origin": "official",
+      "etag": "\"8f6a5e47c31c6b1eeca0964d5a12d7a8\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:16 GMT"
+    },
+    "jkp/mkt/hkg": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhkg%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[hkg]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "8428be1141d56748c29a7b5825865e65d0e9be64282ad74d02e82f66968870ac",
+      "bytes": 8085,
+      "retrieved_at": "2026-11-03T15:36:56+00:00",
+      "origin": "official",
+      "etag": "\"b21ab99dcf35bb0c3987af98ab5d475d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:24 GMT"
+    },
+    "jkp/mkt/hrv": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhrv%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[hrv]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "00603874e31166605db8616d50e516b524fde71597aa493460742912daf41d4a",
+      "bytes": 5448,
+      "retrieved_at": "2026-11-03T15:36:59+00:00",
+      "origin": "official",
+      "etag": "\"0d155e89871fe380b3432476e0103aef\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:31 GMT"
+    },
+    "jkp/mkt/hun": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bhun%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[hun]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "2108b2752c6f3eefa02c0f25fbd95298f55fc527921d539fac1be94c5d02e0b3",
+      "bytes": 6194,
+      "retrieved_at": "2026-11-03T15:37:00+00:00",
+      "origin": "official",
+      "etag": "\"478231f6990570b5349ee64cdf3ff6a5\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:35 GMT"
+    },
+    "jkp/mkt/idn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bidn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[idn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "074a9b916b0b9e4464f3892c6ce7b22866c4e300046ad0ba4ef01d64dddea271",
+      "bytes": 7424,
+      "retrieved_at": "2026-11-03T15:37:41+00:00",
+      "origin": "official",
+      "etag": "\"4fb60c53f1da8cca8dec8e15e5b4d48a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:40 GMT"
+    },
+    "jkp/mkt/ind": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bind%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[ind]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "bb7969651454bc52586dce51e4e772de49622ee4c17aca247e249a46249e7f8a",
+      "bytes": 7629,
+      "retrieved_at": "2026-11-03T15:37:56+00:00",
+      "origin": "official",
+      "etag": "\"c15d12199b4cad978508e0c9b3b0c4ed\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:48 GMT"
+    },
+    "jkp/mkt/irl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Birl%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[irl]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "5ddad4f339aae8afa55886a531ad7270b1ff7d9659932c014409e56b12d5c8ed",
+      "bytes": 7481,
+      "retrieved_at": "2026-11-03T15:38:10+00:00",
+      "origin": "official",
+      "etag": "\"5e5e589601baa40c6ecf23ee8d769a79\"",
+      "last_modified": "Tue, 04 Aug 2026 05:25:56 GMT"
+    },
+    "jkp/mkt/irn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Birn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[irn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "6dc2d9587a5dfcaf0131b61509a517e4be760aa72e3defd45b45b43b938b0b49",
+      "bytes": 1220,
+      "retrieved_at": "2026-11-03T15:38:11+00:00",
+      "origin": "official",
+      "etag": "\"f9daf39994cb613ec952ce41bcda7d3a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:00 GMT"
+    },
+    "jkp/mkt/isl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bisl%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[isl]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "b1414217d7e640e6d8f4eb1b0bb2a7abacbf0530342c79f6f315cd4afde3942e",
+      "bytes": 5637,
+      "retrieved_at": "2026-11-03T15:38:12+00:00",
+      "origin": "official",
+      "etag": "\"4c6f93905bc2dce5a4fdf119ca23f580\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:03 GMT"
+    },
+    "jkp/mkt/isr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bisr%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[isr]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "b7087094fc188de8f5d96161d26f36b0e31938047c35637e596c3829d9053596",
+      "bytes": 6162,
+      "retrieved_at": "2026-11-03T15:38:35+00:00",
+      "origin": "official",
+      "etag": "\"4a5388d1cac83d2c7c78f20f6d967626\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:09 GMT"
+    },
+    "jkp/mkt/ita": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bita%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[ita]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "78834cc7d9ea04fc0a5c4933f9e8dc3b7427295b953f418ac04803d381a57311",
+      "bytes": 7780,
+      "retrieved_at": "2026-11-03T15:38:57+00:00",
+      "origin": "official",
+      "etag": "\"43185ff2209b3eaa3dad7146690828cd\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:17 GMT"
+    },
+    "jkp/mkt/jam": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjam%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[jam]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "0f59e995b4bebe86eca567d23c69668e297bce7340c97d6762b48e0f61001d1b",
+      "bytes": 5961,
+      "retrieved_at": "2026-11-03T15:38:58+00:00",
+      "origin": "official",
+      "etag": "\"6bd30da72abcb484b13ae461db063cb7\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:23 GMT"
+    },
+    "jkp/mkt/jor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjor%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[jor]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "118a1bebde1ab2d95b42c6c6456b723f17b45f3bc94668c041b40e346f325cc8",
+      "bytes": 6289,
+      "retrieved_at": "2026-11-03T15:38:59+00:00",
+      "origin": "official",
+      "etag": "\"b3730a3c4644d4014ef7a8ec7dbc7fa6\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:28 GMT"
+    },
+    "jkp/mkt/jpn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bjpn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[jpn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "3cc1c7f92c43ceaa53bbd50f0d7ec02af9ab142ad3caa98ff6aace136869fe37",
+      "bytes": 8172,
+      "retrieved_at": "2026-11-03T15:39:19+00:00",
+      "origin": "official",
+      "etag": "\"5db53e405aa5fcd2447703c50a02a442\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:34 GMT"
+    },
+    "jkp/mkt/ken": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bken%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[ken]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "aef6dcd291250b0f8726d1d24571f8f38b972548d584292d19634a95f2ffc7bd",
+      "bytes": 6043,
+      "retrieved_at": "2026-11-03T15:39:20+00:00",
+      "origin": "official",
+      "etag": "\"6e31ba4a1d7f4daee41a7ac82c1d0242\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:41 GMT"
+    },
+    "jkp/mkt/kor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bkor%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[kor]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "78f2c1f547b8d6cec5292160a65bce388c1851c60daa8361a85876d3e763b638",
+      "bytes": 7977,
+      "retrieved_at": "2026-11-03T15:39:24+00:00",
+      "origin": "official",
+      "etag": "\"8a5be30e0fe580ff89353ab75a4afb7c\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:47 GMT"
+    },
+    "jkp/mkt/kwt": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bkwt%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[kwt]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a8dfca74685b35359831607f114426ae09837b97687d6e4b7b17ee37ead385cb",
+      "bytes": 4900,
+      "retrieved_at": "2026-11-03T15:39:31+00:00",
+      "origin": "official",
+      "etag": "\"1f3036aa7f39ed40257a6c11d75791a9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:26:55 GMT"
+    },
+    "jkp/mkt/lka": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Blka%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[lka]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "8b3fed569d7c155fd7f16e27f5fc935f3bdff35bd75330a0bafb8aca41c0142c",
+      "bytes": 7420,
+      "retrieved_at": "2026-11-03T15:39:32+00:00",
+      "origin": "official",
+      "etag": "\"0d4b7f6abe9d200c95c58e34ad10adab\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:02 GMT"
+    },
+    "jkp/mkt/lux": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Blux%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[lux]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "44dfd0205103952fa8adc2b5ba786592f7774e8a72d360939089d72f866b1ba5",
+      "bytes": 7378,
+      "retrieved_at": "2026-11-03T15:39:33+00:00",
+      "origin": "official",
+      "etag": "\"819f7f6613cc257750b3451c1a507797\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:05 GMT"
+    },
+    "jkp/mkt/mar": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmar%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[mar]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "b56a0d609c79d40400d84f7c255a106039eaa5a1f12450ebb05ccd3493d78fe4",
+      "bytes": 5793,
+      "retrieved_at": "2026-11-03T15:39:42+00:00",
+      "origin": "official",
+      "etag": "\"3dad439c7e65d251ac5547653ca9c18e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:10 GMT"
+    },
+    "jkp/mkt/mex": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmex%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[mex]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a1200493844c5416785b86065bfa3f438d7e9ba14fa5167d8c089295a242b81f",
+      "bytes": 7608,
+      "retrieved_at": "2026-11-03T15:39:54+00:00",
+      "origin": "official",
+      "etag": "\"450d4e316267beff31207f8724d8f66a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:18 GMT"
+    },
+    "jkp/mkt/mys": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bmys%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[mys]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "55dea31c3d16f9e014e196628d5e29b7b2741f4ccaef8ce22bf9d1d3a4aac09b",
+      "bytes": 7845,
+      "retrieved_at": "2026-11-03T15:40:17+00:00",
+      "origin": "official",
+      "etag": "\"5d5378452fa577b325909199148ec584\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:26 GMT"
+    },
+    "jkp/mkt/nga": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnga%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[nga]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "22f245f12449287a10249f5f2a6f522eb5f30f609ef5df6cf9199bc4f5487a59",
+      "bytes": 5634,
+      "retrieved_at": "2026-11-03T15:40:34+00:00",
+      "origin": "official",
+      "etag": "\"e51b11dcb7005ed2db343c4250eea4be\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:34 GMT"
+    },
+    "jkp/mkt/nld": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnld%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[nld]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a887f895bf7ddfe8cfc6beda102ca8e1a4e3844568ee82b318d1fea57489ca95",
+      "bytes": 7665,
+      "retrieved_at": "2026-11-03T15:40:54+00:00",
+      "origin": "official",
+      "etag": "\"e96071850fe42145e68e88b357df9c43\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:41 GMT"
+    },
+    "jkp/mkt/nor": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnor%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[nor]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a0bfd72cb81d0f46b14dc4f8bb966e974d1ac09eed94daed6ea9a2f9de6a90f2",
+      "bytes": 7716,
+      "retrieved_at": "2026-11-03T15:41:03+00:00",
+      "origin": "official",
+      "etag": "\"e02a58728ba6d9536f9301d4b28dfda9\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:50 GMT"
+    },
+    "jkp/mkt/nzl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bnzl%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[nzl]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a8416be36960a5a6e72773b85aa85c214a8e02001299aac21b3e8811c92de21d",
+      "bytes": 7621,
+      "retrieved_at": "2026-11-03T15:41:16+00:00",
+      "origin": "official",
+      "etag": "\"aa9e049664c9c075869023c030d2b2a3\"",
+      "last_modified": "Tue, 04 Aug 2026 05:27:58 GMT"
+    },
+    "jkp/mkt/omn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bomn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[omn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "d88972c7ab85fec5a91e9e6628b133f0649df54b1f69d73527a56409aea78cbd",
+      "bytes": 5043,
+      "retrieved_at": "2026-11-03T15:41:17+00:00",
+      "origin": "official",
+      "etag": "\"d2b7a1ee40b948d375dda8ca01dec767\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:04 GMT"
+    },
+    "jkp/mkt/pak": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bpak%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[pak]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "8a39ad7c822a4260a08c2bbb2a6d17d1eadaf5190c3b028098b24c6890b9c483",
+      "bytes": 6646,
+      "retrieved_at": "2026-11-03T15:41:29+00:00",
+      "origin": "official",
+      "etag": "\"8a18e2237163e7f143e3723eb075ee9a\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:10 GMT"
+    },
+    "jkp/mkt/per": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bper%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[per]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "26078c427b3ed18670a56b677c80a8f8b64a1f3a147f73fe522b93b921c60211",
+      "bytes": 6838,
+      "retrieved_at": "2026-11-03T15:41:41+00:00",
+      "origin": "official",
+      "etag": "\"0b63b819815c65544bf9a5de638b8c35\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:17 GMT"
+    },
+    "jkp/mkt/phl": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bphl%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[phl]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "6349b2094138df8e7f317da124b392b3793ef03e01d4625cd69966a577839967",
+      "bytes": 7698,
+      "retrieved_at": "2026-11-03T15:42:02+00:00",
+      "origin": "official",
+      "etag": "\"3b13ebc7f15a4000ba144e03ba38a209\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:25 GMT"
+    },
+    "jkp/mkt/pol": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bpol%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[pol]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "41a7340849b02f35e809eceddd59f20cd82a4c379b9c8c63ddd4d7877fc64846",
+      "bytes": 6426,
+      "retrieved_at": "2026-11-03T15:42:24+00:00",
+      "origin": "official",
+      "etag": "\"5250e2d78d464484edd626d717a1ce3b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:33 GMT"
+    },
+    "jkp/mkt/prt": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bprt%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[prt]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "0e3959e23ae0066fb9288581456f0ba3edefb323e39b4e99db0601ec213f2404",
+      "bytes": 7223,
+      "retrieved_at": "2026-11-03T15:42:48+00:00",
+      "origin": "official",
+      "etag": "\"ab4206e661b3cc50b798dc6082fd3c0d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:41 GMT"
+    },
+    "jkp/mkt/qat": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bqat%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[qat]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "79e3d93e347261157ca723e4bcd7d2950fe923dcc88d11e3978e72505694b9a9",
+      "bytes": 4452,
+      "retrieved_at": "2026-11-03T15:43:10+00:00",
+      "origin": "official",
+      "etag": "\"4759489c4ce0dd669fbb288a93272f2e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:49 GMT"
+    },
+    "jkp/mkt/rou": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Brou%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[rou]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "e8ea1c22ed9dc5b46c9cc5e03b6197f8ded91dd339b98cb4c59fbbf29723bb00",
+      "bytes": 5499,
+      "retrieved_at": "2026-11-03T15:43:13+00:00",
+      "origin": "official",
+      "etag": "\"419a1391e90160405969d2ca942b7d4e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:28:55 GMT"
+    },
+    "jkp/mkt/rus": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Brus%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[rus]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "8b0a3b9db8fc567e990069a36ad7151b7e6bf6ba711ba6b39b5425f7e96cc6a3",
+      "bytes": 5357,
+      "retrieved_at": "2026-11-03T15:43:35+00:00",
+      "origin": "official",
+      "etag": "\"41840eecee9d0c1bf0d8ce2a5a511eed\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:01 GMT"
+    },
+    "jkp/mkt/sau": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsau%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[sau]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "5f8fc398deddfcc20192a343e895650ac13679b87622365c4e856ce3b1d2246b",
+      "bytes": 5077,
+      "retrieved_at": "2026-11-03T15:43:47+00:00",
+      "origin": "official",
+      "etag": "\"53883b0cb3fa1bc8c1fa92337b09290e\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:09 GMT"
+    },
+    "jkp/mkt/sgp": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsgp%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[sgp]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "07269ec36146b98921a41295543d34e437c9e785613db97a3e25107f1a70287c",
+      "bytes": 7894,
+      "retrieved_at": "2026-11-03T15:44:19+00:00",
+      "origin": "official",
+      "etag": "\"cfdbc470f854ee9203cc144369ced29d\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:18 GMT"
+    },
+    "jkp/mkt/svn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bsvn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[svn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "8ea51c8c5be1af661f51d7825b73e4eeefcffabce9cfdde7677d403325db91c2",
+      "bytes": 5909,
+      "retrieved_at": "2026-11-03T15:44:22+00:00",
+      "origin": "official",
+      "etag": "\"ccd91d760bfb10616891cd445fd64d84\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:25 GMT"
+    },
+    "jkp/mkt/swe": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bswe%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[swe]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "4e70cc84c2a8d0a6a6b1239e1fe0ba71357efc579742b653df8e5cfa8eff4a76",
+      "bytes": 7817,
+      "retrieved_at": "2026-11-03T15:45:07+00:00",
+      "origin": "official",
+      "etag": "\"5e4ab18f434c1757537aa122276d774b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:32 GMT"
+    },
+    "jkp/mkt/tha": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btha%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[tha]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "560d2fa632cab0a971897470e31466066c91a54b2381c79d396a100c7bb841a4",
+      "bytes": 7907,
+      "retrieved_at": "2026-11-03T15:45:43+00:00",
+      "origin": "official",
+      "etag": "\"774b8058626ecbb2c065554d9b958783\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:41 GMT"
+    },
+    "jkp/mkt/tto": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btto%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[tto]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "150a73a6f7c51770e15b0bcf21e1deaee8a71db218e36c7b77339d82e3215e43",
+      "bytes": 4563,
+      "retrieved_at": "2026-11-03T15:45:45+00:00",
+      "origin": "official",
+      "etag": "\"8a684d53425f2fdc6b764de1116f9762\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:47 GMT"
+    },
+    "jkp/mkt/tur": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btur%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[tur]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "146d98a9a45db23516cad6c8d898d2da0340e0de819d28c22d0241bcfc25ba8e",
+      "bytes": 6970,
+      "retrieved_at": "2026-11-03T15:46:16+00:00",
+      "origin": "official",
+      "etag": "\"6fe613a972a4382fa801a8bebc1e58de\"",
+      "last_modified": "Tue, 04 Aug 2026 05:29:53 GMT"
+    },
+    "jkp/mkt/twn": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Btwn%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[twn]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "2f19a0abef6e94b49d97784dfc09184c8ef549e6ad54b7d9f7e4a0e04a1a8560",
+      "bytes": 7663,
+      "retrieved_at": "2026-11-03T15:47:27+00:00",
+      "origin": "official",
+      "etag": "\"4665a42222981e872933a23207931773\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:01 GMT"
+    },
+    "jkp/mkt/ukr": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bukr%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[ukr]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "786fd733733b3318091e560feadcaf94db2d49c6a1a36b429f210e113eaba504",
+      "bytes": 3042,
+      "retrieved_at": "2026-11-03T15:47:27+00:00",
+      "origin": "official",
+      "etag": "\"dcb364e09727b101792e863ef9c6c690\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:07 GMT"
+    },
+    "jkp/mkt/usa": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Busa%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[usa]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "a90c1f2c8e89bf5cc45219d8f678696458412f19380769448bbaa2c9cc567752",
+      "bytes": 19714,
+      "retrieved_at": "2026-11-03T15:28:36+00:00",
+      "origin": "official",
+      "etag": "\"97f341b7b77169530373ff71b830be60\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:14 GMT"
+    },
+    "jkp/mkt/ven": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bven%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[ven]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "2e2fd9ef9028522980834ec1a21137a28875d415f010b5de8105a06a0edbcc52",
+      "bytes": 6974,
+      "retrieved_at": "2026-11-03T15:47:31+00:00",
+      "origin": "official",
+      "etag": "\"1cd1d9add082523aa0a3c4457bc3de6b\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:20 GMT"
+    },
+    "jkp/mkt/vnm": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bvnm%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[vnm]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "ed20848f560f2405b8db788ef18850c3c4c526e478c1da46e5ac346b4b083ba2",
+      "bytes": 3985,
+      "retrieved_at": "2026-11-03T15:47:41+00:00",
+      "origin": "official",
+      "etag": "\"052b597ea8fe89fc5b2d7e20a23d0ff5\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:25 GMT"
+    },
+    "jkp/mkt/world": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bworld%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[world]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "b0391fe3d0838a55e86268def8b93b439c69e8be20448512d0ec84c2f700fd4a",
+      "bytes": 7660,
+      "retrieved_at": "2026-11-03T15:31:58+00:00",
+      "origin": "official",
+      "etag": "\"73d04174413770613a617e1c19c1d017\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:33 GMT"
+    },
+    "jkp/mkt/zaf": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bzaf%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[zaf]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "26160a5654b895cec48bc88c8a0c5f1e2e6ca26e05e35e3e530fe25b7ba6a906",
+      "bytes": 7844,
+      "retrieved_at": "2026-11-03T15:48:15+00:00",
+      "origin": "official",
+      "etag": "\"a64eecb46e29ca50820331cf87d844a6\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:51 GMT"
+    },
+    "jkp/mkt/zwe": {
+      "url": "https://jkpfactors-data.s3.amazonaws.com/public/%5Bzwe%5D_%5Bmkt%5D_%5Bmonthly%5D_%5Bvw_cap%5D.zip",
+      "path": "jkp/mkt/[zwe]_[mkt]_[monthly]_[vw_cap].zip",
+      "sha256": "00e5af8e210d19f22b23c7b4e50bd967c133df0892cdfd8e8bccdf19930dd477",
+      "bytes": 5580,
+      "retrieved_at": "2026-11-03T15:48:20+00:00",
+      "origin": "official",
+      "etag": "\"82b6cb650605c8e261c089da2acb6f0f\"",
+      "last_modified": "Tue, 04 Aug 2026 05:30:58 GMT"
+    },
+    "jkp/reference/cluster_labels.csv": {
+      "url": "https://raw.githubusercontent.com/bkelly-lab/jkp-data/daacd5e0ea97df6992e996e28dfc29fb90f05be5/src/jkp/data/resources/cluster_labels.csv",
+      "path": "jkp/reference/cluster_labels.csv",
+      "sha256": "22c7fdd214218d1210ab9922efed59bf607538098cc06b6f2c5f326d2e6cf64b",
+      "bytes": 3207,
+      "retrieved_at": "2026-11-03T15:26:06+00:00",
+      "origin": "official",
+      "etag": "W/\"b24e7361978d10cb09c9424865707e9af321ab8b3f267c3447397cdf2653cc63\"",
+      "last_modified": null
+    },
+    "jkp/reference/country_classification.xlsx": {
+      "url": "https://raw.githubusercontent.com/bkelly-lab/jkp-data/daacd5e0ea97df6992e996e28dfc29fb90f05be5/src/jkp/data/resources/country_classification.xlsx",
+      "path": "jkp/reference/country_classification.xlsx",
+      "sha256": "d296bc25737592b80afc5558f6f217cb399d37295e1c73585aeea44cee906822",
+      "bytes": 11702,
+      "retrieved_at": "2026-11-03T15:26:10+00:00",
+      "origin": "official",
+      "etag": "W/\"70e8b21c20f2d57b4a24668398c3721c670a57ffab71c7fc069d20af1a8969e3\"",
+      "last_modified": null
+    },
+    "jkp/reference/factor_details.xlsx": {
+      "url": "https://raw.githubusercontent.com/bkelly-lab/jkp-data/daacd5e0ea97df6992e996e28dfc29fb90f05be5/src/jkp/data/resources/factor_details.xlsx",
+      "path": "jkp/reference/factor_details.xlsx",
+      "sha256": "4c579e4dcb93eed0897941d8f5f84e9cc784a2d3fc696be68a29a24e68206141",
+      "bytes": 40330,
+      "retrieved_at": "2026-11-03T15:26:09+00:00",
+      "origin": "official",
+      "etag": "W/\"b280d461906bd78b7001b693a716dc8930fcaad4cc0991334eba13d4334135ca\"",
+      "last_modified": null
+    },
+    "osap/Portfolios/Full Sets Alt/PredictorAltPorts_DecilesVW.parquet": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/Portfolios/Full%20Sets%20Alt/PredictorAltPorts_DecilesVW.parquet",
+      "path": "osap/Data-Release-2026.10/Portfolios/Full Sets Alt/PredictorAltPorts_DecilesVW.parquet",
+      "sha256": "95409cb1014d6b20d5ddf0468e98baeb8fec68ef514bef0e777565eb884679a8",
+      "bytes": 25651817,
+      "retrieved_at": "2026-11-03T15:24:13+00:00",
+      "origin": "official",
+      "etag": "\"2de42d5e032617a73c7479d1656c7dc21cc5263504f26a1418e964b1c1da11e7\"",
+      "last_modified": null
+    },
+    "osap/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_ME_gt_NYSE20pct.parquet": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/Portfolios/Full%20Sets%20Alt/PredictorAltPorts_LiqScreen_ME_gt_NYSE20pct.parquet",
+      "path": "osap/Data-Release-2026.10/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_ME_gt_NYSE20pct.parquet",
+      "sha256": "fcd2ae4053d7262868f5531be051ab6039161f7422091651116cf4a6990f3734",
+      "bytes": 18770749,
+      "retrieved_at": "2026-11-03T15:26:02+00:00",
+      "origin": "official",
+      "etag": "\"18bbdad437777a37e1dbfe14fda57837520569c3150150d2e22d8a470fb9a1ab\"",
+      "last_modified": null
+    },
+    "osap/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_NYSEonly.parquet": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/Portfolios/Full%20Sets%20Alt/PredictorAltPorts_LiqScreen_NYSEonly.parquet",
+      "path": "osap/Data-Release-2026.10/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_NYSEonly.parquet",
+      "sha256": "dcacda8ab441054295fcf2145ac99d64f60fe3ec8aa85d998d9b3fc03bf0580a",
+      "bytes": 18168656,
+      "retrieved_at": "2026-11-03T15:24:47+00:00",
+      "origin": "official",
+      "etag": "\"81c955fb95a48cb2538a2746b1093df68993af41a3123ad7fddc51998e11e08c\"",
+      "last_modified": null
+    },
+    "osap/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_Price_gt_5.parquet": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/Portfolios/Full%20Sets%20Alt/PredictorAltPorts_LiqScreen_Price_gt_5.parquet",
+      "path": "osap/Data-Release-2026.10/Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_Price_gt_5.parquet",
+      "sha256": "3fc4d8a4a56cc507859b31da76c39ff2e8cf94d42b5ddada88b158e9b4272a05",
+      "bytes": 18924495,
+      "retrieved_at": "2026-11-03T15:25:23+00:00",
+      "origin": "official",
+      "etag": "\"b59f9c17085072ad8b59e1bae7a61bb9ef9bc6f13bec02f70f81ddc18e02ccbe\"",
+      "last_modified": null
+    },
+    "osap/Portfolios/Full Sets OP/PredictorPortsFull.parquet": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/Portfolios/Full%20Sets%20OP/PredictorPortsFull.parquet",
+      "path": "osap/Data-Release-2026.10/Portfolios/Full Sets OP/PredictorPortsFull.parquet",
+      "sha256": "76599d94beab94cc8973d8a126e8efbed98ee79f677738c55b2389f17387ba96",
+      "bytes": 18651119,
+      "retrieved_at": "2026-11-03T15:23:21+00:00",
+      "origin": "official",
+      "etag": "\"1f58f7957809d0388bd36f85b9f35ebd347884e950fd5b9cd970371df1930414\"",
+      "last_modified": null
+    },
+    "osap/SignalDoc.csv": {
+      "url": "https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve/Data-Release-2026.10/SignalDoc.csv",
+      "path": "osap/Data-Release-2026.10/SignalDoc.csv",
+      "sha256": "0ceb11020c2138c2477b732948beaac2e67ccaad8428753e3a79af2bb5ea0178",
+      "bytes": 183100,
+      "retrieved_at": "2026-11-03T15:22:23+00:00",
+      "origin": "official",
+      "etag": "W/\"f81cd7ae04eeb3c14eaf0cffd5b621f81ba5a73c\"",
+      "last_modified": null
+    }
+  }
+}

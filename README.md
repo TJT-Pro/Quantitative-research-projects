@@ -1,6 +1,6 @@
 # Quantitative research projects
 
-Empirical finance and econometrics projects by Ian Wachira, AKA TJT-Pro. Each folder is a standalone project with its own code, tests, CI, results and paper. Every number in a project README is rendered from that project's `results.json`, built from the public source data, and CI fails if the two disagree or if the results came from synthetic test data.
+Empirical finance and econometrics projects by Ian Wachira. Each folder is a standalone project with its own code, tests, CI, results and paper. Every number in a project README is rendered from that project's `results.json`, built from the public source data, and CI fails if the two disagree or if the results came from synthetic test data.
 
 ## Projects
 
@@ -8,6 +8,7 @@ Empirical finance and econometrics projects by Ian Wachira, AKA TJT-Pro. Each fo
 | --- | --- | --- |
 | [Covariance horse race](covariance-horse-race) | Which covariance forecast gives the lowest out-of-sample risk on a century of daily US portfolio returns, and which models are statistically tied? | [![covariance-horse-race](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/covariance-horse-race.yml/badge.svg)](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/covariance-horse-race.yml) |
 | [The term premium, rebuilt](acm-term-premium) | Can the NY Fed's ACM Treasury term premium be reproduced exactly from public data, how different was it in real time, and does it predict bond returns? | [![acm-term-premium](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/acm-term-premium.yml/badge.svg)](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/acm-term-premium.yml) |
+| [The factor zoo on trial](factor-zoo-trial) | How much of a published equity anomaly's return survives publication, how many survive multiple-testing corrections, and do they replicate outside the US? | [![factor-zoo-trial](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/factor-zoo-trial.yml/badge.svg)](https://github.com/TJT-Pro/Quantitative-research-projects/actions/workflows/factor-zoo-trial.yml) |
 
 ### [Covariance horse race](covariance-horse-race)
 
@@ -21,6 +22,12 @@ The Adrian-Crump-Moench model is rebuilt from the Federal Reserve Board's Gurkay
 
 [![Term premium rebuilt from public inputs, and its gap to the published series](acm-term-premium/reports/figures/replication.png)](acm-term-premium#readme)
 
+### [The factor zoo on trial](factor-zoo-trial)
+
+Every published US predictor in Open Source Asset Pricing is put through the McLean-Pontiff decay regression, six multiple-testing procedures including a whole-month bootstrap, and the Jensen-Kelly-Pedersen empirical Bayes model on Global Factor Data in every country. The US posterior is then scored as a forecast of each other country's alphas, and every procedure is checked in a simulation with known truth. Read the [results](factor-zoo-trial#readme) or the [paper (PDF)](factor-zoo-trial/paper/_output/paper/paper.pdf).
+
+[![Average long-short return in sample, after the sample and after publication](factor-zoo-trial/reports/figures/headline.png)](factor-zoo-trial#readme)
+
 ## Running a project
 
 Each project uses [uv](https://docs.astral.sh/uv/). From the repository root, one command at a time, with the project's folder and command name:
@@ -29,6 +36,7 @@ Each project uses [uv](https://docs.astral.sh/uv/). From the repository root, on
 | --- | --- | --- |
 | Covariance horse race | `covariance-horse-race` | `chr` |
 | The term premium, rebuilt | `acm-term-premium` | `acm` |
+| The factor zoo on trial | `factor-zoo-trial` | `fzt` |
 
 ```
 cd acm-term-premium

@@ -1,0 +1,11 @@
+# Overrides for the synthetic fixture in CI: the same methods with fewer draws.
+# Results built with this file can never pass `fzt check-provenance`.
+multiple_testing:
+  romano_wolf_draws: 300
+  storey_bootstrap_draws: 100
+empirical_bayes:
+  posterior_draws: 1000
+simulation:
+  n_factors: 60
+  n_months: 360
+  replications: 12

@@ -1,0 +1,104 @@
+name: factor-zoo-trial
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "factor-zoo-trial/**"
+      - ".github/workflows/factor-zoo-trial.yml"
+  pull_request:
+    paths:
+      - "factor-zoo-trial/**"
+      - ".github/workflows/factor-zoo-trial.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: factor-zoo-trial
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  check:
+    name: Lint, types, tests, README drift, audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: factor-zoo-trial/uv.lock
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run fzt check
+      - run: uv run fzt audit
+
+  provenance:
+    name: Committed results come from the official sources
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: factor-zoo-trial/uv.lock
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run fzt check-provenance --no-raw
+
+  fixture-run:
+    name: Whole pipeline on the synthetic fixture, through the CLI
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: factor-zoo-trial/uv.lock
+      - uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b # v2.2.0
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run fzt fixture "${RUNNER_TEMP}/mirror"
+      - run: uv run fzt results --override configs/ci.yaml --mirror "${RUNNER_TEMP}/mirror"
+      - name: The provenance guard must refuse fixture results
+        run: |
+          if uv run fzt check-provenance; then
+            echo "check-provenance accepted synthetic results" >&2
+            exit 1
+          fi
+
+  paper:
+    name: Build the paper
+    needs: check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: factor-zoo-trial/uv.lock
+      - uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b # v2.2.0
+      - run: uv sync --frozen --python "$PYTHON_VERSION"
+      - run: uv run fzt paper
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: factor-zoo-trial-paper
+          path: factor-zoo-trial/paper/_output/
+          if-no-files-found: error

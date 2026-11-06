@@ -1,0 +1,131 @@
+# Every research choice for factor-zoo-trial, each with its reason.
+# `fzt` validates this file on load; `--override configs/ci.yaml` swaps in the fixture settings.
+
+sources:
+  # Open Source Asset Pricing (Chen and Zimmermann), CC BY 4.0. One branch per release.
+  osap_resolve: https://huggingface.co/datasets/OpenSourceAP/CrossSection/resolve
+  osap_api: https://huggingface.co/api/datasets/OpenSourceAP/CrossSection
+  osap_revision: Data-Release-2026.10  # pinned release; `fzt check-release` reports newer ones
+  # Global Factor Data (Jensen, Kelly and Pedersen): one zip per location, no key.
+  jkp_base: https://jkpfactors-data.s3.amazonaws.com/public
+  # Cluster map, factor details and country classification from the JKP code repository.
+  jkp_reference_base: https://raw.githubusercontent.com/bkelly-lab/jkp-data
+  jkp_reference_commit: daacd5e0ea97df6992e996e28dfc29fb90f05be5  # 2026-11-01, pinned so the map cannot drift
+  french_base: https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp
+  # Hosts that count as official for the provenance guard. Hugging Face redirects to its CDN.
+  official_hosts:
+    - huggingface.co
+    - jkpfactors-data.s3.amazonaws.com
+    - raw.githubusercontent.com
+    - mba.tuck.dartmouth.edu
+
+download:
+  retries: 6               # the S3 bucket and the CDN both drop long transfers now and then
+  backoff_seconds: 2.0     # doubled after each failure: 2, 4, 8, ... seconds
+  timeout_seconds: 120.0   # per read, not per file; large parquet files stream for minutes
+  chunk_bytes: 1048576     # 1 MiB writes keep the resume point fine-grained
+
+osap:
+  signal_doc: SignalDoc.csv
+  # Long-short returns are read from each file's LS rows. Paths are as listed on the release branch.
+  variants:
+    original: Portfolios/Full Sets OP/PredictorPortsFull.parquet                         # as in the original papers
+    value_weighted: Portfolios/Full Sets Alt/PredictorAltPorts_DecilesVW.parquet         # value-weighted deciles
+    nyse_only: Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_NYSEonly.parquet     # NYSE stocks only
+    price_gt_5: Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_Price_gt_5.parquet  # drops stocks under $5
+    me_gt_nyse20: Portfolios/Full Sets Alt/PredictorAltPorts_LiqScreen_ME_gt_NYSE20pct.parquet  # drops microcaps
+  headline_variant: original      # the decay benchmark (McLean and Pontiff) uses the papers' own construction
+  liquidity_variant: me_gt_nyse20 # share of the in-sample return that survives without microcaps
+  clear_label: 1_clear            # SignalDoc "Predictability in OP" value for a clear replication
+  long_short_port: LS
+
+jkp:
+  selector: all_factors
+  market_selector: mkt
+  frequency: monthly
+  weighting: vw_cap               # capped value weights, the JKP headline construction
+  # Regional aggregates for the replication-rate bars; checked against availability.json at fetch.
+  replication_regions: [usa, developed, emerging, frontier, world]
+  min_stocks_per_leg: 5           # JKP (2023) drop country factor-months with fewer stocks in either leg; regional files are built from countries that pass it
+  cluster_labels: src/jkp/data/resources/cluster_labels.csv
+  factor_details: src/jkp/data/resources/factor_details.xlsx
+  country_classification: src/jkp/data/resources/country_classification.xlsx
+
+french:
+  five_factor_zip: F-F_Research_Data_5_Factors_2x3_CSV.zip
+  momentum_zip: F-F_Momentum_Factor_CSV.zip
+
+periods:
+  publication_month: 12           # SignalDoc gives the journal year only; the year-end is the latest it could be
+  publication_shifts: [0, 1, 2, 3]  # working papers circulate before print; decay is reported for each shift
+  headline_shift: 0
+
+decay:
+  min_months_in_sample: 36        # a predictor needs three years of in-sample returns to anchor its mean
+  return_bases: [raw, capm, ff6]  # raw returns, plus alphas against CAPM and FF5 + momentum
+  headline_basis: raw             # McLean and Pontiff report raw long-short returns
+
+multiple_testing:
+  level: 0.05                     # family-wise error or false discovery rate target
+  ewc_coefficient: 0.4            # EWC long-run variance with nu = 0.4 T^(2/3) cosines (Lazarus et al. 2018); valid tail p-values for Bonferroni and Holm
+  hlz_threshold: 3.0              # Harvey, Liu and Zhu (2016) recommend t > 3.0 for a new factor
+  romano_wolf_draws: 5000
+  romano_wolf_block_months: 12    # whole months resampled in 12-month circular blocks, keeping the cross-section and serial dependence
+  storey_lambda: 0.5              # Storey (2002) fixed lambda: conservative, unlike the bootstrap choice
+  storey_lambdas: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]
+  storey_bootstrap_draws: 1000    # the Storey, Taylor and Siegmund (2004) bootstrap lambda, reported for comparison
+  seed: 20261103
+
+empirical_bayes:
+  min_months: 60                  # JKP (2023) require five years per factor
+  annual_vol_target: 10.0         # JKP scale CAPM residual returns to 10% a year so alphas are comparable
+  fix_prior_mean_at_zero: true    # JKP main specification: the prior does not assume factors work
+  covariance_shrinkage: schafer_strimmer  # factors outnumber months in many countries; target is the identity
+  min_pair_months: 24             # a correlation needs two years of overlap, otherwise it is set to zero
+  eigenvalue_floor: marchenko_pastur  # pairwise correlations are not a valid correlation matrix; clip at (1 - sqrt(K/n))^2, the smallest eigenvalue distinguishable from noise
+  minimum_eigenvalue: 0.01        # the floor when K is close to n and the Marchenko-Pastur edge goes to zero
+  posterior_draws: 10000          # draws for the posterior interval of the replication rate
+  interval: 0.95
+  require_original_significance: true  # the rate counts factors that were significant in the original paper
+  seed: 20261103
+
+space:
+  source_region: usa              # the US posterior is the forecast for every other country
+  min_months: 60
+  min_factors: 20                 # fewer factors make the per-country score too noisy to rank
+
+simulation:
+  n_factors: 200                  # the size of the zoo
+  n_months: 600                   # fifty years, close to the median OSAP in-sample length plus history
+  latent_factors: 5               # principal components fitted to the real in-sample panel
+  null_shares: [0.3, 0.6, 0.9]    # share of true alphas set to zero
+  replications: 200
+  eb_clusters: 13                 # the JKP theme count
+  seed: 20261103
+
+benchmarks:
+  mclean_pontiff:
+    last_month: "2013-12"         # their return sample ends in 2013
+    max_publication_year: 2013
+    in_sample_mean: 0.582         # % per month, Table I
+    post_sample: -0.150           # Table II, column 1
+    post_publication: -0.337      # Table II, column 1
+    citation: McLean and Pontiff (2016), Journal of Finance 71(1), Tables I and II
+  jkp:
+    last_month: "2019-12"         # the published JKP sample ends in 2019
+    replication_rate: 82.4        # % of originally significant US factors, empirical Bayes, CAPM alpha
+    by_rate: 75.6                 # % under Benjamini-Yekutieli
+    n_factors: 119
+    citation: Jensen, Kelly and Pedersen (2023), Journal of Finance 78(5), Figure 1
+
+plot:
+  dpi: 200                        # 2x the default screen resolution
+  palette:
+    this_study: "#2a78d6"
+    benchmark: "#eb6834"
+    secondary: "#1baf7a"
+    highlight: "#eda100"
+    surface: "#fcfcfb"
+    text: "#0b0b0b"
+    muted: "#52514e"
+    grid: "#e4e3df"
