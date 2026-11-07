@@ -1,0 +1,1016 @@
+{
+  "title": "A real-time GDP nowcast against GDPNow",
+  "author": "Ian Wachira",
+  "provenance": "official",
+  "manifest_digest": "d4d4f81e47e17715770b6caacf8dc9da4bec4be9b2264ed7184b7b39ce3b6ae0",
+  "manifest_files": 28,
+  "config_fingerprint": "7841a188f96d",
+  "generated_at": "2026-11-07 05:42 UTC",
+  "settings": {
+    "spec_source": "FRBNY-TimeSeriesAnalysis/Nowcasting@19f365cab8269e3aac3faa11ad091d6e913c5c43:Spec_US_example.xls",
+    "observation_start": "1985-01-01",
+    "estimation_start": "1985-04",
+    "blocks": [
+      "global",
+      "soft",
+      "real",
+      "labor"
+    ],
+    "series": [
+      {
+        "id": "PAYEMS",
+        "name": "Payroll Employment",
+        "frequency": "m",
+        "transform": "chg",
+        "blocks": [
+          "global",
+          "labor"
+        ],
+        "category": "Labor"
+      },
+      {
+        "id": "JTSJOL",
+        "name": "Job Openings",
+        "frequency": "m",
+        "transform": "chg",
+        "blocks": [
+          "global",
+          "labor"
+        ],
+        "category": "Labor"
+      },
+      {
+        "id": "GDPC1",
+        "name": "Real Gross Domestic Product",
+        "frequency": "q",
+        "transform": "pca",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "National Accounts"
+      },
+      {
+        "id": "CPIAUCSL",
+        "name": "Consumer Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "Prices"
+      },
+      {
+        "id": "DGORDER",
+        "name": "Durable Goods Orders",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Manufacturing"
+      },
+      {
+        "id": "RSAFS",
+        "name": "Retail Sales",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Retail and Consumption"
+      },
+      {
+        "id": "UNRATE",
+        "name": "Unemployment Rate",
+        "frequency": "m",
+        "transform": "chg",
+        "blocks": [
+          "global",
+          "labor"
+        ],
+        "category": "Labor"
+      },
+      {
+        "id": "HOUST",
+        "name": "Housing Starts",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Housing and Construction"
+      },
+      {
+        "id": "INDPRO",
+        "name": "Industrial Production",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Manufacturing"
+      },
+      {
+        "id": "DSPIC96",
+        "name": "Personal Income",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "National Accounts"
+      },
+      {
+        "id": "BOPTEXP",
+        "name": "Exports",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "International Trade"
+      },
+      {
+        "id": "BOPTIMP",
+        "name": "Imports",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "International Trade"
+      },
+      {
+        "id": "TTLCONS",
+        "name": "Construction Spending",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Housing and Construction"
+      },
+      {
+        "id": "IR",
+        "name": "Import Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "International Trade"
+      },
+      {
+        "id": "CPILFESL",
+        "name": "Core Consumer Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "Prices"
+      },
+      {
+        "id": "PCEPILFE",
+        "name": "Core PCE Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "Prices"
+      },
+      {
+        "id": "PCEPI",
+        "name": "PCE Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "Prices"
+      },
+      {
+        "id": "PERMIT",
+        "name": "Building Permits",
+        "frequency": "m",
+        "transform": "chg",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Housing and Construction"
+      },
+      {
+        "id": "TCU",
+        "name": "Capacity Utilization Rate",
+        "frequency": "m",
+        "transform": "chg",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Manufacturing"
+      },
+      {
+        "id": "BUSINV",
+        "name": "Business Inventories",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "International Trade"
+      },
+      {
+        "id": "ULCNFB",
+        "name": "Unit Labor Cost",
+        "frequency": "q",
+        "transform": "pca",
+        "blocks": [
+          "global",
+          "labor"
+        ],
+        "category": "Labor"
+      },
+      {
+        "id": "IQ",
+        "name": "Export Price Index",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global"
+        ],
+        "category": "International Trade"
+      },
+      {
+        "id": "GACDISA066MSFRBNY",
+        "name": "Empire State Mfg Index",
+        "frequency": "m",
+        "transform": "lin",
+        "blocks": [
+          "global",
+          "soft"
+        ],
+        "category": "Surveys"
+      },
+      {
+        "id": "PCEC96",
+        "name": "Real Consumption Spending",
+        "frequency": "m",
+        "transform": "pch",
+        "blocks": [
+          "global",
+          "real"
+        ],
+        "category": "Retail and Consumption"
+      },
+      {
+        "id": "GACDFSA066MSFRBPHI",
+        "name": "Philadelphia Fed Mfg Index",
+        "frequency": "m",
+        "transform": "lin",
+        "blocks": [
+          "global",
+          "soft"
+        ],
+        "category": "Surveys"
+      }
+    ],
+    "n_series": 25,
+    "n_monthly": 23,
+    "n_quarterly": 2,
+    "target": "GDPC1",
+    "threshold": 1e-05,
+    "max_iter": 5000,
+    "measurement_variance": 0.0001,
+    "warm_start": true,
+    "pandemic_free": [
+      "2020-03",
+      "2020-04",
+      "2020-05"
+    ],
+    "first_quarter": "2011Q3",
+    "horizon_edges": [
+      0,
+      15,
+      30,
+      45,
+      60,
+      75,
+      90,
+      120
+    ],
+    "excluded_years": [
+      2020
+    ],
+    "yields": [
+      "DGS2",
+      "DGS10"
+    ],
+    "primary_yield": "DGS2"
+  },
+  "headline": {
+    "final_verdict_squared": "level",
+    "final_verdict_absolute": "worse",
+    "final_verdict_ex": "worse",
+    "rmse_ratio_final": 3.191694209374483,
+    "rmse_ratio_final_ex": 2.206749221385978,
+    "groups_model_lower": [],
+    "groups_total": 7,
+    "yield_significant": false,
+    "yield_positive": true
+  },
+  "runtime": {
+    "seconds": 1908.3720769000065,
+    "python": "3.12.10"
+  },
+  "estimates": {
+    "evaluation": {
+      "quarters": 61,
+      "first_quarter": "2011Q3",
+      "last_quarter": "2026Q3",
+      "pairs": 2154,
+      "groups": [
+        {
+          "group": "0-14",
+          "all": {
+            "n": 59,
+            "model_rmse": 3.7159186878729833,
+            "gdpnow_rmse": 1.1203772382029644,
+            "model_mae": 1.993286916452985,
+            "gdpnow_mae": 0.7408651116687777,
+            "dm_squared": 1.853416715928172,
+            "dm_squared_p": 0.06891119435875166,
+            "dm_absolute": 3.3931023681161583,
+            "dm_absolute_p": 0.0012510099375234985
+          },
+          "ex_excluded": {
+            "n": 55,
+            "model_rmse": 1.873745590583922,
+            "gdpnow_rmse": 0.784041091472514,
+            "model_mae": 1.3640736677867757,
+            "gdpnow_mae": 0.5825598768728194,
+            "dm_squared": 3.2198749820345536,
+            "dm_squared_p": 0.0021725776972952742,
+            "dm_absolute": 4.587647490941208,
+            "dm_absolute_p": 2.706729766223303e-05
+          }
+        },
+        {
+          "group": "15-29",
+          "all": {
+            "n": 61,
+            "model_rmse": 3.772573987771461,
+            "gdpnow_rmse": 1.3383189781871603,
+            "model_mae": 2.0262589928507126,
+            "gdpnow_mae": 0.851354329024626,
+            "dm_squared": 1.8110981120062997,
+            "dm_squared_p": 0.07513230100920393,
+            "dm_absolute": 3.1390040539630246,
+            "dm_absolute_p": 0.0026291597555175654
+          },
+          "ex_excluded": {
+            "n": 57,
+            "model_rmse": 1.8626055776408896,
+            "gdpnow_rmse": 0.9001107665672681,
+            "model_mae": 1.3578909573138354,
+            "gdpnow_mae": 0.6591319393624148,
+            "dm_squared": 2.689285790997773,
+            "dm_squared_p": 0.009416484954196535,
+            "dm_absolute": 4.087071507686542,
+            "dm_absolute_p": 0.00014079167448345796
+          }
+        },
+        {
+          "group": "30-44",
+          "all": {
+            "n": 61,
+            "model_rmse": 3.6159662279685434,
+            "gdpnow_rmse": 1.8963732389816716,
+            "model_mae": 1.9842839056631627,
+            "gdpnow_mae": 1.1302017155670399,
+            "dm_squared": 1.5756843237714928,
+            "dm_squared_p": 0.12035710870625864,
+            "dm_absolute": 2.51401544663786,
+            "dm_absolute_p": 0.014637219387349857
+          },
+          "ex_excluded": {
+            "n": 57,
+            "model_rmse": 1.838366868875959,
+            "gdpnow_rmse": 1.1792438487920534,
+            "model_mae": 1.349655148109101,
+            "gdpnow_mae": 0.8384957058022701,
+            "dm_squared": 2.0974975190379324,
+            "dm_squared_p": 0.040475938129617126,
+            "dm_absolute": 3.1292723238750493,
+            "dm_absolute_p": 0.0027817378675132095
+          }
+        },
+        {
+          "group": "45-59",
+          "all": {
+            "n": 61,
+            "model_rmse": 3.5515712437081084,
+            "gdpnow_rmse": 2.670968127754664,
+            "model_mae": 1.9305921469948697,
+            "gdpnow_mae": 1.3835553979382882,
+            "dm_squared": 0.918893095896888,
+            "dm_squared_p": 0.3618308941442437,
+            "dm_absolute": 1.7378720500676994,
+            "dm_absolute_p": 0.08736366737307874
+          },
+          "ex_excluded": {
+            "n": 57,
+            "model_rmse": 1.8633932532932502,
+            "gdpnow_rmse": 1.1555751188471093,
+            "model_mae": 1.3187446066346407,
+            "gdpnow_mae": 0.9039288106215241,
+            "dm_squared": 2.0438325637417853,
+            "dm_squared_p": 0.04568427948508567,
+            "dm_absolute": 2.5043586971585854,
+            "dm_absolute_p": 0.015206084708184905
+          }
+        },
+        {
+          "group": "60-74",
+          "all": {
+            "n": 58,
+            "model_rmse": 3.5943507913972312,
+            "gdpnow_rmse": 3.0670434478251933,
+            "model_mae": 1.922014868372638,
+            "gdpnow_mae": 1.6483680658541249,
+            "dm_squared": 0.5259285501853126,
+            "dm_squared_p": 0.6009781722085099,
+            "dm_absolute": 0.8777044113868112,
+            "dm_absolute_p": 0.3837887804737471
+          },
+          "ex_excluded": {
+            "n": 54,
+            "model_rmse": 1.8546797239413875,
+            "gdpnow_rmse": 1.30043511032862,
+            "model_mae": 1.2830577852607459,
+            "gdpnow_mae": 1.0883780664198914,
+            "dm_squared": 1.8109003250858322,
+            "dm_squared_p": 0.07582558661234284,
+            "dm_absolute": 1.2369684019146974,
+            "dm_absolute_p": 0.2215518094828139
+          }
+        },
+        {
+          "group": "75-89",
+          "all": {
+            "n": 55,
+            "model_rmse": 3.6946193072085527,
+            "gdpnow_rmse": 2.3985481228155954,
+            "model_mae": 2.0235925751010457,
+            "gdpnow_mae": 1.5665537563936174,
+            "dm_squared": 1.4502972715650981,
+            "dm_squared_p": 0.15275959299576733,
+            "dm_absolute": 1.623145503269181,
+            "dm_absolute_p": 0.11038251722735513
+          },
+          "ex_excluded": {
+            "n": 51,
+            "model_rmse": 1.854502106988141,
+            "gdpnow_rmse": 1.5337685303397777,
+            "model_mae": 1.3210470596703339,
+            "gdpnow_mae": 1.2108714257452946,
+            "dm_squared": 1.2360896813208382,
+            "dm_squared_p": 0.22220083684232422,
+            "dm_absolute": 0.6763936402428463,
+            "dm_absolute_p": 0.5019078339917221
+          }
+        },
+        {
+          "group": "90-119",
+          "all": {
+            "n": 34,
+            "model_rmse": 6.36282446165881,
+            "gdpnow_rmse": 4.8121161101144985,
+            "model_mae": 2.7792171464048767,
+            "gdpnow_mae": 2.190095012019288,
+            "dm_squared": 1.2097819924357678,
+            "dm_squared_p": 0.23495787629190842,
+            "dm_absolute": 1.4002041188131717,
+            "dm_absolute_p": 0.17078444711684862
+          },
+          "ex_excluded": {
+            "n": 31,
+            "model_rmse": 2.0209779330834197,
+            "gdpnow_rmse": 1.507299346824898,
+            "model_mae": 1.267086818866047,
+            "gdpnow_mae": 1.1367639578265178,
+            "dm_squared": 1.2032474750047357,
+            "dm_squared_p": 0.2382903192774049,
+            "dm_absolute": 0.49641842495521166,
+            "dm_absolute_p": 0.6232171939440221
+          }
+        }
+      ],
+      "final": {
+        "all": {
+          "n": 61,
+          "model_rmse": 3.6559526207698823,
+          "gdpnow_rmse": 1.1454582992417641,
+          "model_mae": 1.9434325128827714,
+          "gdpnow_mae": 0.7623079641303364,
+          "dm_squared": 1.837910210597337,
+          "dm_squared_p": 0.0710277857846346,
+          "dm_absolute": 3.273958046751436,
+          "dm_absolute_p": 0.0017629550343448506
+        },
+        "ex_excluded": {
+          "n": 57,
+          "model_rmse": 1.8436760242136077,
+          "gdpnow_rmse": 0.8354714737616007,
+          "model_mae": 1.3327983674279933,
+          "gdpnow_mae": 0.6110620605525912,
+          "dm_squared": 3.067203397581212,
+          "dm_squared_p": 0.003325127267364607,
+          "dm_absolute": 4.233420358225005,
+          "dm_absolute_p": 8.635613300734812e-05
+        }
+      },
+      "excluded_years": [
+        2020
+      ]
+    },
+    "market": {
+      "DGS2": {
+        "all": {
+          "slope": 0.34229892935602046,
+          "intercept": 0.20703301669981622,
+          "se": 0.3461705634329644,
+          "t": 0.9888158194661354,
+          "p": 0.32288675420853674,
+          "ci_low": -0.3366414766667496,
+          "ci_high": 1.0212393353787905,
+          "r2": 0.0012637080903606934,
+          "n": 1794
+        },
+        "ex_excluded": {
+          "slope": 1.3312859948003661,
+          "intercept": 0.27035980116879954,
+          "se": 0.48978387449462035,
+          "t": 2.718109076526954,
+          "p": 0.006633467540795619,
+          "ci_low": 0.3706314129698425,
+          "ci_high": 2.29194057663089,
+          "r2": 0.0040775057751176735,
+          "n": 1673
+        },
+        "deciles": [
+          {
+            "news": -0.5248027004908267,
+            "change": -0.7444444444444441,
+            "half_width": 0.748054954022222,
+            "n": 180
+          },
+          {
+            "news": -0.049842234560246015,
+            "change": -0.46927374301675867,
+            "half_width": 0.718905371521933,
+            "n": 179
+          },
+          {
+            "news": -0.008188778738875562,
+            "change": 0.1061452513966461,
+            "half_width": 0.682305594316507,
+            "n": 179
+          },
+          {
+            "news": -0.001275209330951186,
+            "change": -0.32222222222222224,
+            "half_width": 0.6992098012240305,
+            "n": 180
+          },
+          {
+            "news": -0.0001444382317897441,
+            "change": -0.05027932960893717,
+            "half_width": 0.846192902762817,
+            "n": 179
+          },
+          {
+            "news": 0.0001337906771076469,
+            "change": 0.20670391061452348,
+            "half_width": 0.6812630380703076,
+            "n": 179
+          },
+          {
+            "news": 0.001888265376391879,
+            "change": 0.48888888888889065,
+            "half_width": 0.6127744054666769,
+            "n": 180
+          },
+          {
+            "news": 0.009973135049990376,
+            "change": 1.0335195530726262,
+            "half_width": 0.7968940191335196,
+            "n": 179
+          },
+          {
+            "news": 0.05154608412758797,
+            "change": 0.7821229050279332,
+            "half_width": 0.7558613052052523,
+            "n": 179
+          },
+          {
+            "news": 0.513959677638546,
+            "change": 1.038888888888888,
+            "half_width": 0.7053547879384446,
+            "n": 180
+          }
+        ],
+        "first_day": "2011-07-08",
+        "last_day": "2026-09-30"
+      },
+      "DGS10": {
+        "all": {
+          "slope": 0.3298398150995889,
+          "intercept": 0.09832889933499997,
+          "se": 0.4428168248134041,
+          "t": 0.7448673957647794,
+          "p": 0.4564495603775318,
+          "ci_low": -0.5386518089455801,
+          "ci_high": 1.198331439144758,
+          "r2": 0.0009500987158523877,
+          "n": 1794
+        },
+        "ex_excluded": {
+          "slope": 1.0786009351384371,
+          "intercept": 0.12296485729285567,
+          "se": 0.5150231807972082,
+          "t": 2.0942764818252697,
+          "p": 0.036385666994863085,
+          "ci_low": 0.06844236490726763,
+          "ci_high": 2.0887595053696066,
+          "r2": 0.0022578723302457693,
+          "n": 1673
+        },
+        "deciles": [
+          {
+            "news": -0.5248027004908267,
+            "change": -0.805555555555556,
+            "half_width": 0.7977742035198282,
+            "n": 180
+          },
+          {
+            "news": -0.049842234560246015,
+            "change": -0.3798882681564258,
+            "half_width": 0.8336509115284864,
+            "n": 179
+          },
+          {
+            "news": -0.008188778738875562,
+            "change": -0.027932960893853012,
+            "half_width": 0.7640920359370313,
+            "n": 179
+          },
+          {
+            "news": -0.001275209330951186,
+            "change": 0.26666666666666605,
+            "half_width": 0.7887094883759308,
+            "n": 180
+          },
+          {
+            "news": -0.0001444382317897441,
+            "change": -0.21787709497206542,
+            "half_width": 0.8466228778342604,
+            "n": 179
+          },
+          {
+            "news": 0.0001337906771076469,
+            "change": 0.40223463687150934,
+            "half_width": 0.8120292997187002,
+            "n": 179
+          },
+          {
+            "news": 0.001888265376391879,
+            "change": 0.366666666666666,
+            "half_width": 0.7644792626932724,
+            "n": 180
+          },
+          {
+            "news": 0.009973135049990376,
+            "change": 0.41340782122904846,
+            "half_width": 0.8561624809400001,
+            "n": 179
+          },
+          {
+            "news": 0.05154608412758797,
+            "change": 0.2569832402234624,
+            "half_width": 0.8550747752607192,
+            "n": 179
+          },
+          {
+            "news": 0.513959677638546,
+            "change": 0.7055555555555573,
+            "half_width": 0.7905609820256734,
+            "n": 180
+          }
+        ],
+        "first_day": "2011-07-08",
+        "last_day": "2026-09-30"
+      }
+    },
+    "example_quarter": "2026Q3",
+    "example_advance": 3.369618941355945,
+    "example_release": "2026-10-29",
+    "model": {
+      "estimations": 184,
+      "all_converged": true,
+      "converged_count": 184,
+      "max_iterations": 3861,
+      "median_iterations": 13.0,
+      "first_iterations": 1949,
+      "median_seconds": 2.0,
+      "last_date": "2026-10-01",
+      "pandemic_scales": [
+        6.465954477448454,
+        53.022037758799996,
+        6.386583698590074
+      ],
+      "pandemic_rho": 0.9000898560524814,
+      "states": 53,
+      "series_last": 25,
+      "entered_later": [
+        {
+          "id": "GACDISA066MSFRBNY",
+          "name": "Empire State Mfg Index",
+          "entered": "2014-04-01"
+        },
+        {
+          "id": "GACDFSA066MSFRBPHI",
+          "name": "Philadelphia Fed Mfg Index",
+          "entered": "2015-05-01"
+        }
+      ],
+      "units": {
+        "series": "PAYEMS",
+        "name": "Payroll Employment",
+        "sd_ratio": 5.056634426541992,
+        "largest_z": 105.99440559113454,
+        "largest_month": "2020-04"
+      }
+    },
+    "history": {
+      "days": 2238,
+      "releases": 5389,
+      "release_days": 1839,
+      "identity_max": 7.429612480791548e-12
+    },
+    "data": {
+      "coverage": [
+        {
+          "id": "PAYEMS",
+          "name": "Payroll Employment",
+          "frequency": "m",
+          "first_vintage": "1985-02-01",
+          "vintages": 504,
+          "published": 7229
+        },
+        {
+          "id": "JTSJOL",
+          "name": "Job Openings",
+          "frequency": "m",
+          "first_vintage": "2010-08-11",
+          "vintages": 195,
+          "published": 2152
+        },
+        {
+          "id": "CPIAUCSL",
+          "name": "Consumer Price Index",
+          "frequency": "m",
+          "first_vintage": "1985-02-26",
+          "vintages": 519,
+          "published": 2363
+        },
+        {
+          "id": "DGORDER",
+          "name": "Durable Goods Orders",
+          "frequency": "m",
+          "first_vintage": "1999-08-04",
+          "vintages": 673,
+          "published": 6502
+        },
+        {
+          "id": "RSAFS",
+          "name": "Retail Sales",
+          "frequency": "m",
+          "first_vintage": "2001-06-13",
+          "vintages": 326,
+          "published": 5566
+        },
+        {
+          "id": "UNRATE",
+          "name": "Unemployment Rate",
+          "frequency": "m",
+          "first_vintage": "1985-02-01",
+          "vintages": 502,
+          "published": 987
+        },
+        {
+          "id": "HOUST",
+          "name": "Housing Starts",
+          "frequency": "m",
+          "first_vintage": "1985-02-19",
+          "vintages": 496,
+          "published": 2840
+        },
+        {
+          "id": "INDPRO",
+          "name": "Industrial Production",
+          "frequency": "m",
+          "first_vintage": "1985-02-15",
+          "vintages": 527,
+          "published": 11313
+        },
+        {
+          "id": "DSPIC96",
+          "name": "Personal Income",
+          "frequency": "m",
+          "first_vintage": "1985-03-20",
+          "vintages": 504,
+          "published": 7674
+        },
+        {
+          "id": "BOPTEXP",
+          "name": "Exports",
+          "frequency": "m",
+          "first_vintage": "2010-04-13",
+          "vintages": 199,
+          "published": 2992
+        },
+        {
+          "id": "BOPTIMP",
+          "name": "Imports",
+          "frequency": "m",
+          "first_vintage": "2010-04-13",
+          "vintages": 199,
+          "published": 3012
+        },
+        {
+          "id": "TTLCONS",
+          "name": "Construction Spending",
+          "frequency": "m",
+          "first_vintage": "2011-07-01",
+          "vintages": 181,
+          "published": 2053
+        },
+        {
+          "id": "IR",
+          "name": "Import Price Index",
+          "frequency": "m",
+          "first_vintage": "2010-03-16",
+          "vintages": 199,
+          "published": 869
+        },
+        {
+          "id": "CPILFESL",
+          "name": "Core Consumer Price Index",
+          "frequency": "m",
+          "first_vintage": "1996-12-12",
+          "vintages": 377,
+          "published": 1925
+        },
+        {
+          "id": "PCEPILFE",
+          "name": "Core PCE Price Index",
+          "frequency": "m",
+          "first_vintage": "2000-08-01",
+          "vintages": 317,
+          "published": 5578
+        },
+        {
+          "id": "PCEPI",
+          "name": "PCE Price Index",
+          "frequency": "m",
+          "first_vintage": "2000-08-01",
+          "vintages": 317,
+          "published": 5586
+        },
+        {
+          "id": "PERMIT",
+          "name": "Building Permits",
+          "frequency": "m",
+          "first_vintage": "1999-08-17",
+          "vintages": 625,
+          "published": 2074
+        },
+        {
+          "id": "TCU",
+          "name": "Capacity Utilization Rate",
+          "frequency": "m",
+          "first_vintage": "1996-11-15",
+          "vintages": 386,
+          "published": 8356
+        },
+        {
+          "id": "BUSINV",
+          "name": "Business Inventories",
+          "frequency": "m",
+          "first_vintage": "1996-11-15",
+          "vintages": 362,
+          "published": 12877
+        },
+        {
+          "id": "IQ",
+          "name": "Export Price Index",
+          "frequency": "m",
+          "first_vintage": "2010-03-16",
+          "vintages": 199,
+          "published": 806
+        },
+        {
+          "id": "GACDISA066MSFRBNY",
+          "name": "Empire State Mfg Index",
+          "frequency": "m",
+          "first_vintage": "2014-03-17",
+          "vintages": 152,
+          "published": 1593
+        },
+        {
+          "id": "PCEC96",
+          "name": "Real Consumption Spending",
+          "frequency": "m",
+          "first_vintage": "1985-03-20",
+          "vintages": 501,
+          "published": 5791
+        },
+        {
+          "id": "GACDFSA066MSFRBPHI",
+          "name": "Philadelphia Fed Mfg Index",
+          "frequency": "m",
+          "first_vintage": "2015-04-16",
+          "vintages": 147,
+          "published": 1965
+        },
+        {
+          "id": "GDPC1",
+          "name": "Real Gross Domestic Product",
+          "frequency": "q",
+          "first_vintage": "1991-12-04",
+          "vintages": 420,
+          "published": 2128
+        },
+        {
+          "id": "ULCNFB",
+          "name": "Unit Labor Cost",
+          "frequency": "q",
+          "first_vintage": "1985-04-25",
+          "vintages": 325,
+          "published": 4719
+        }
+      ],
+      "advance_check": {
+        "quarters": 61,
+        "within_005": 61,
+        "max_abs_diff": 0.002118802786888807,
+        "worst_quarter": "2014Q2",
+        "release_dates_agree": 57,
+        "release_dates_differ": [
+          "2016Q2",
+          "2020Q3",
+          "2024Q3",
+          "2026Q3"
+        ]
+      },
+      "advance_quarters": 166,
+      "gdpnow_nowcasts": 2154
+    },
+    "runtime_seconds": 1908.3720769000065
+  },
+  "figures": {
+    "rmse": {
+      "png": "reports/figures/rmse.png",
+      "svg": "reports/figures/rmse.svg"
+    },
+    "path": {
+      "png": "reports/figures/path.png",
+      "svg": "reports/figures/path.svg"
+    },
+    "waterfall": {
+      "png": "reports/figures/waterfall.png",
+      "svg": "reports/figures/waterfall.svg"
+    },
+    "yields": {
+      "png": "reports/figures/yields.png",
+      "svg": "reports/figures/yields.svg"
+    },
+    "errors": {
+      "png": "reports/figures/errors.png",
+      "svg": "reports/figures/errors.svg"
+    }
+  }
+}

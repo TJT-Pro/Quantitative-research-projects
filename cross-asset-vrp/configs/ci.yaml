@@ -1,0 +1,11 @@
+# Overrides for the synthetic fixture in CI: the same methods on a smaller budget.
+# Results built with this file can never pass `vrp check-provenance` (the fingerprint differs).
+har:
+  min_train_days: 300
+heston:
+  paths: 12
+  days: 30
+download:
+  workers: 4
+replication:
+  page_size: 400  # small pages, so the fixture exercises paging

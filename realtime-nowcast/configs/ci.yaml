@@ -1,0 +1,9 @@
+# Overrides for CI and the end-to-end test: a shorter history and six evaluation quarters,
+# so the whole pipeline runs on the synthetic fixture in a few minutes.
+panel:
+  observation_start: "1995-01-01"
+  estimation_start: "1995-04"
+model:
+  threshold: 1.0e-4
+download:
+  page_limit: 2000   # several pages per series, so paging is exercised

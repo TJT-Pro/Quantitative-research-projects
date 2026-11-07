@@ -1,0 +1,136 @@
+# Every research choice for perp-funding-carry, each with its reason.
+# `pfc` validates this file on load; `--override configs/ci.yaml` swaps in the fixture settings.
+
+sources:
+  vision_base: https://data.binance.vision                             # Binance Vision static files
+  vision_list: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision  # the bucket listing behind it, delisted symbols included
+  binance_fapi: https://fapi.binance.com                               # fundingInfo: current caps and intervals; futures books
+  binance_spot_api: https://api.binance.com                            # spot best bid and ask, 24-hour volume
+  bybit_api: https://api.bybit.com                                     # funding history, 200 rows per call
+  okx_api: https://www.okx.com                                         # funding history, about three months deep
+  official_hosts:
+    - data.binance.vision
+    - s3-ap-northeast-1.amazonaws.com
+    - fapi.binance.com
+    - api.binance.com
+    - api.bybit.com
+    - www.okx.com
+  venue_names: {binance: Binance, bybit: Bybit, okx: OKX}
+  # Venues whose public funding history reaches back over the whole sample. OKX serves about
+  # three months, so it joins the comparison only on the dates its local store covers.
+  full_history_venues: [binance, bybit]
+
+download:
+  retries: 6
+  backoff_seconds: 2.0            # doubled after each failure
+  timeout_seconds: 60.0
+  chunk_bytes: 262144
+  workers: 8                      # parallel Vision downloads; the CDN serves small immutable files
+  rest_pause_seconds: 0.25        # between REST pages, well inside every venue's public limit
+
+universe:
+  quote: USDT                     # USDT-margined perpetuals with a USDT spot pair
+  first_month: "2019-09"          # BTCUSDT, the first USD-M perpetual, lists in September 2019
+  last_month: null                # the last complete month at fetch time
+  min_months: 3                   # a contract needs three months of history to be ranked
+  bar_interval: 4h                # universe bars: margin is checked on 4-hour mark-price highs
+  core_symbols: [BTCUSDT, ETHUSDT]
+  core_bar_interval: 1h           # BTC and ETH carry is checked on hourly mark-price highs
+  # Perpetuals quoted per 1,000 or 1,000,000 units map to the spot pair with the multiplier.
+  multiplier_prefixes: {"1000000": 1000000, "1000": 1000, "1M": 1000000}
+  stablecoin_pair: USDCUSDT       # USDT is marked to USD through USDC: USD per USDT = 1 / USDCUSDT
+  oi_window_days: 365             # open interest (daily metrics files) for the core symbols, trailing year
+
+rebuild:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  months: 12                      # the most recent complete months of 1-minute premium index klines
+  interest_8h: 0.0001             # 0.01% per 8 hours (0.03% a day), Binance default
+  clamp: 0.0005                   # clamp(I - P, -0.05%, 0.05%)
+  tolerance: 0.0001               # reproduction counts within one basis point
+  equal_weight_interval_hours: [1]  # the FAQ: hourly contracts weight premium samples equally, others linearly
+  # The FAQ divides the 8-hour expression by 8/N; the alternative scales the interest term per interval.
+  conventions: [faq, per_interval]
+  cap_test_threshold: 0.001       # prints above 0.1% are reported separately: caps and floors can bind there
+
+costs:
+  retrieved: "2026-11-04"
+  source: https://www.binance.com/en/fee/futureFee and https://www.binance.com/en/fee/schedule (VIP 0, no BNB discount)
+  spot_taker: 0.001               # 0.10% spot taker
+  perp_taker: 0.0005              # 0.05% USD-M taker; every leg is costed as a taker
+  # Half-spreads come from measured best bid and ask (pfc snapshot), fitted to volume across
+  # contracts. Predictions stay inside these quantiles of the measured half-spreads.
+  spread_clip_quantiles: [0.01, 0.99]
+  # The headline portfolio is rerun with every cost (fees and spreads) scaled by these.
+  cost_multiples: [0.5, 1.0, 2.0]
+
+margin:
+  # Tier-1 maintenance margin rates; the strategy's positions stay inside tier 1.
+  maintenance_rate: {BTCUSDT: 0.004, ETHUSDT: 0.005}
+  default_maintenance_rate: 0.01  # conservative tier-1 rate for every other contract
+  source: Binance USD-M leverage brackets, tier 1 (the bracket endpoint needs a signed request, so the rates are kept here)
+
+carry:
+  leverages: [1.0, 2.0, 3.0, 5.0]
+  headline_leverage: 2.0
+  reserve_share: 0.2              # share of capital kept as a top-up reserve on the top-up path
+  topup_leverage_multiple: 1.5    # top up when effective leverage reaches 1.5 times the target
+
+forecast:
+  horizons: [1, 3, 21]            # funding periods ahead: 8 hours, a day, a week at 8-hour funding
+  har_lags: [1, 3, 21]            # HAR averages over the last 1, 3 and 21 prints
+  momentum_hours: [24, 168]       # spot return over a day and a week
+  min_train_months: 6             # walk-forward: first forecast after six months of history
+  winsor: 0.0                     # off: clipping at training quantiles capped forecasts in the extreme regimes ranking needs, and raised out-of-sample error
+  ewc_coefficient: 0.4            # long-run variance for the Diebold-Mariano test, nu = 0.4 T^(2/3)
+
+portfolio:
+  rebalance_hours: 8              # rebalance at each 8-hour funding time
+  exit_rank_multiple: 2.0         # hysteresis: enter in the top k, exit only below rank 2k; a round trip costs more than a few prints
+  top_k: [5, 10, 20]
+  headline_top_k: 10
+  min_quote_volume_usd: [5000000.0, 20000000.0]
+  headline_min_quote_volume_usd: 20000000.0  # trailing median daily perpetual quote volume
+  volume_window_days: 30
+  models: [persistence, har, har_plus]
+  headline_model: har_plus
+  participation: 0.01             # capacity: at most 1% of a contract's daily quote volume
+  oi_share: 0.02                  # capacity: at most 2% of open interest (core symbols)
+
+episodes:
+  - {name: "March 2020", start: "2020-03-08", end: "2020-03-20"}
+  - {name: "May 2021", start: "2021-05-10", end: "2021-05-25"}
+  - {name: "November 2022", start: "2022-11-06", end: "2022-11-20"}
+
+counterparty:
+  # Annual failure hazard prior per venue. FTX (November 2022) is the reference event: a top-five
+  # venue that froze withdrawals with no warning in its price data.
+  venues: {binance: 0.01, bybit: 0.015, okx: 0.015}
+  hazard_scales: [0.25, 0.5, 1.0, 2.0, 4.0]
+  loss_given_failure: [0.25, 0.5, 1.0]
+  headline_loss_given_failure: 0.5  # FTX claims were paid at petition-date prices years later
+  # 99%: the chance that any of the three venues fails in a year is about 4% at the prior, so a
+  # 95% tail would also hold no-failure years and reward piling into one venue for luck rather
+  # than measure the loss from a failure.
+  es_level: 0.99
+  max_share: 1.0
+
+stablecoin:
+  shock: -0.05                    # a 5% USDT depeg
+  days: 30                        # lasting a month before it recovers
+
+evaluation:
+  ewc_coefficient: 0.4            # Sharpe standard errors with the EWC long-run variance
+  hours_per_year: 8760.0          # 365 days: crypto trades every day, so returns annualize over the calendar
+
+plot:
+  dpi: 200
+  heatmap_symbols: 30             # the contracts with the longest history
+  palette:
+    this_study: "#2a78d6"
+    benchmark: "#eb6834"
+    secondary: "#1baf7a"
+    highlight: "#eda100"
+    surface: "#fcfcfb"
+    text: "#0b0b0b"
+    muted: "#52514e"
+    grid: "#e4e3df"

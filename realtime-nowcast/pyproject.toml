@@ -1,0 +1,78 @@
+[project]
+name = "realtime-nowcast"
+version = "1.0.0"
+description = "A real-time GDP nowcast built only on data as published each day, scored against the Atlanta Fed's GDPNow, with a test of whether its news moves Treasury yields."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Ian Wachira" }]
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "jinja2>=3.1.6",
+    "matplotlib>=3.10.3",
+    "numpy>=2.2.6",
+    "pandas>=3.0.0",
+    "pyarrow>=20.0.0",
+    "pydantic>=2.11.5",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.4",
+    "scipy>=1.15.3",
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+rtn = "realtime_nowcast.cli:app"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.135.0",
+    "mypy>=1.16.0",
+    "pandas-stubs>=2.2.3.250527",
+    "pip-audit>=2.9.0",
+    "pytest>=8.4.0",
+    "ruff>=0.11.13",
+    "scipy-stubs>=1.15.3.0",
+    "types-openpyxl>=3.1.5.20250602",
+    "types-pyyaml>=6.0.12.20250516",
+    "types-requests>=2.32.0.20250602",
+]
+
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/realtime_nowcast"]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "PL", "PD", "PT", "NPY", "RUF", "SIM", "C4", "N"]
+ignore = [
+    "PLR2004",  # comparisons with small literal constants (0, 1, 2) read better inline
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR0913", "PLR0917"]  # hypothesis passes drawn values as keywords
+
+[tool.ruff.lint.pylint]
+max-args = 8  # keyword-only arguments; the positional limit is the one that matters
+max-positional-args = 3
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+files = ["src", "tests"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = ["e2e: runs the whole pipeline on the synthetic fixture"]
+filterwarnings = ["error::FutureWarning", "error::UserWarning", "error::RuntimeWarning", "error::DeprecationWarning"]

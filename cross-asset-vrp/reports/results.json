@@ -1,0 +1,1099 @@
+{
+  "title": "The variance risk premium across seven markets",
+  "author": "Ian Wachira",
+  "provenance": "official",
+  "manifest_digest": "0eabbc765a487c01f4836f6bd5efd4331285d3b35c4b3911bd8a172ea5ecc2b2",
+  "manifest_files": 526,
+  "config_fingerprint": "0614ad05051d",
+  "generated_at": "2026-11-07 07:42 UTC",
+  "settings": {
+    "variance_days": 30,
+    "days_per_year": 365,
+    "har_lags": [
+      1,
+      5,
+      22
+    ],
+    "btc_har_lags": [
+      1,
+      7,
+      30
+    ],
+    "min_train_days": 750,
+    "btc_sample_minutes": 5,
+    "yang_zhang_window": 22,
+    "horizons_months": [
+      1,
+      3
+    ],
+    "btz_sample_end": "2007-12",
+    "ewc_coefficient": 0.4,
+    "target_days": 30,
+    "max_gap_days": 7,
+    "cost_points_per_side": 0.025,
+    "sizing_cap": 2.0,
+    "min_signal_history_days": 250,
+    "rescale_before": "2007-03-26",
+    "rescale_factor": 10.0,
+    "window_hours": 24,
+    "spread_buckets": [
+      -0.3,
+      -0.1,
+      0.1,
+      0.3
+    ],
+    "min_spread_trades": 5,
+    "min_expiry_days": 7,
+    "zero_bid_stop": 2,
+    "term_short": "VIX9D",
+    "term_long": "VIX3M",
+    "risk_free": "DTB3",
+    "heston": {
+      "kappa": 4.0,
+      "theta": 0.04,
+      "xi": 0.5,
+      "rho": -0.7,
+      "v0": 0.04,
+      "paths": 40,
+      "days": 60,
+      "steps_per_day": 1440,
+      "coarse_steps": [
+        5,
+        30
+      ],
+      "seed": 20261104
+    },
+    "assets": [
+      {
+        "key": "spx",
+        "label": "US equities",
+        "implied": "VIX",
+        "instrument": "SPY",
+        "options_on": "S&P 500 index options (SPX)",
+        "reason": "SPY holds the S&P 500, the index whose options VIX is computed from."
+      },
+      {
+        "key": "ndx",
+        "label": "US tech",
+        "implied": "VXN",
+        "instrument": "QQQ",
+        "options_on": "Nasdaq-100 index options (NDX)",
+        "reason": "QQQ holds the Nasdaq-100, the index whose options VXN is computed from."
+      },
+      {
+        "key": "rut",
+        "label": "US small caps",
+        "implied": "RVX",
+        "instrument": "IWM",
+        "options_on": "Russell 2000 index options (RUT)",
+        "reason": "IWM holds the Russell 2000, the index whose options RVX is computed from."
+      },
+      {
+        "key": "gold",
+        "label": "Gold",
+        "implied": "GVZ",
+        "instrument": "GLD",
+        "options_on": "options on GLD",
+        "reason": "GVZ is computed from options on GLD itself."
+      },
+      {
+        "key": "oil",
+        "label": "Oil",
+        "implied": "OVX",
+        "instrument": "USO",
+        "options_on": "options on USO",
+        "reason": "OVX is computed from options on USO itself, so USO's own roll losses are in both sides."
+      },
+      {
+        "key": "em",
+        "label": "Emerging markets",
+        "implied": "VXEEM",
+        "instrument": "EEM",
+        "options_on": "options on EEM",
+        "reason": "VXEEM is computed from options on EEM itself."
+      },
+      {
+        "key": "btc",
+        "label": "Bitcoin",
+        "implied": "DVOL",
+        "instrument": "BTCUSDT",
+        "options_on": "Deribit bitcoin options",
+        "reason": "DVOL is computed from Deribit's BTC options; Binance BTCUSDT minute bars give the realized side, and USDT's moves against the dollar are three orders of magnitude smaller than bitcoin's."
+      }
+    ],
+    "episodes": [
+      {
+        "name": "Autumn 2008",
+        "start": "2008-09-01",
+        "end": "2008-12-31"
+      },
+      {
+        "name": "August 2015",
+        "start": "2015-08-17",
+        "end": "2015-09-04"
+      },
+      {
+        "name": "February 2018",
+        "start": "2018-02-01",
+        "end": "2018-02-28"
+      },
+      {
+        "name": "March 2020",
+        "start": "2020-02-20",
+        "end": "2020-04-30"
+      },
+      {
+        "name": "August 2024",
+        "start": "2024-07-31",
+        "end": "2024-08-16"
+      }
+    ]
+  },
+  "headline": {
+    "largest_gap": "oil",
+    "smallest_gap": "gold",
+    "ranked_by_gap": [
+      "oil",
+      "btc",
+      "rut",
+      "spx",
+      "em",
+      "ndx",
+      "gold"
+    ],
+    "positive_premium_assets": [
+      "oil",
+      "btc",
+      "rut",
+      "spx",
+      "em",
+      "ndx",
+      "gold"
+    ],
+    "vix_asset": "spx",
+    "best_sizing": "unconditional",
+    "ruined_sizing": [
+      "premium"
+    ],
+    "btz_after": [
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "after_btz",
+        "horizon": 1,
+        "slope": 0.04115327692647775,
+        "se": 0.05183555273098704,
+        "t": 0.7939199016561566,
+        "p_value": 0.43962192771320335,
+        "ci_low": -0.06933158838582437,
+        "ci_high": 0.15163814223877986,
+        "r2": 0.0057847053734361165,
+        "observations": 226,
+        "dof": 15,
+        "first": "2008-01-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "after_btz",
+        "horizon": 3,
+        "slope": 0.047124115313645666,
+        "se": 0.029170563489652444,
+        "t": 1.6154681184119675,
+        "p_value": 0.12704266165120542,
+        "ci_low": -0.015051468980096613,
+        "ci_high": 0.10929969960738795,
+        "r2": 0.023708791934893503,
+        "observations": 224,
+        "dof": 15,
+        "first": "2008-01-01",
+        "last": "2026-08-01"
+      }
+    ]
+  },
+  "runtime": {
+    "seconds": 19.747199199991883,
+    "python": "3.12.10"
+  },
+  "estimates": {
+    "calibration": {
+      "rows": [
+        {
+          "estimator": "close_to_close",
+          "level": "day",
+          "days": 3328,
+          "bias": -0.21605502895895334,
+          "rmse_ratio": 3.201024334602929,
+          "correlation": 0.439105237656692,
+          "efficiency_vs_cc": 1.0
+        },
+        {
+          "estimator": "close_to_close",
+          "level": "window",
+          "days": 3307,
+          "bias": -0.20333935940324543,
+          "rmse_ratio": 0.8260530887696395,
+          "correlation": 0.8433168742554411,
+          "efficiency_vs_cc": 1.0
+        },
+        {
+          "estimator": "parkinson",
+          "level": "day",
+          "days": 3329,
+          "bias": -0.10602160950295902,
+          "rmse_ratio": 1.3875965948553501,
+          "correlation": 0.850540074019498,
+          "efficiency_vs_cc": 5.321713628115501
+        },
+        {
+          "estimator": "parkinson",
+          "level": "window",
+          "days": 3308,
+          "bias": -0.09528218169678981,
+          "rmse_ratio": 0.4463590281515123,
+          "correlation": 0.9669321703042272,
+          "efficiency_vs_cc": 3.4248950847919004
+        },
+        {
+          "estimator": "garman_klass",
+          "level": "day",
+          "days": 3329,
+          "bias": -0.05969278534819,
+          "rmse_ratio": 0.9465770518021153,
+          "correlation": 0.9317713864421159,
+          "efficiency_vs_cc": 11.43578570238574
+        },
+        {
+          "estimator": "garman_klass",
+          "level": "window",
+          "days": 3308,
+          "bias": -0.04956770807540001,
+          "rmse_ratio": 0.3407491362154725,
+          "correlation": 0.977976347719794,
+          "efficiency_vs_cc": 5.876874164622433
+        },
+        {
+          "estimator": "rogers_satchell",
+          "level": "day",
+          "days": 3329,
+          "bias": -0.026064115498111606,
+          "rmse_ratio": 0.9801283556935215,
+          "correlation": 0.9346708105017252,
+          "efficiency_vs_cc": 10.666257005782668
+        },
+        {
+          "estimator": "rogers_satchell",
+          "level": "window",
+          "days": 3308,
+          "bias": -0.017471694693861117,
+          "rmse_ratio": 0.312910892388022,
+          "correlation": 0.9765412915743803,
+          "efficiency_vs_cc": 6.9690656649202145
+        },
+        {
+          "estimator": "yang_zhang",
+          "level": "window",
+          "days": 3307,
+          "bias": -0.03612781148347144,
+          "rmse_ratio": 0.322084520245814,
+          "correlation": 0.9776281466489607,
+          "efficiency_vs_cc": 6.577732588077635
+        }
+      ],
+      "chosen": "garman_klass",
+      "days": 3329,
+      "first": "2017-08-18",
+      "last": "2026-10-31",
+      "kernel_over_rv5": 0.914800033450043,
+      "rv1_over_rv5": 1.1100572633140682
+    },
+    "heston": {
+      "bias": [
+        {
+          "estimator": "parkinson",
+          "step_minutes": 1,
+          "bias": -0.00493640618740987
+        },
+        {
+          "estimator": "garman_klass",
+          "step_minutes": 1,
+          "bias": -0.020258590974936652
+        },
+        {
+          "estimator": "rogers_satchell",
+          "step_minutes": 1,
+          "bias": -0.021172882228362333
+        },
+        {
+          "estimator": "open_to_close_squared",
+          "step_minutes": 1,
+          "bias": 0.034728125138149046
+        },
+        {
+          "estimator": "parkinson",
+          "step_minutes": 5,
+          "bias": -0.04726440939709997
+        },
+        {
+          "estimator": "garman_klass",
+          "step_minutes": 5,
+          "bias": -0.07893766314199457
+        },
+        {
+          "estimator": "rogers_satchell",
+          "step_minutes": 5,
+          "bias": -0.08027932380858938
+        },
+        {
+          "estimator": "open_to_close_squared",
+          "step_minutes": 5,
+          "bias": 0.034728125138149046
+        },
+        {
+          "estimator": "parkinson",
+          "step_minutes": 30,
+          "bias": -0.14743604849179037
+        },
+        {
+          "estimator": "garman_klass",
+          "step_minutes": 30,
+          "bias": -0.21780504156310077
+        },
+        {
+          "estimator": "rogers_satchell",
+          "step_minutes": 30,
+          "bias": -0.22316526868150055
+        },
+        {
+          "estimator": "open_to_close_squared",
+          "step_minutes": 30,
+          "bias": 0.034728125138149046
+        }
+      ],
+      "range_deficit": [
+        {
+          "step_minutes": 5,
+          "measured": 0.00038803621178233974,
+          "predicted": 0.0003966587569470868
+        },
+        {
+          "step_minutes": 30,
+          "measured": 0.0013705768746803582,
+          "predicted": 0.0014367581423506295
+        }
+      ],
+      "days": 2400
+    },
+    "premium": {
+      "spx": {
+        "label": "US equities",
+        "implied": "VIX",
+        "instrument": "SPY",
+        "options_on": "S&P 500 index options (SPX)",
+        "reason": "SPY holds the S&P 500, the index whose options VIX is computed from.",
+        "first": "1993-02-01",
+        "last": "2026-10-07",
+        "days": 8476,
+        "mean_iv_var": 0.044260255056630476,
+        "mean_rv": 0.03428773473810745,
+        "ex_post_mean": 0.009972520318523035,
+        "ex_post_median": 0.011586206139905218,
+        "ex_post_share_positive": 0.8430863614912695,
+        "ex_post_ratio": 1.2908480363224333,
+        "ex_post_t": 4.397576598492008,
+        "ex_ante_mean": 0.012070078941191376,
+        "ex_ante_median": 0.008324900172030815,
+        "ex_ante_share_positive": 0.7766952455183165,
+        "ex_ante_first": "1996-04-01",
+        "vol_gap_points": 3.762008245427189,
+        "ex_ante_points_mean": 2.8216681448062992,
+        "har_r2_vs_persistence": 0.27658574292780835,
+        "har_days": 7679,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": 2.426880010881036,
+        "ex_post_points_median": 4.450978682505142
+      },
+      "ndx": {
+        "label": "US tech",
+        "implied": "VXN",
+        "instrument": "QQQ",
+        "options_on": "Nasdaq-100 index options (NDX)",
+        "reason": "QQQ holds the Nasdaq-100, the index whose options VXN is computed from.",
+        "first": "2009-09-14",
+        "last": "2026-10-07",
+        "days": 4293,
+        "mean_iv_var": 0.05091029772653155,
+        "mean_rv": 0.042521278709833674,
+        "ex_post_mean": 0.008389019016697877,
+        "ex_post_median": 0.013351659451294386,
+        "ex_post_share_positive": 0.8010715117633357,
+        "ex_post_ratio": 1.1972899045192118,
+        "ex_post_t": 2.8994922763870967,
+        "ex_ante_mean": 6.307500090943583e-05,
+        "ex_ante_median": -0.001558623840051283,
+        "ex_ante_share_positive": 0.44565469293163384,
+        "ex_ante_first": "2009-09-14",
+        "vol_gap_points": 3.181427121941169,
+        "ex_ante_points_mean": -0.10932764437629139,
+        "har_r2_vs_persistence": 0.19174640654729314,
+        "har_days": 6127,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": -0.392645356899326,
+        "ex_post_points_median": 4.150440403923707
+      },
+      "rut": {
+        "label": "US small caps",
+        "implied": "RVX",
+        "instrument": "IWM",
+        "options_on": "Russell 2000 index options (RUT)",
+        "reason": "IWM holds the Russell 2000, the index whose options RVX is computed from.",
+        "first": "2009-09-16",
+        "last": "2026-10-07",
+        "days": 4286,
+        "mean_iv_var": 0.0618904745053663,
+        "mean_rv": 0.04920990157753053,
+        "ex_post_mean": 0.012680572927835771,
+        "ex_post_median": 0.016563077995052175,
+        "ex_post_share_positive": 0.8317778814745683,
+        "ex_post_ratio": 1.2576833629276303,
+        "ex_post_t": 3.1083568567643876,
+        "ex_ante_mean": 0.008442836898560497,
+        "ex_ante_median": 0.006756651253614227,
+        "ex_ante_share_positive": 0.7597493036211699,
+        "ex_ante_first": "2009-09-16",
+        "vol_gap_points": 3.8234058213442,
+        "ex_ante_points_mean": 1.9367552006920823,
+        "har_r2_vs_persistence": 0.28540076250183655,
+        "har_days": 5833,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": 1.6967557399735442,
+        "ex_post_points_median": 4.642760015611289
+      },
+      "gold": {
+        "label": "Gold",
+        "implied": "GVZ",
+        "instrument": "GLD",
+        "options_on": "options on GLD",
+        "reason": "GVZ is computed from options on GLD itself.",
+        "first": "2009-09-18",
+        "last": "2026-10-07",
+        "days": 4285,
+        "mean_iv_var": 0.03489671178763126,
+        "mean_rv": 0.02849691693202015,
+        "ex_post_mean": 0.006399794855611116,
+        "ex_post_median": 0.008037366682513949,
+        "ex_post_share_positive": 0.785997666277713,
+        "ex_post_ratio": 1.22457849987344,
+        "ex_post_t": 4.228148908110333,
+        "ex_ante_mean": 0.004012329184782693,
+        "ex_ante_median": 0.0020551370115167787,
+        "ex_ante_share_positive": 0.5892732760622242,
+        "ex_ante_first": "2009-09-18",
+        "vol_gap_points": 2.404983012867143,
+        "ex_ante_points_mean": 0.7933716045229837,
+        "har_r2_vs_persistence": 0.23104358156639326,
+        "har_days": 4700,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": 0.6188218800342042,
+        "ex_post_points_median": 2.898459987042113
+      },
+      "oil": {
+        "label": "Oil",
+        "implied": "OVX",
+        "instrument": "USO",
+        "options_on": "options on USO",
+        "reason": "OVX is computed from options on USO itself, so USO's own roll losses are in both sides.",
+        "first": "2009-09-18",
+        "last": "2026-10-07",
+        "days": 4285,
+        "mean_iv_var": 0.17503483866511083,
+        "mean_rv": 0.13378506053214523,
+        "ex_post_mean": 0.04124977813296562,
+        "ex_post_median": 0.03788029566691914,
+        "ex_post_share_positive": 0.7887981330221704,
+        "ex_post_ratio": 1.3083287324376127,
+        "ex_post_t": 5.042763508115891,
+        "ex_ante_mean": 0.039858466595825856,
+        "ex_ante_median": 0.02308794040846967,
+        "ex_ante_share_positive": 0.8256326909681914,
+        "ex_ante_first": "2009-09-18",
+        "vol_gap_points": 6.034363110375665,
+        "ex_ante_points_mean": 4.420832782254613,
+        "har_r2_vs_persistence": 0.11188403215278031,
+        "har_days": 4344,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": 3.592807951318516,
+        "ex_post_points_median": 6.534760186284558
+      },
+      "em": {
+        "label": "Emerging markets",
+        "implied": "VXEEM",
+        "instrument": "EEM",
+        "options_on": "options on EEM",
+        "reason": "VXEEM is computed from options on EEM itself.",
+        "first": "2011-03-16",
+        "last": "2026-10-07",
+        "days": 3910,
+        "mean_iv_var": 0.058211965700767254,
+        "mean_rv": 0.04594694491792384,
+        "ex_post_mean": 0.01226502078284342,
+        "ex_post_median": 0.01588280797988741,
+        "ex_post_share_positive": 0.8099744245524296,
+        "ex_post_ratio": 1.2669387661084481,
+        "ex_post_t": 3.7163110657137626,
+        "ex_ante_mean": 0.0020898694713223456,
+        "ex_ante_median": 0.006962278082026715,
+        "ex_ante_share_positive": 0.7225330620549338,
+        "ex_ante_first": "2011-03-16",
+        "vol_gap_points": 3.6321338131388505,
+        "ex_ante_points_mean": 1.288444751653983,
+        "har_r2_vs_persistence": -0.13492424543730475,
+        "har_days": 5098,
+        "lags": [
+          1,
+          5,
+          22
+        ],
+        "ex_ante_points_median": 1.830871025027502,
+        "ex_post_points_median": 4.3930519290146695
+      },
+      "btc": {
+        "label": "Bitcoin",
+        "implied": "DVOL",
+        "instrument": "BTCUSDT",
+        "options_on": "Deribit bitcoin options",
+        "reason": "DVOL is computed from Deribit's BTC options; Binance BTCUSDT minute bars give the realized side, and USDT's moves against the dollar are three orders of magnitude smaller than bitcoin's.",
+        "first": "2021-03-24",
+        "last": "2026-10-01",
+        "days": 2018,
+        "mean_iv_var": 0.3930484266947472,
+        "mean_rv": 0.3390169972526173,
+        "ex_post_mean": 0.05403142944212993,
+        "ex_post_median": 0.0664655812173655,
+        "ex_post_share_positive": 0.709613478691774,
+        "ex_post_ratio": 1.1593767565638267,
+        "ex_post_t": 1.2810343494942877,
+        "ex_ante_mean": -0.09634331507970241,
+        "ex_ante_median": -0.12549997422727258,
+        "ex_ante_share_positive": 0.16943359375,
+        "ex_ante_first": "2021-03-24",
+        "vol_gap_points": 5.458229456638142,
+        "ex_ante_points_mean": -8.915268684830298,
+        "har_r2_vs_persistence": 0.23050383791308204,
+        "har_days": 2497,
+        "lags": [
+          1,
+          7,
+          30
+        ],
+        "ex_ante_points_median": -10.705565476329877,
+        "ex_post_points_median": 7.49529961793213
+      }
+    },
+    "predictability": [
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "full",
+        "horizon": 1,
+        "slope": 0.04824441005689143,
+        "se": 0.032779591659398845,
+        "t": 1.4717819110799808,
+        "p_value": 0.15590825766368627,
+        "ci_low": -0.019924482582514384,
+        "ci_high": 0.11641330269629724,
+        "r2": 0.00826997631052584,
+        "observations": 367,
+        "dof": 21,
+        "first": "1996-04-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "full",
+        "horizon": 3,
+        "slope": 0.04968276298656839,
+        "se": 0.022670313007476534,
+        "t": 2.1915340546989057,
+        "p_value": 0.040419359311422855,
+        "ci_low": 0.0023933187148964807,
+        "ci_high": 0.0969722072582403,
+        "r2": 0.02706513939730093,
+        "observations": 365,
+        "dof": 20,
+        "first": "1996-04-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "after_btz",
+        "horizon": 1,
+        "slope": 0.04115327692647775,
+        "se": 0.05183555273098704,
+        "t": 0.7939199016561566,
+        "p_value": 0.43962192771320335,
+        "ci_low": -0.06933158838582437,
+        "ci_high": 0.15163814223877986,
+        "r2": 0.0057847053734361165,
+        "observations": 226,
+        "dof": 15,
+        "first": "2008-01-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "spx",
+        "label": "US equities",
+        "sample": "after_btz",
+        "horizon": 3,
+        "slope": 0.047124115313645666,
+        "se": 0.029170563489652444,
+        "t": 1.6154681184119675,
+        "p_value": 0.12704266165120542,
+        "ci_low": -0.015051468980096613,
+        "ci_high": 0.10929969960738795,
+        "r2": 0.023708791934893503,
+        "observations": 224,
+        "dof": 15,
+        "first": "2008-01-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "ndx",
+        "label": "US tech",
+        "sample": "full",
+        "horizon": 1,
+        "slope": -0.001884624981782377,
+        "se": 0.06697758922794894,
+        "t": -0.028138142974485348,
+        "p_value": 0.9779491471254351,
+        "ci_low": -0.14553726674671416,
+        "ci_high": 0.1417680167831494,
+        "r2": 9.648749671908874e-06,
+        "observations": 206,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "ndx",
+        "label": "US tech",
+        "sample": "full",
+        "horizon": 3,
+        "slope": -0.008548793563271973,
+        "se": 0.02582917943789067,
+        "t": -0.3309742604804215,
+        "p_value": 0.7455656090625749,
+        "ci_low": -0.06394687378150014,
+        "ci_high": 0.046849286654956204,
+        "r2": 0.0007445994232031516,
+        "observations": 204,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "rut",
+        "label": "US small caps",
+        "sample": "full",
+        "horizon": 1,
+        "slope": 0.016264869235190126,
+        "se": 0.11355205627082514,
+        "t": 0.14323711757713936,
+        "p_value": 0.8881441195859708,
+        "ci_low": -0.227280069440169,
+        "ci_high": 0.25980980791054925,
+        "r2": 0.0005817912822261295,
+        "observations": 206,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "rut",
+        "label": "US small caps",
+        "sample": "full",
+        "horizon": 3,
+        "slope": 0.004642932936777098,
+        "se": 0.04065441909791281,
+        "t": 0.11420487710315029,
+        "p_value": 0.9106970649057143,
+        "ci_low": -0.08255212394945761,
+        "ci_high": 0.09183798982301182,
+        "r2": 0.00016485296358836887,
+        "observations": 204,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "gold",
+        "label": "Gold",
+        "sample": "full",
+        "horizon": 1,
+        "slope": 0.006380877818979842,
+        "se": 0.03048808974082272,
+        "t": 0.20929083695381615,
+        "p_value": 0.8372360086092073,
+        "ci_low": -0.059009571197180095,
+        "ci_high": 0.07177132683513979,
+        "r2": 0.0001214096809064591,
+        "observations": 206,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "gold",
+        "label": "Gold",
+        "sample": "full",
+        "horizon": 3,
+        "slope": 0.006415553122301826,
+        "se": 0.020387724223132838,
+        "t": 0.31467725637677835,
+        "p_value": 0.7576475774360808,
+        "ci_low": -0.03731176638841283,
+        "ci_high": 0.050142872633016485,
+        "r2": 0.00042276658732076644,
+        "observations": 204,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "oil",
+        "label": "Oil",
+        "sample": "full",
+        "horizon": 1,
+        "slope": -0.3467913428266016,
+        "se": 0.19140407612166407,
+        "t": -1.8118284095797792,
+        "p_value": 0.09151266723725314,
+        "ci_low": -0.7573122573055527,
+        "ci_high": 0.06372957165234949,
+        "r2": 0.06155302008650576,
+        "observations": 206,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "oil",
+        "label": "Oil",
+        "sample": "full",
+        "horizon": 3,
+        "slope": 0.012251355842625315,
+        "se": 0.10156418451670285,
+        "t": 0.12062673373417876,
+        "p_value": 0.9057008026488019,
+        "ci_low": -0.2055821550780265,
+        "ci_high": 0.23008486676327713,
+        "r2": 0.0001812261329283693,
+        "observations": 204,
+        "dof": 14,
+        "first": "2009-09-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "em",
+        "label": "Emerging markets",
+        "sample": "full",
+        "horizon": 1,
+        "slope": 0.06796808705293772,
+        "se": 0.061025418962638654,
+        "t": 1.1137668238631766,
+        "p_value": 0.28554864599794144,
+        "ci_low": -0.0638693153214569,
+        "ci_high": 0.19980548942733234,
+        "r2": 0.011858078357185886,
+        "observations": 188,
+        "dof": 13,
+        "first": "2011-03-01",
+        "last": "2026-10-01"
+      },
+      {
+        "asset": "em",
+        "label": "Emerging markets",
+        "sample": "full",
+        "horizon": 3,
+        "slope": -0.008644653740209047,
+        "se": 0.013616969178817887,
+        "t": -0.6348441879163822,
+        "p_value": 0.5365436974547761,
+        "ci_low": -0.03806232715014708,
+        "ci_high": 0.02077301966972899,
+        "r2": 0.0006348747619296935,
+        "observations": 186,
+        "dof": 13,
+        "first": "2011-03-01",
+        "last": "2026-08-01"
+      },
+      {
+        "asset": "btc",
+        "label": "Bitcoin",
+        "sample": "full",
+        "horizon": 1,
+        "slope": 0.07498200593619637,
+        "se": 0.19735394757105196,
+        "t": 0.37993669171072003,
+        "p_value": 0.7152572543431869,
+        "ci_low": -0.39168592463788393,
+        "ci_high": 0.5416499365102767,
+        "r2": 0.0015099041050061768,
+        "observations": 67,
+        "dof": 7,
+        "first": "2021-03-01",
+        "last": "2026-09-01"
+      },
+      {
+        "asset": "btc",
+        "label": "Bitcoin",
+        "sample": "full",
+        "horizon": 3,
+        "slope": -0.14299155912305428,
+        "se": 0.07578712776640312,
+        "t": -1.886752583681411,
+        "p_value": 0.10813789107401814,
+        "ci_low": -0.32843598021890474,
+        "ci_high": 0.042452861972796185,
+        "r2": 0.01600380511467625,
+        "observations": 65,
+        "dof": 6,
+        "first": "2021-03-01",
+        "last": "2026-07-01"
+      }
+    ],
+    "futures": {
+      "common_start": "2011-12-30",
+      "gaps_before_full": [
+        {
+          "before": "2004-07-14",
+          "after": "2004-07-22",
+          "days": 8
+        },
+        {
+          "before": "2004-10-13",
+          "after": "2004-10-22",
+          "days": 9
+        }
+      ],
+      "strategies": {
+        "unconditional": {
+          "common": {
+            "first": "2011-12-30",
+            "last": "2026-11-06",
+            "days": 3738,
+            "annual_return": -0.11876168468496062,
+            "annual_mean": 0.4585901870909558,
+            "vol": 0.7707956472575107,
+            "sharpe": 0.5949568977492526,
+            "sharpe_se": 0.2576193014140772,
+            "skew": -3.575404506529914,
+            "expected_shortfall_5": -0.12874694979964324,
+            "max_drawdown": -0.9990751323214148,
+            "drawdown_peak": "2018-01-11",
+            "drawdown_trough": "2020-03-18",
+            "recovered": null,
+            "recovery_days": null,
+            "worst_day": -0.9960293361984399,
+            "worst_day_date": "2018-02-05",
+            "ruined_on": null
+          },
+          "mean_size": 1.0,
+          "ruin_day_return": null,
+          "full": {
+            "first": "2004-10-22",
+            "last": "2026-11-06",
+            "days": 5516,
+            "annual_return": -0.04789479004020203,
+            "annual_mean": 0.4054937402493728,
+            "vol": 0.7177766972657822,
+            "sharpe": 0.5649302099023485,
+            "sharpe_se": 0.23386786158976902,
+            "skew": -3.197597046531478,
+            "expected_shortfall_5": -0.1197525982497487,
+            "max_drawdown": -0.9990751323214148,
+            "drawdown_peak": "2018-01-11",
+            "drawdown_trough": "2020-03-18",
+            "recovered": null,
+            "recovery_days": null,
+            "worst_day": -0.9960293361984399,
+            "worst_day_date": "2018-02-05",
+            "ruined_on": null
+          }
+        },
+        "premium": {
+          "common": {
+            "first": "2011-12-30",
+            "last": "2026-11-06",
+            "days": 3735,
+            "annual_return": -1.0,
+            "annual_mean": 0.231041823171484,
+            "vol": 0.4964127046071438,
+            "sharpe": 0.46542286494123525,
+            "sharpe_se": 0.28567967325535626,
+            "skew": -9.677323218033004,
+            "expected_shortfall_5": -0.05687829384852713,
+            "max_drawdown": -1.0,
+            "drawdown_peak": "2018-02-01",
+            "drawdown_trough": "2018-02-05",
+            "recovered": null,
+            "recovery_days": null,
+            "worst_day": -1.0,
+            "worst_day_date": "2018-02-05",
+            "ruined_on": "2018-02-05"
+          },
+          "mean_size": 0.696172558360799,
+          "ruin_day_return": -1.5657235724786365
+        },
+        "slope": {
+          "common": {
+            "first": "2011-12-30",
+            "last": "2026-11-06",
+            "days": 3735,
+            "annual_return": 0.071160972913207,
+            "annual_mean": 0.3343454934583099,
+            "vol": 0.6989322091898474,
+            "sharpe": 0.47836612630266306,
+            "sharpe_se": 0.2521327330003082,
+            "skew": -2.129062901156586,
+            "expected_shortfall_5": -0.1211676812673321,
+            "max_drawdown": -0.8339007073669438,
+            "drawdown_peak": "2018-01-11",
+            "drawdown_trough": "2022-09-06",
+            "recovered": null,
+            "recovery_days": null,
+            "worst_day": -0.5671285873680754,
+            "worst_day_date": "2021-11-26",
+            "ruined_on": null
+          },
+          "mean_size": 1.1108028144234747,
+          "ruin_day_return": null
+        }
+      },
+      "episodes": [
+        {
+          "name": "Autumn 2008",
+          "start": "2008-09-01",
+          "end": "2008-12-31",
+          "unconditional": -0.7477099783432584,
+          "premium": -0.7372656383219234,
+          "slope": null
+        },
+        {
+          "name": "August 2015",
+          "start": "2015-08-17",
+          "end": "2015-09-04",
+          "unconditional": -0.5300860177904798,
+          "premium": -0.6233694808805347,
+          "slope": -0.19276572307999174
+        },
+        {
+          "name": "February 2018",
+          "start": "2018-02-01",
+          "end": "2018-02-28",
+          "unconditional": -0.995471660690859,
+          "premium": -1.0,
+          "slope": -0.06222312677346675
+        },
+        {
+          "name": "March 2020",
+          "start": "2020-02-20",
+          "end": "2020-04-30",
+          "unconditional": -0.7985502350505066,
+          "premium": -0.7162181491504938,
+          "slope": -0.17532264065282854
+        },
+        {
+          "name": "August 2024",
+          "start": "2024-07-31",
+          "end": "2024-08-16",
+          "unconditional": -0.26534352720133425,
+          "premium": -0.7904016088123954,
+          "slope": 0.05428255741988197
+        }
+      ],
+      "contracts": 274,
+      "first_trade": "2004-03-26",
+      "last_trade": "2026-11-06",
+      "roll_yield_share": 0.5776255707762558
+    },
+    "replication": {
+      "months": 107,
+      "priced": 102,
+      "settled": 102,
+      "first": "2017-12-01",
+      "last": "2026-10-01",
+      "spread_points_median": 0.666753803340997,
+      "window_trades_median": 6355.0,
+      "options_median": 260.0,
+      "mark_age_minutes_median": 287.8962833333334,
+      "atm_half_spread_median": 0.006113819845351165,
+      "iv_gap_median_abs": 0.6448464312892419,
+      "short_mean": -0.2052713625861067,
+      "short_t": -0.05876362970214003,
+      "short_hit_rate": 0.7450980392156863,
+      "short_worst": -246.62392630600206,
+      "short_worst_month": "2017-12-01",
+      "short_skew": -4.546125644834027,
+      "mid_premium_points": 5.50009663700802,
+      "gap_mean": 1.2381293146512165,
+      "gap_mean_abs": 1.3942312460759054,
+      "gap_months": 5,
+      "gap_first": "2026-06-01"
+    },
+    "runtime_seconds": 19.747199199991883
+  },
+  "figures": {
+    "premium": {
+      "png": "reports/figures/premium.png",
+      "svg": "reports/figures/premium.svg"
+    },
+    "calibration": {
+      "png": "reports/figures/calibration.png",
+      "svg": "reports/figures/calibration.svg"
+    },
+    "heston": {
+      "png": "reports/figures/heston.png",
+      "svg": "reports/figures/heston.svg"
+    },
+    "futures": {
+      "png": "reports/figures/futures.png",
+      "svg": "reports/figures/futures.svg"
+    },
+    "predictability": {
+      "png": "reports/figures/predictability.png",
+      "svg": "reports/figures/predictability.svg"
+    },
+    "replication": {
+      "png": "reports/figures/replication.png",
+      "svg": "reports/figures/replication.svg"
+    },
+    "har": {
+      "png": "reports/figures/har.png",
+      "svg": "reports/figures/har.svg"
+    }
+  }
+}

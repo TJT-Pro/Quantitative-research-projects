@@ -1,0 +1,210 @@
+---
+title: "The variance risk premium across seven markets"
+subtitle: "Implied against realized variance in equities, commodities, emerging markets and bitcoin, and what selling it pays"
+author: "Ian Wachira"
+date: "2026-11-07"
+abstract: "Implied variance exceeds the variance that follows in 7 of 7 markets (US equities, US tech, US small caps, gold, oil, emerging markets and bitcoin), each matched to the instrument its options are written on. The gap in volatility points runs from 2.4 in gold to 6.0 in oil. Range estimators are calibrated against minute-level bitcoin variance, after a check on Heston paths with known variance. Short 30-day VIX futures return -11.9% a year compounded, from an arithmetic mean of 45.9% at 77% volatility, with a Sharpe ratio of 0.59 and skewness -3.58. Sized by the forecast premium, the position loses 157% of its equity on 2018-02-05 and the account is wiped out. A bitcoin variance swap replicated from Deribit\u0027s trade history and sold at the bid earns -0.21 vega points a month."
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fontsize: 10pt
+    section-numbering: "1.1"
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Question
+
+An option's price embeds a forecast of variance and a price for bearing it. When implied variance sits above the variance that follows, sellers of options are paid for carrying crash risk. Most work on this premium stops at the VIX. Here the same measurement runs across 7 markets, then asks three things: how large the premium is, whether it predicts returns, and whether sizing a short volatility position by a forecast of the premium beats selling volatility unconditionally once the crashes are counted.
+
+# Data
+
+| Market | Implied index | Instrument | Options the index is built on |
+| --- | --- | --- | --- |
+| US equities | VIX | SPY | S&P 500 index options (SPX) |
+| US tech | VXN | QQQ | Nasdaq-100 index options (NDX) |
+| US small caps | RVX | IWM | Russell 2000 index options (RUT) |
+| Gold | GVZ | GLD | options on GLD |
+| Oil | OVX | USO | options on USO |
+| Emerging markets | VXEEM | EEM | options on EEM |
+| Bitcoin | DVOL | BTCUSDT | Deribit bitcoin options |
+
+: Each implied index and the instrument its realized variance is measured on. {#tbl-assets}
+
+Cboe publishes the index histories and one settlement file per VX contract. Contracts expiring before 2013 are in an archive; the per-contract files of the first 2013 expiries start partway through each contract's life, so those contracts are merged from both sources, and the build stops if the blended series misses more than 7 calendar days. Tiingo supplies daily ETF prices adjusted for dividends and splits, FRED the DTB3 Treasury bill rate, Binance Vision bitcoin's minute bars, Deribit the DVOL index and, from its public history server, every bitcoin option trade in the 24 hours before each month starts. 274 monthly VX contracts trade from 2004-03-26 to 2026-11-06. Every input is hashed in a SHA-256 manifest (digest `0eabbc765a48`, 526 files).
+
+# Method
+
+## Variance on a common clock
+
+Each index is a 30-calendar-day volatility annualized over 365 days, so the implied variance over the window is
+
+$$
+\mathrm{IV}^2_{t} = \left(\frac{\mathrm{index}_t}{100}\right)^2 \frac{30}{365}
+$$
+
+Realized variance is the sum of squared daily log returns over the trading days inside the next 30 calendar days, overnight moves included; for bitcoin, which trades every day, it is the sum of 5-minute squared returns. The ex-post premium is the difference; the ex-ante premium replaces realized variance with its forecast:
+
+$$
+\mathrm{VRP}_t = \mathrm{IV}^2_t - \mathbb{E}_t\left[\mathrm{RV}_{t,t+30}\right]
+$$
+
+## Forecasting realized variance
+
+The forecast is a direct HAR projection (Corsi 2009): the sum of daily variance over the next 30 days on its means over the last 1, 5 and 22 trading days (1, 7 and 30 calendar days for bitcoin). Coefficients are re-estimated at each month start on rows whose target window had closed, after at least 750 rows. The target is always the unbiased measure. The regressors use a more efficient one: for the ETFs, the squared overnight return plus the intraday range estimator that the bitcoin calibration below finds most accurate.
+
+## Range estimators, checked twice
+
+Parkinson, Garman-Klass and Rogers-Satchell measure a day's variance from its open, high, low and close; Yang-Zhang combines them with the overnight move over a window of 22 days. Each is checked first on Heston paths (κ = 4.0, θ = 0.04, ξ = 0.5, ρ = -0.7) whose integrated variance is known, then on bitcoin against 5-minute realized variance and a Parzen realized kernel (Barndorff-Nielsen, Hansen, Lunde and Shephard 2008).
+
+## Predictability
+
+At each month end the annualized log excess return over the next 1 and 3 months is regressed on the standardized ex-ante premium. Overlapping returns are serially correlated, so standard errors use the equal-weighted cosine long-run variance (Lazarus, Lewis, Stock and Watson 2018). For the S&P 500 the test is also run on the months after Bollerslev, Tauchen and Zhou's (2009) sample, which ends in 2007-12.
+
+## Harvesting the premium in VX futures
+
+The first two monthly VX contracts are blended to a constant 30-day maturity and held short. The blend's weights are set at each close and earn the next day's settle-to-settle change; each unit of weight traded pays 0.025 index points. Three sizing rules run on the same days: one unit throughout; the ex-ante VIX premium over its expanding mean; and the VIX9D / VIX3M slope over the expanding mean of its positive part, zero when the curve is inverted. Both conditional rules are capped at 2 units and start after 250 days of signal.
+
+## Bitcoin variance swaps from the trade history
+
+Deribit keeps no public archive of its order books, but its history server keeps every trade with the option's mark price, the index price and the taker's side. The chain at 00:00 UTC on the first of each month is rebuilt from the 24 hours of trades before it. For each expiry, put-call parity on the latest marks of strikes within 15% of the index gives the basis F/S: a premium of p bitcoin is worth p F forward dollars, so (C - P) F = F - K and F = K / (1 - C + P), and the basis is the median of F/S over those strikes. Parity needs a call and a put priced at one moment and the last trades of the two legs are hours apart, so each leg is first carried to the snapshot on the current basis, as below, and parity there updates the basis until it settles. Each option's last mark, worth that many forward dollars at its own trade time, is inverted through Black-76 for an implied volatility, and the option is repriced at the snapshot on the forward F = (F/S) S, with S the index at the window's last trade. A taker buys above the mark and sells below it, so the signed distance between trade price and mark, as a share of the mark, is an effective half-spread h; its median in each bucket of log(K/F) with edges -0.3, -0.1, 0.1, 0.3 gives bid = mark (1 - h) and ask = mark (1 + h), and a bucket with fewer than 5 trades takes the median of all trades. For each expiry the variance is replicated from out-of-the-money options (Carr and Madan 1998) in the discrete form of the Cboe method, stopping after 2 consecutive strikes without a price. Deribit premiums are paid in bitcoin, so a premium of p BTC is worth p F dollars at expiry, with F the expiry's own forward. The two expiries that bracket 30 days, the nearer at least 7 days out, are interpolated to a 30-day rate from the bid, mid and ask strips. A short swap is entered at the bid and settled against realized variance from 5-minute returns.
+
+# Results
+
+## The premium
+
+| Market | From | To | Implied vol | Realized vol | Gap | IV² / RV | Days > 0 | t |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| US equities | 1993-02-01 | 2026-10-07 | 21.0 | 18.5 | +3.8 | 1.29 | 84% | 4.4 |
+| US tech | 2009-09-14 | 2026-10-07 | 22.6 | 20.6 | +3.2 | 1.20 | 80% | 2.9 |
+| US small caps | 2009-09-16 | 2026-10-07 | 24.9 | 22.2 | +3.8 | 1.26 | 83% | 3.1 |
+| Gold | 2009-09-18 | 2026-10-07 | 18.7 | 16.9 | +2.4 | 1.22 | 79% | 4.2 |
+| Oil | 2009-09-18 | 2026-10-07 | 41.8 | 36.6 | +6.0 | 1.31 | 79% | 5.0 |
+| Emerging markets | 2011-03-16 | 2026-10-07 | 24.1 | 21.4 | +3.6 | 1.27 | 81% | 3.7 |
+| Bitcoin | 2021-03-24 | 2026-10-01 | 62.7 | 58.2 | +5.5 | 1.16 | 71% | 1.3 |
+
+: Ex-post premium by market. Volatilities, in points, are square roots of mean annualized variances; the gap is the mean of implied minus realized volatility. The t statistic uses month-end observations and an EWC long-run variance. {#tbl-premium}
+
+@fig-premium shows the distribution of the ex-ante premium. Its medians, in volatility points: US equities +2.4, US tech -0.4, US small caps +1.7, gold +0.6, oil +3.6, emerging markets +1.8, bitcoin -10.7.
+
+![Ex-ante variance risk premium in volatility points: box from the 25th to the 75th percentile, line from the 5th to the 95th.](../reports/figures/premium.png){#fig-premium}
+
+## Forecasting realized variance
+
+Out of sample, the HAR forecast cuts squared error against persistence by -13% in emerging markets up to 29% in US small caps (@fig-har).
+
+![HAR against persistence, out of sample.](../reports/figures/har.png){#fig-har}
+
+## Range estimators
+
+On the Heston paths (@fig-heston), sampled every minute, the three range estimators are within 2.1% of the true variance. Sampled more coarsely they understate it, because a sampled path misses its own extremes. Broadie, Glasserman and Kou (1997) put the shortfall of the range at 2β σ √Δt with β = 0.5826: at 5 minutes the measured shortfall in log range is 3.88 bp against 3.97 bp predicted; at 30 minutes the measured shortfall in log range is 13.71 bp against 14.37 bp predicted.
+
+![Estimator bias on Heston paths with known integrated variance.](../reports/figures/heston.png){#fig-heston}
+
+| Estimator | Daily bias | Daily efficiency | Window efficiency |
+| --- | --- | --- | --- |
+| Squared close-to-close return | -21.6% | 1.0x | 1.0x |
+| Parkinson | -10.6% | 5.3x | 3.4x |
+| Garman-Klass | -6.0% | 11.4x | 5.9x |
+| Rogers-Satchell | -2.6% | 10.7x | 7.0x |
+| Yang-Zhang |  |  | 6.6x |
+
+: Range estimators against 5-minute realized variance over 3329 bitcoin days from 2017-08-18 to 2026-10-31. Efficiency is the squared-return MSE over the estimator's MSE, daily and over 22-day windows. {#tbl-calibration}
+
+On bitcoin (@tbl-calibration, @fig-calibration), Garman-Klass has the smallest daily error of the three intraday estimators and is the one used for the ETFs. The realized kernel averages 0.915 times 5-minute variance and 1-minute variance 1.110 times, so noise at the finest sampling is small but visible.
+
+![Range estimators against minute-level realized variance on bitcoin.](../reports/figures/calibration.png){#fig-calibration}
+
+## Does the premium predict returns?
+
+| Market | Sample | Months ahead | Slope | 95% interval | t | R² | N |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| US equities | full | 1 | +4.8 | [-2.0, 11.6] | 1.47 | 0.8% | 367 |
+| US equities | full | 3 | +5.0 | [0.2, 9.7] | 2.19 | 2.7% | 365 |
+| US equities | after BTZ | 1 | +4.1 | [-6.9, 15.2] | 0.79 | 0.6% | 226 |
+| US equities | after BTZ | 3 | +4.7 | [-1.5, 10.9] | 1.62 | 2.4% | 224 |
+| US tech | full | 1 | -0.2 | [-14.6, 14.2] | -0.03 | 0.0% | 206 |
+| US tech | full | 3 | -0.9 | [-6.4, 4.7] | -0.33 | 0.1% | 204 |
+| US small caps | full | 1 | +1.6 | [-22.7, 26.0] | 0.14 | 0.1% | 206 |
+| US small caps | full | 3 | +0.5 | [-8.3, 9.2] | 0.11 | 0.0% | 204 |
+| Gold | full | 1 | +0.6 | [-5.9, 7.2] | 0.21 | 0.0% | 206 |
+| Gold | full | 3 | +0.6 | [-3.7, 5.0] | 0.31 | 0.0% | 204 |
+| Oil | full | 1 | -34.7 | [-75.7, 6.4] | -1.81 | 6.2% | 206 |
+| Oil | full | 3 | +1.2 | [-20.6, 23.0] | 0.12 | 0.0% | 204 |
+| Emerging markets | full | 1 | +6.8 | [-6.4, 20.0] | 1.11 | 1.2% | 188 |
+| Emerging markets | full | 3 | -0.9 | [-3.8, 2.1] | -0.63 | 0.1% | 186 |
+| Bitcoin | full | 1 | +7.5 | [-39.2, 54.2] | 0.38 | 0.2% | 67 |
+| Bitcoin | full | 3 | -14.3 | [-32.8, 4.2] | -1.89 | 1.6% | 65 |
+
+: Annualized excess return over the next months, in percent, per standard deviation of the ex-ante premium; EWC standard errors; N is the number of months. {#tbl-predict}
+
+![Return predictability by market, 95% EWC intervals.](../reports/figures/predictability.png){#fig-predict}
+
+## Selling VX futures
+
+| Rule | Compounded return | Sharpe | Skew | ES 5% | Drawdown | Trough | Recovery |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Unconditional | -11.9% | 0.59 ± 0.50 | -3.58 | -12.9% | -99.9% | 2020-03-18 | none |
+| Forecast premium | -100.0% | 0.47 ± 0.56 | -9.68 | -5.7% | -100.0% | 2018-02-05 | account lost 2018-02-05 |
+| VIX9D / VIX3M slope | 7.1% | 0.48 ± 0.49 | -2.13 | -12.1% | -83.4% | 2022-09-06 | none |
+
+: Short constant-maturity VX futures from 2011-12-30, excess of T-bills, after roll costs. Return is annual and compounded, a rule whose account reaches zero holds cash from that day on, the Sharpe interval 95% EWC, ES 5% the mean of the worst 5% of days, and recovery the days from the worst trough back to the prior peak. {#tbl-futures}
+
+In 2 stretches up to 2004-10-22, a contract's file ends before its expiry and the blended series has no return for more than 7 calendar days. No other source has those days, so the long sample starts after the last of them. Over the longer unconditional sample from 2004-10-22, the short earned -4.8% a year with a worst day of -99.6% on 2018-02-05.
+
+| Episode | From | To | Unconditional | Forecast premium | VIX9D / VIX3M slope | 
+| --- | --- | --- | --- | --- | --- | 
+| Autumn 2008 | 2008-09-01 | 2008-12-31 | -74.8% | -73.7% | outside sample | 
+| August 2015 | 2015-08-17 | 2015-09-04 | -53.0% | -62.3% | -19.3% | 
+| February 2018 | 2018-02-01 | 2018-02-28 | -99.5% | -100.0% | -6.2% | 
+| March 2020 | 2020-02-20 | 2020-04-30 | -79.9% | -71.6% | -17.5% | 
+| August 2024 | 2024-07-31 | 2024-08-16 | -26.5% | -79.0% | 5.4% | 
+
+: Return over each stress episode. {#tbl-episodes}
+
+![Short VX futures under each sizing rule, episodes shaded.](../reports/figures/futures.png){#fig-futures}
+
+## Bitcoin variance swaps
+
+102 of 107 monthly chains from 2017-12-01 to 2026-10-01 give a 30-day rate. A median chain rests on 6,355 trades and 260 options whose last mark is a median 4.8 hours old; near the money, the volatility inverted on the parity forward sits a median 0.64 points from the one Deribit reports for the same mark, which checks the forward, and the effective half-spread is 0.6% of the premium, and the median bid-ask spread of the strip is 0.67 volatility points. Against DVOL at the same minute, the replicated mid sits +1.24 points away on average and 1.39 in absolute terms over 5 months. Sold at the bid, the swap earned -0.21 volatility points per unit of vega a month (t = -0.06), positive in 75% of 102 months, with skewness -4.55; the worst month, 2017-12-01, lost 246.6.
+![Replicated rate against DVOL, and the monthly profit of a short swap sold at the bid.](../reports/figures/replication.png){#fig-replication}
+
+# Validation
+
+- Heston paths: the range estimators recover the known integrated variance at fine sampling, and their coarse-sampling shortfall matches the Broadie-Glasserman-Kou correction.
+- HAR on a simulated HAR process recovers its coefficients.
+- The same simulated path summed on trading days and on calendar days gives one variance once each convention is applied.
+- Replication on a chain priced at one known volatility returns that volatility squared.
+- The chain rebuild, on trades whose marks follow one volatility on a drifting index with a forward basis, recovers the basis, the volatility and the planted half-spread in each moneyness bucket, and ignores trades after the snapshot.
+- The VX expiry rule reproduces the published final settlement dates, holidays included, and the pre-2007 rescaling is checked against VIX year by year.
+- The synthetic fixture plants a premium in every market, a contango in VX, microstructure noise in the bitcoin minutes and a flat smile and a known effective spread in each month's trades, and the end-to-end test recovers each.
+
+# Limitations
+
+The ETF premiums are measurements, not tradable returns, because free daily ETF option chains do not exist. The bitcoin replication turns one of them into a strategy with costs, and its distance from DVOL bounds how far a published index sits from a rate built from the options. Its chains are rebuilt from trades, not read from order books: the costs are effective spreads that real trades paid, pooled by moneyness rather than quoted strike by strike, and each mark's volatility is carried unchanged from its last trade to the snapshot, so an option that last traded hours earlier is priced at that hour's volatility. Range estimators can only stand in for intraday data; they were calibrated where minute data exist. VX roll costs use a fixed half-tick per unit traded rather than quoted spreads. The predictive regressions use overlapping returns, which EWC standard errors account for but do not make independent.
+
+# References
+
+Barndorff-Nielsen, O. E., Hansen, P. R., Lunde, A. and Shephard, N. (2008). Designing realized kernels to measure the ex post variation of equity prices in the presence of noise. *Econometrica* 76(6), 1481-1536.
+
+Bollerslev, T., Tauchen, G. and Zhou, H. (2009). Expected stock returns and variance risk premia. *Review of Financial Studies* 22(11), 4463-4492.
+
+Broadie, M., Glasserman, P. and Kou, S. (1997). A continuity correction for discrete barrier options. *Mathematical Finance* 7(4), 325-349.
+
+Carr, P. and Madan, D. (1998). Towards a theory of volatility trading. In *Volatility: New Estimation Techniques for Pricing Derivatives*, 417-427.
+
+Corsi, F. (2009). A simple approximate long-memory model of realized volatility. *Journal of Financial Econometrics* 7(2), 174-196.
+
+Garman, M. B. and Klass, M. J. (1980). On the estimation of security price volatilities from historical data. *Journal of Business* 53(1), 67-78.
+
+Lazarus, E., Lewis, D. J., Stock, J. H. and Watson, M. W. (2018). HAR inference: recommendations for practice. *Journal of Business and Economic Statistics* 36(4), 541-559.
+
+Parkinson, M. (1980). The extreme value method for estimating the variance of the rate of return. *Journal of Business* 53(1), 61-65.
+
+Rogers, L. C. G. and Satchell, S. E. (1991). Estimating variance from high, low and closing prices. *Annals of Applied Probability* 1(4), 504-512.
+
+Yang, D. and Zhang, Q. (2000). Drift-independent volatility estimation based on high, low, open, and close prices. *Journal of Business* 73(3), 477-491.

@@ -1,0 +1,79 @@
+"""Every file location the pipeline reads or writes, resolved from the project root."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+
+PROJECT_NAME = 'name = "realtime-nowcast"'
+
+
+@dataclass(frozen=True)
+class ProjectPaths:
+    root: Path
+
+    @classmethod
+    def discover(cls, start: Path | None = None) -> ProjectPaths:
+        """Walk up from `start` (default: the working directory) to the project folder."""
+        here = (start or Path.cwd()).resolve()
+        for candidate in (here, *here.parents):
+            pyproject = candidate / "pyproject.toml"
+            if pyproject.is_file() and PROJECT_NAME in pyproject.read_text(encoding="utf-8"):
+                return cls(root=candidate)
+        raise FileNotFoundError("run rtn from inside the realtime-nowcast folder")
+
+    @property
+    def config(self) -> Path:
+        return self.root / "configs" / "research.yaml"
+
+    @property
+    def data(self) -> Path:
+        return self.root / "data"
+
+    @property
+    def raw(self) -> Path:
+        return self.data / "raw"
+
+    @property
+    def processed(self) -> Path:
+        return self.data / "processed"
+
+    @property
+    def runs(self) -> Path:
+        return self.data / "runs"
+
+    @property
+    def manifest(self) -> Path:
+        return self.data / "manifest.json"
+
+    @property
+    def estimates(self) -> Path:
+        return self.runs / "estimates.json"
+
+    @property
+    def figures(self) -> Path:
+        return self.root / "reports" / "figures"
+
+    @property
+    def tables(self) -> Path:
+        return self.root / "reports" / "tables"
+
+    @property
+    def results(self) -> Path:
+        return self.root / "reports" / "results.json"
+
+    @property
+    def readme(self) -> Path:
+        return self.root / "README.md"
+
+    @property
+    def readme_template(self) -> Path:
+        return self.root / "README.template.md"
+
+    @property
+    def paper(self) -> Path:
+        return self.root / "paper" / "paper.qmd"
+
+    @property
+    def paper_template(self) -> Path:
+        return self.root / "paper" / "paper.template.qmd"

@@ -1,0 +1,8 @@
+# Overrides for the synthetic fixture in CI: the same methods on a smaller window.
+# Results built with this file can never pass `pfc check-provenance`.
+universe:
+  oi_window_days: 120
+rebuild:
+  months: 2
+download:
+  workers: 4

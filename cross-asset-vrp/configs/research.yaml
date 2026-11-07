@@ -1,0 +1,163 @@
+# Every research choice, with its reason. Loaded and validated by cross_asset_vrp.config.
+
+sources:
+  cboe_index: https://cdn.cboe.com/api/global/us_indices/daily_prices        # <SYMBOL>_History.csv per index
+  cfe_futures: https://cdn.cboe.com/data/us/futures/market_statistics/historical_data/VX  # VX_<expiry>.csv
+  cfe_archive: https://cdn.cboe.com/resources/futures/archive/volume-and-price            # CFE_<code><yy>_VX.csv
+  tiingo: https://api.tiingo.com/tiingo/daily                              # <ticker>/prices, token in a header
+  tiingo_key_env: TIINGO_API_KEY                                           # free key from tiingo.com
+  fred: https://fred.stlouisfed.org/graph/fredgraph.csv                    # ?id=DTB3, no key
+  vision_base: https://data.binance.vision
+  vision_list: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision # bucket listing with MD5 ETags
+  deribit: https://www.deribit.com/api/v2                                  # DVOL candles, public
+  deribit_history: https://history.deribit.com/api/v2                     # every trade since 2016, expired options included
+  official_hosts:
+    - cdn.cboe.com
+    - cdn-api.cboe.com
+    - api.tiingo.com
+    - fred.stlouisfed.org
+    - data.binance.vision
+    - s3-ap-northeast-1.amazonaws.com
+    - www.deribit.com
+    - history.deribit.com
+
+download:
+  retries: 5
+  backoff_seconds: 2.0
+  timeout_seconds: 60.0
+  chunk_bytes: 1048576
+  workers: 8
+  rest_pause_seconds: 0.25
+
+# Each implied volatility index next to the instrument its options are written on (or the
+# closest tradable proxy), and why. An index published as one value per day (GVZ, OVX) is
+# read from its single column; the others carry OHLC and the close is used.
+assets:
+  - key: spx
+    label: US equities
+    implied: VIX
+    instrument: SPY
+    options_on: S&P 500 index options (SPX)
+    reason: SPY holds the S&P 500, the index whose options VIX is computed from.
+  - key: ndx
+    label: US tech
+    implied: VXN
+    instrument: QQQ
+    options_on: Nasdaq-100 index options (NDX)
+    reason: QQQ holds the Nasdaq-100, the index whose options VXN is computed from.
+  - key: rut
+    label: US small caps
+    implied: RVX
+    instrument: IWM
+    options_on: Russell 2000 index options (RUT)
+    reason: IWM holds the Russell 2000, the index whose options RVX is computed from.
+  - key: gold
+    label: Gold
+    implied: GVZ
+    instrument: GLD
+    options_on: options on GLD
+    reason: GVZ is computed from options on GLD itself.
+  - key: oil
+    label: Oil
+    implied: OVX
+    instrument: USO
+    options_on: options on USO
+    reason: OVX is computed from options on USO itself, so USO's own roll losses are in both sides.
+  - key: em
+    label: Emerging markets
+    implied: VXEEM
+    instrument: EEM
+    options_on: options on EEM
+    reason: VXEEM is computed from options on EEM itself.
+  - key: btc
+    label: Bitcoin
+    implied: DVOL
+    instrument: BTCUSDT
+    options_on: Deribit bitcoin options
+    reason: DVOL is computed from Deribit's BTC options; Binance BTCUSDT minute bars give the realized side, and USDT's moves against the dollar are three orders of magnitude smaller than bitcoin's.
+
+term_structure:
+  short: VIX9D
+  long: VIX3M
+
+risk_free:
+  series: DTB3   # 3-month Treasury bill, secondary market, percent on a discount basis
+
+windows:
+  variance_days: 30        # every implied index here is a 30-calendar-day volatility
+  days_per_year: 365       # the indices annualize over a 365-day year (minutes to expiry / 525,600)
+  first_date: "1990-01-02"
+  last_date: null          # null: the last date every downloaded file covers
+
+realized:
+  btc_sample_minutes: 5    # sparse enough to sit above microstructure noise on a liquid pair
+  kernel: parzen           # Barndorff-Nielsen, Hansen, Lunde and Shephard (2008)
+  estimators: [close_to_close, parkinson, garman_klass, rogers_satchell, yang_zhang]
+  yang_zhang_window: 22    # trading days; Yang and Zhang (2000) need a window to weight the parts
+
+har:
+  lags: [1, 5, 22]         # day, week and month in trading days (calendar days for bitcoin: see below)
+  btc_lags: [1, 7, 30]     # bitcoin trades every day, so its week and month are 7 and 30 days
+  min_train_days: 750      # about three years before the first forecast
+  refit: monthly           # coefficients re-estimated at each month start on settled targets only
+
+predictability:
+  horizons_months: [1, 3]
+  btz_sample_end: "2007-12"  # Bollerslev, Tauchen and Zhou (2009) end in 2007; the test starts after
+  ewc_coefficient: 0.4       # nu = 0.4 T^(2/3) cosine terms (Lazarus, Lewis, Stock and Watson 2018)
+
+futures:
+  first_expiry: "2004-06"
+  new_files_from: "2013-01"    # expiries from here are in the per-contract files, earlier ones in the archive
+  archive_until: "2013-12"     # the archive also holds the 2013 expiries; the per-contract files for the
+                               # first of them start partway through their life, so both are read and merged
+  max_gap_days: 7              # the build stops if the front VX contract has no settle for longer than this
+  rescale_before: "2007-03-26" # VX traded on 10x the index before this date (the old VBI contract)
+  rescale_factor: 10.0
+  rescale_check: [0.6, 1.6]    # after rescaling, the front settle over VIX must sit in this band
+  target_days: 30              # constant 30-day maturity from the first two monthly contracts
+  cost_points_per_side: 0.025  # half the 0.05 tick on each contract traded
+  sizing_cap: 2.0              # no sizing rule may run more than twice the unconditional position
+  min_signal_history_days: 250 # expanding normalization starts after a year of signal history
+
+episodes:
+  - {name: "Autumn 2008", start: "2008-09-01", end: "2008-12-31"}
+  - {name: "August 2015", start: "2015-08-17", end: "2015-09-04"}
+  - {name: "February 2018", start: "2018-02-01", end: "2018-02-28"}
+  - {name: "March 2020", start: "2020-02-20", end: "2020-04-30"}
+  - {name: "August 2024", start: "2024-07-31", end: "2024-08-16"}
+
+replication:
+  # The chain is rebuilt at 00:00 UTC on the first of each month from Deribit's trade history:
+  # each option's last mark in the window gives its implied volatility, parity on the marks gives
+  # each expiry's forward, and the bid and ask come from how far trades printed from the mark.
+  window_hours: 24
+  page_size: 10000         # the history server's maximum per request
+  spread_buckets: [-0.3, -0.1, 0.1, 0.3]  # log(K / F) edges for the effective half-spread
+  min_spread_trades: 5     # a bucket with fewer trades takes the median of all trades
+  min_expiry_days: 7       # the near expiry must be at least a week out, as in Deribit's DVOL rules
+  zero_bid_stop: 2         # stop after two consecutive zero bids, as in the Cboe VIX method
+
+heston:                    # validation of the range estimators against known integrated variance
+  kappa: 4.0
+  theta: 0.04
+  xi: 0.5
+  rho: -0.7
+  v0: 0.04
+  paths: 40
+  days: 60
+  steps_per_day: 1440      # one-minute sampling over a 24-hour day, like bitcoin
+  coarse_steps: [5, 30]    # coarser samplings that show the discrete-range bias
+  seed: 20261104
+
+plot:
+  dpi: 200
+  palette:
+    this_study: "#2a78d6"
+    benchmark: "#eb6834"
+    secondary: "#1baf7a"
+    premium: "#eda100"
+    surface: "#fcfcfb"
+    text: "#0b0b0b"
+    muted: "#52514e"
+    grid: "#e4e3df"

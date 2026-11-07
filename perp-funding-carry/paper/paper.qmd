@@ -1,0 +1,227 @@
+---
+title: "What funding carry actually pays"
+subtitle: "Fees, margin, liquidation and counterparty risk in perpetual futures carry"
+author: "Ian Wachira"
+date: "2026-11-04"
+abstract: "We measure what the long-spot, short-perpetual funding trade earns on Binance USD-M contracts from 2020-01-01 to 2026-10-31, including 118 contracts later delisted. Funding prints are first rebuilt from the exchange\u0027s premium index, and 100.0% are reproduced within 1 bp. With isolated margin checked against mark-price highs, a top-10 carry portfolio at 2x returns -31.0% a year against 12.2% from funding alone. Its Sharpe ratio is -12.51 and its deflated Sharpe ratio 0.00 across 72 variants. Expected counterparty loss at the prior hazards is 0.67% a year."
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fontsize: 10pt
+    section-numbering: "1.1"
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Question
+
+A perpetual future has no expiry; a funding payment every few hours ties its price to spot. When perpetuals trade rich, shorts are paid, so long spot and short perpetual earn the funding with no net price exposure. The trade is sold as a riskless yield. It is not one. Both legs pay fees and spread. The short leg sits on isolated margin and is liquidated if the price rises far enough between top-ups. The basis moves. Funding changes sign. The collateral is a stablecoin held at an exchange that can fail. This paper puts a number on each of these.
+
+# Data
+
+Binance Vision publishes monthly files for every USD-M contract, including contracts later delisted. The contract list is read from the bucket listing itself: perpetuals are the folders under the monthly funding files, each mapped to its USDT spot pair (contracts quoted per 1,000 units map to the unprefixed spot pair). That gives 477 contracts, 118 of them delisted, with 2123618 funding prints and 4h bars of mark, perpetual and spot prices. BTC and ETH are also simulated on 1h bars, with daily open interest from the metrics files. Bybit's funding history and OKX's last three months come from their public APIs. OKX prints accumulate in a local store across runs. The bucket listing gives every file's MD5, so unchanged files are skipped and new ones are verified. Every input is hashed in a SHA-256 manifest (digest `7034dd1cab00`). Rows a price or size cannot take are dropped before any estimate: 0 bars with a zero, negative or missing price, 33 open-interest records of zero and 0 stablecoin bars. One such row would otherwise turn a log return or a basis into infinity.
+
+# Method
+
+## Funding from first principles
+
+Binance computes a premium index every 5 seconds and averages it over the funding interval. Weights rise linearly for most contracts; hourly contracts weight samples equally. Funding is the average premium $P$ plus a clamped interest term:
+
+$$
+F_{\text{faq}} = \frac{P + \operatorname{clamp}(I_8 - P, -c, c)}{8/N}, \qquad
+F_{\text{per interval}} = P + \operatorname{clamp}\!\left(\tfrac{N}{8} I_8 - P, -c, c\right),
+$$
+
+with $I_8$ = 0.01% per 8 hours, $c$ = 0.05% and $N$ the interval in hours, held inside the contract's cap and floor. The exchange's FAQ reads as the first form; common implementations use the second. The two agree for 8-hour contracts and differ for 4- and 1-hour ones, so only prints from shorter intervals can decide between them. Each minute's close of the public 1-minute premium index stands in for its twelve 5-second samples.
+
+## The trade, bar by bar
+
+Capital $C$ buys $q$ units of spot and posts $N/L$ of isolated margin on a short of $q$ units, with $N = (1 - \rho) C / (1 + 1/L)$ and a reserve share $\rho$ = 20%. Funding settles into the isolated wallet at each print. The liquidation price of the short follows Binance's one-way formula, with the isolated wallet balance $W$, entry price $E$ and maintenance rate $m$:
+
+$$
+\text{LP} = \frac{W + q E}{q (1 + m)}.
+$$
+
+The position is liquidated when a bar's mark-price high reaches LP. The isolated wallet is then lost, as Binance passes the remainder to its insurance fund, and the spot leg is sold. Three margin paths are run. The first has unlimited margin, a frictionless bound. The second tops up from the reserve whenever effective leverage reaches 1.5 times the target, and sweeps excess back. The third never tops up and re-enters after each liquidation. Every leg pays the taker fee from the published schedule (spot 0.10%, perpetual 0.05%, retrieved 2026-11-04) plus half the quoted spread, from the cost model below.
+
+## Trading costs
+
+Spreads cannot be read from price bars. On a crypto pair the quoted spread is a few basis points while the price moves several percent in four hours, so a range-based estimator such as Abdi and Ranaldo (2017) measures volatility rather than spread, and sets the cost of an alt round trip near a percent. Quotes are measured instead: `pfc snapshot` records the best bid and ask of every spot and perpetual pair with its 24-hour volume, and each run adds one snapshot. Across 356 contracts in 1 snapshot (2026-11-04), log half-spread is regressed on the log of the perpetual's 24-hour volume, leg by leg. The slope is -0.34 for perpetuals ($R^2$ 0.38) and -0.44 for spot ($R^2$ 0.42). The fitted law, retransformed with Duan's (1983) smearing factor, gives every past bar a half-spread from its contract's trailing median daily volume. It is held between the 1st and 99th percentiles of measured half-spreads: 0.02 to 6.3 bp for perpetuals and 0.03 to 21.9 bp for spot. A new listing with no volume history pays the upper bound. The law assumes today's relation between spread and volume held in the past, so every cost is also scaled by 0.5, 1.0 and 2.0 and the headline rerun.
+
+## Forecasting funding
+
+Prints are summed into 8-hour windows, so contracts with different intervals share one unit. The target at horizon $h$ is mean funding over the next $h$ windows. Persistence uses the last window. HAR regresses on means over the last 1, 3 and 21 windows. HAR+ adds the basis (mark over spot) and spot momentum. Pooled OLS is refit at each month start on rows whose targets have settled. Skill is the out-of-sample reduction in mean squared error against persistence, with a Diebold-Mariano test on the per-window mean loss differential. Its long-run variance is the equal-weighted cosine estimator of Lazarus, Lewis, Stock and Watson (2018).
+
+## The carry portfolio
+
+At each 8-hour funding time, contracts are ranked by forecast funding among those whose trailing median daily volume clears the liquidity filter. The portfolio enters the top $k$ and holds a contract until it falls below rank 2$k$. Without this hysteresis it would pay a round trip to chase forecast differences smaller than the cost. Each position is an isolated carry trade sized at equity over $k$ when it opens. A contract whose data stop is closed at its last prices. Every combination of 3 models, 3 values of $k$, 2 liquidity filters and 4 leverages is run. The deflated Sharpe ratio of Bailey and Lopez de Prado (2014) charges the headline for all 72 trials.
+
+## Counterparty and stablecoin risk
+
+Each venue fails within a year with a prior probability. FTX in November 2022 is the reference event. A failure loses a fraction of the capital held there. With independent failures the loss distribution over $2^V$ states is exact. The collateral split minimizing 99% expected shortfall is a Rockafellar-Uryasev linear program. Positions follow collateral, so margin needs are met by construction. Equity is marked to USD through USDCUSDT.
+
+# Results
+
+## The rebuild
+
+Over 3255 prints of BTCUSDT, ETHUSDT and SOLUSDT from 2025-11-01 to 2026-10-31:
+
+- 'faq': 100.0% within 1 bp, median error 0.03 bp, 95th percentile 0.12 bp.
+- 'per_interval': 100.0% within 1 bp, median error 0.03 bp, 95th percentile 0.12 bp.
+
+Every print in this window comes from a contract on 8-hour funding, where the two conventions give the same rate. The window therefore confirms the formula but cannot tell the two readings apart; that needs a rebuild symbol on 4-hour or 1-hour funding inside the window.
+
+![Rebuild accuracy by funding interval, and the error distribution.](../reports/figures/rebuild.png){#fig-rebuild}
+
+## What the trade earns
+
+@fig-headline follows the headline portfolio from what funding alone would have compounded to, through fees and spreads, to the net return after basis moves, top-ups and liquidations. The unlimited-margin path is the frictionless bound. Results by path:
+
+- Unlimited margin: -28.2% a year, Sharpe -14.74, maximum drawdown -90.6%, 0 liquidations.
+- Top-ups from the reserve (headline): -31.0% a year, Sharpe -12.51, maximum drawdown -92.1%, 20 liquidations.
+- No top-ups: -32.9% a year, Sharpe -8.83, maximum drawdown -93.5%, 167 liquidations.
+
+![The headline portfolio: funding alone, after fees and spreads, and net.](../reports/figures/headline.png){#fig-headline}
+
+## Where the return goes
+
+@tbl-decomp splits the headline portfolio's return into what it was paid and what it spent, each as a share of equity per year. It opens 2.84 positions per rebalance, so the average position is held about 1.2 days. The median modelled half-spread is 3.63 bp on spot and 1.30 bp on the perpetual.
+
+| Component | % of equity a year |
+| --- | --- |
+| Funding received | 11.5% |
+| Taker fees | -53.4% |
+| Spreads | -10.1% |
+| Basis, liquidations and margin | 14.9% |
+| Total | -37.1% |
+
+: Return of the headline portfolio by source, top-up path. The total is the arithmetic annual return, so it differs from the compounded figure above. {#tbl-decomp}
+
+| Cost multiple | Annual return | Sharpe |
+| --- | --- | --- |
+| 0.5x | -5.3% | -2.03 |
+| 1.0x | -31.0% | -12.51 |
+| 2.0x | -63.4% | -24.68 |
+
+: The headline portfolio with every fee and spread scaled. {#tbl-costs}
+
+For BTC and ETH alone at 2x on 1h bars:
+
+| Contract | Path | Annual return | Sharpe | Liquidations | Top-ups |
+| --- | --- | --- | --- | --- | --- |
+| BTCUSDT | unlimited margin | 21.3% | 8.21 | 0 | 0 |
+| BTCUSDT | top-ups from the reserve | 6.0% | 8.47 | 0 | 66 |
+| BTCUSDT | no top-ups | 6.4% | 5.11 | 5 | 0 |
+| ETHUSDT | unlimited margin | 36.2% | 7.27 | 0 | 0 |
+| ETHUSDT | top-ups from the reserve | 6.3% | 7.15 | 0 | 118 |
+| ETHUSDT | no top-ups | 7.7% | 7.32 | 7 | 0 |
+
+![Liquidations by leverage with no top-ups.](../reports/figures/liquidations.png){#fig-liq}
+
+## Funding across contracts and venues
+
+Two questions come before any trading rule: how much does a typical contract pay the short, and does the same contract pay the same elsewhere?
+
+**Across contracts.** Over 17024 contract-months, the median contract-month paid 6.8% a year, and 27% of contract-months had negative funding, which the short pays. @fig-cross shows the median contract month by month. The median was negative in 9% of the 82 months. Its best month was 2021-02 at 156.5% a year and its worst 2022-05 at -9.5%. Negative funding was most widespread in 2022-05, when 80% of contracts paid longs.
+
+![Funding of the median contract each month, and the share of contracts with negative funding.](../reports/figures/cross_section.png){#fig-cross}
+
+**Across venues.** @tbl-venues compares annualized funding for the same contracts on each venue, over the dates every venue in the row covers.
+OKX publishes only about three months of history, so the rows with every venue are short; the rows with only Binance and Bybit span the whole sample.
+
+| Contract | From | To | Binance | Bybit | OKX | Correlation |
+| --- | --- | --- | --- | --- | --- | --- |
+| BTCUSDT | 2026-08-03 | 2026-10-31 | 5.8% | 5.0% | 6.0% | 0.563 |
+| BTCUSDT | 2020-03-25 | 2026-10-31 | 11.1% | 12.7% |  | 0.671 |
+| ETHUSDT | 2026-08-03 | 2026-10-31 | 4.6% | 4.1% | 4.9% | 0.678 |
+| ETHUSDT | 2020-10-21 | 2026-10-31 | 12.2% | 13.8% |  | 0.766 |
+
+: Annualized funding by venue. A blank cell means the venue is not in that comparison. Correlation is the mean pairwise correlation of 8-hour funding. {#tbl-venues}
+
+The widest gap is 1.6 percentage points a year, between Binance and Bybit on ETHUSDT from 2020-10-21 to 2026-10-31. A gap that size is what moving the short leg to the better-paying venue would add before costs, and it comes with the counterparty exposure priced in @sec-cp.
+
+## Forecasts
+
+| Model | Horizon | MSE reduction | DM t | Windows |
+| --- | --- | --- | --- | --- |
+| har | 1 | 16.5% | 9.59 | 6858 |
+| har_plus | 1 | 18.5% | 9.30 | 6855 |
+| har | 3 | 31.7% | 8.97 | 6850 |
+| har_plus | 3 | 32.9% | 8.87 | 6847 |
+| har | 21 | 65.5% | 9.37 | 6778 |
+| har_plus | 21 | 65.8% | 9.37 | 6775 |
+
+For BTC and ETH over the window the open-interest files cover (first forecast 2026-05-01), adding the change in open interest gives: horizon 1: 23.1%; horizon 3: 37.0%; horizon 21: 57.9%.
+
+![Forecast skill against persistence.](../reports/figures/forecast.png){#fig-fc}
+
+## The portfolio against BTC and ETH
+
+![Annual return and Sharpe ratio of the portfolio and the single-asset benchmarks.](../reports/figures/benchmarks.png){#fig-bench}
+
+The headline portfolio's Sharpe ratio is -12.51 with a 95% EWC interval of ± 3.56. Across the 72 variants, the expected maximum Sharpe under zero skill is 8.82, so the deflated Sharpe ratio is 0.00. 0% of variants have a positive return. Median capacity at 1% of daily volume is 2,290,733 USD.
+
+![Every variant's Sharpe ratio.](../reports/figures/variants.png){#fig-var}
+
+## Stress episodes
+
+Each episode runs from its start to its end date inclusive; the portfolio figures use the top-up path. March 2020 falls outside the sample and is left out.
+
+
+| Episode | Dates | Portfolio return | Worst drawdown |
+| --- | --- | --- | --- |
+| May 2021 | 2021-05-10 to 2021-05-25 | -1.0% | -1.1% |
+| November 2022 | 2022-11-06 to 2022-11-20 | -1.6% | -1.6% |
+
+: Portfolio during each stress episode. {#tbl-episodes}
+
+| Episode | Contract | Prints | Negative | Sign flips | Lowest print | Liquidations at 2x |
+| --- | --- | --- | --- | --- | --- | --- |
+| May 2021 | BTCUSDT | 48 | 15% | 10 | -0.090% | 0 |
+| May 2021 | ETHUSDT | 48 | 2% | 2 | -0.356% | 0 |
+| November 2022 | BTCUSDT | 45 | 56% | 19 | -0.119% | 0 |
+| November 2022 | ETHUSDT | 45 | 53% | 17 | -0.060% | 0 |
+
+: Funding prints and no-top-up liquidations of the core contracts in each episode. {#tbl-episode-contracts}
+
+![Drawdown with the stress episodes shaded.](../reports/figures/drawdown.png){#fig-dd}
+
+## Counterparty and stablecoin risk {#sec-cp}
+
+At the prior hazards and a 50% loss given failure, the expected-shortfall split is Binance 33%, Bybit 33%, OKX 33%. Expected loss is 0.67% a year. The 99% expected shortfall is 17.5%, against 17.5% for an equal split and 50.0% with everything on the safest venue. The chance that some venue fails in the year is 3.9%. Net carry is -31.7%.
+USDT traded between 0.9801 and 1.0955 USD. In USD the portfolio returned -31.0% a year.
+
+![Expected counterparty loss by hazard and loss given failure.](../reports/figures/counterparty.png){#fig-cp}
+
+# Validation
+
+The liquidation formula reproduces both worked examples in Binance's documentation (1,153.26 for ETH and 26,316.89 for BTC). A synthetic market with constant funding and constant prices returns the analytic carry, funding times notional, less the configured costs, to machine precision. The synthetic fixture plants a known structure:
+
+- funding computed with the per-interval convention, which the rebuild recovers
+- a delisting, which the portfolio closes when the data stop
+- a price spike, which liquidates the no-top-up path
+- a USDC depeg, which shows up in the USD equity
+
+# Limitations
+
+Exchange failure, stablecoin depegs and execution at size cannot be read from prices. The first two are priced as scenarios. The third is bounded by the capacity measure. The 1-minute premium index approximates 5-second sampling. Maintenance rates are tier-1 values from the config, because the bracket endpoint needs a signed request. Funding paid within a bar is credited at that bar's closing mark. Spreads come from today's books carried back through volume; the cost multiples in @tbl-costs bound how much that assumption can move the result.
+
+# References
+
+Abdi, F. and Ranaldo, A. (2017). A simple estimation of bid-ask spreads from daily close, high, and low prices. *Review of Financial Studies* 30(12), 4437-4480.
+
+Bailey, D. H. and Lopez de Prado, M. (2014). The deflated Sharpe ratio. *Journal of Portfolio Management* 40(5), 94-107.
+
+Corsi, F. (2009). A simple approximate long-memory model of realized volatility. *Journal of Financial Econometrics* 7(2), 174-196.
+
+Duan, N. (1983). Smearing estimate: a nonparametric retransformation method. *Journal of the American Statistical Association* 78(383), 605-610.
+
+Diebold, F. X. and Mariano, R. S. (1995). Comparing predictive accuracy. *Journal of Business and Economic Statistics* 13(3), 253-263.
+
+Lazarus, E., Lewis, D. J., Stock, J. H. and Watson, M. W. (2018). HAR inference: recommendations for practice. *Journal of Business and Economic Statistics* 36(4), 541-559.
+
+Rockafellar, R. T. and Uryasev, S. (2000). Optimization of conditional value-at-risk. *Journal of Risk* 2(3), 21-41.

@@ -1,0 +1,36 @@
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+
+# Data: downloads and derived tables are rebuilt from the sources and are not committed.
+# The SHA-256 manifest is committed so the provenance check runs without the downloads.
+# The OKX funding store is committed too: OKX serves only about three months of history,
+# so the store is the only copy of older prints. The order-book snapshots behind the
+# spread model are kept for the same reason.
+data/*
+!data/manifest.json
+!data/collected/
+data/collected/*
+!data/collected/okx_funding.csv
+!data/collected/book_snapshots.csv
+mirror/
+
+# Build products
+paper/_output/*
+!paper/_output/paper/
+paper/_output/paper/*
+!paper/_output/paper/paper.pdf
+paper/paper.typ
+paper/paper_files/
+.quarto/
+**/*.quarto_ipynb
+
+# Notebooks keep code, not outputs
+notebooks/.ipynb_checkpoints/
+
+/.quarto/

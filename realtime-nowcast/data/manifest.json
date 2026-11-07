@@ -1,0 +1,284 @@
+{
+ "files": {
+  "alfred/BOPTEXP": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=BOPTEXP&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/BOPTEXP.json",
+   "sha256": "ded2d669411a29c6dab1f4797ff5500a4b22a311447ade5f17a09a1743bade85",
+   "bytes": 317066,
+   "retrieved_at": "2026-11-07T05:09:52+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/BOPTIMP": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=BOPTIMP&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/BOPTIMP.json",
+   "sha256": "bd6ca676ef61c73c1668c0ffca064df7dfbe9b79945003648aedbb52de6eff59",
+   "bytes": 319519,
+   "retrieved_at": "2026-11-07T05:09:53+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/BUSINV": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=BUSINV&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/BUSINV.json",
+   "sha256": "82ead3c8356fb1f49965971608e76bf4a37996940009b7b140d9c577b6b532f4",
+   "bytes": 1365263,
+   "retrieved_at": "2026-11-07T05:10:03+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/CPIAUCSL": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPIAUCSL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/CPIAUCSL.json",
+   "sha256": "64d479b9e77a7625a41d1284935ec0dc0d60d25d2b1b4113a17c6c0007039de6",
+   "bytes": 248100,
+   "retrieved_at": "2026-11-07T05:09:44+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/CPILFESL": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=CPILFESL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/CPILFESL.json",
+   "sha256": "1ae6c4c3a8eebd4738c7e8e6c40e465df14cb820d6db42e206e41f38f767ace3",
+   "bytes": 202770,
+   "retrieved_at": "2026-11-07T05:09:57+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/DGORDER": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGORDER&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/DGORDER.json",
+   "sha256": "47d714ab01bb393316a007dcd3d6a50afbe3586495efb6c11b734e2c3d8d73bc",
+   "bytes": 684221,
+   "retrieved_at": "2026-11-07T05:09:45+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/DSPIC96": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=DSPIC96&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/DSPIC96.json",
+   "sha256": "e18fcad6a70ba3e62c817fe135bf1314f8adfc7f14b7386afdc1caf60ceffb95",
+   "bytes": 806792,
+   "retrieved_at": "2026-11-07T05:09:51+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/GACDFSA066MSFRBPHI": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=GACDFSA066MSFRBPHI&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/GACDFSA066MSFRBPHI.json",
+   "sha256": "03cfd7db39b9b99798c6ef5c7227e2c954d215b58d07d992af74d7530298698c",
+   "bytes": 210096,
+   "retrieved_at": "2026-11-07T05:10:08+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/GACDISA066MSFRBNY": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=GACDISA066MSFRBNY&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/GACDISA066MSFRBNY.json",
+   "sha256": "fd8ec40321dfb0609dff52503ac57dc5d59eb6b500f4c6b72c893e5c8ca64326",
+   "bytes": 164807,
+   "retrieved_at": "2026-11-07T05:10:06+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/GDPC1": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=GDPC1&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/GDPC1.json",
+   "sha256": "ad6303a764bd48acdd0629fb7031df17e247268371621b141725c6f54489b949",
+   "bytes": 225968,
+   "retrieved_at": "2026-11-07T05:09:43+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/HOUST": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=HOUST&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/HOUST.json",
+   "sha256": "fa44a6c0d7accbf3ed803b95cc35552fc003392421122d87bf616191739d5106",
+   "bytes": 293851,
+   "retrieved_at": "2026-11-07T05:09:49+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/INDPRO": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=INDPRO&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/INDPRO.json",
+   "sha256": "7869765a8d82e05be21ddaf6b2b4f24681eacc567e91b44f8a31f83dbf1b8fe1",
+   "bytes": 1198961,
+   "retrieved_at": "2026-11-07T05:09:50+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/IQ": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=IQ&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/IQ.json",
+   "sha256": "2a36863345a1f5e2609066290b4bb07ae540c12b934cb40254da9c7c49ab7628",
+   "bytes": 83605,
+   "retrieved_at": "2026-11-07T05:10:05+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/IR": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=IR&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/IR.json",
+   "sha256": "672d4db16dc295c8ae67e4b53f5dd16232956e6eff7dc7db546d278cf514217a",
+   "bytes": 90129,
+   "retrieved_at": "2026-11-07T05:09:56+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/JTSJOL": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=JTSJOL&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/JTSJOL.json",
+   "sha256": "3d64956364d456e8ab5cc25185f523a57721dd1780f25aeedda6059cd1dded45",
+   "bytes": 221836,
+   "retrieved_at": "2026-11-07T05:09:41+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/PAYEMS": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=PAYEMS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/PAYEMS.json",
+   "sha256": "d644887c778b22736bfea305dee09bedb13fe546aa4e12f8e709d8398f68e611",
+   "bytes": 758838,
+   "retrieved_at": "2026-11-07T05:09:40+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/PCEC96": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEC96&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/PCEC96.json",
+   "sha256": "6b09ecc05ce1e2f1bb4e026d6862e35ce61ae910d24d0f42772f8ea511b9be9b",
+   "bytes": 607360,
+   "retrieved_at": "2026-11-07T05:10:07+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/PCEPI": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPI&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/PCEPI.json",
+   "sha256": "9ef6f88ad4d3aaecaa6d818680e9fe4fccc984d186e032af1c3a56b492cd8454",
+   "bytes": 586631,
+   "retrieved_at": "2026-11-07T05:09:59+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/PCEPILFE": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=PCEPILFE&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/PCEPILFE.json",
+   "sha256": "565014c27f054f952bad95dd8fc8efe734c774ee74b93592fbc1d252c6a46ba6",
+   "bytes": 585797,
+   "retrieved_at": "2026-11-07T05:09:58+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/PERMIT": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=PERMIT&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/PERMIT.json",
+   "sha256": "c4c74454b65b59e69deca89b6e15d57e32a00df3adf924ad0d0c554bd8ee8e4b",
+   "bytes": 215673,
+   "retrieved_at": "2026-11-07T05:10:00+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/RSAFS": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=RSAFS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/RSAFS.json",
+   "sha256": "f06ca29a4e1d7d1a11f9aa511faaef9c269be71724e37cd6c91135d08c7afafd",
+   "bytes": 586315,
+   "retrieved_at": "2026-11-07T05:09:46+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/TCU": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=TCU&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/TCU.json",
+   "sha256": "2153602d52e59b2e7b5434380130fef05c5b4bbe7138b8a39749d5d64101f13c",
+   "bytes": 872916,
+   "retrieved_at": "2026-11-07T05:10:02+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/TTLCONS": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=TTLCONS&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/TTLCONS.json",
+   "sha256": "8395942ba62b3453aadb7e2d4e884924d7c7b7916b106f22044d743d8e414817",
+   "bytes": 217899,
+   "retrieved_at": "2026-11-07T05:09:55+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/ULCNFB": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=ULCNFB&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/ULCNFB.json",
+   "sha256": "dd54df7a44d687a4ba5adea946adf0f844d3abc42a3389b0845e7b1b0203cc10",
+   "bytes": 495895,
+   "retrieved_at": "2026-11-07T05:10:04+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "alfred/UNRATE": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=UNRATE&realtime_start=1776-07-04&realtime_end=9999-12-31&output_type=1&observation_start=1985-01-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/alfred/UNRATE.json",
+   "sha256": "d6a7461f3365a9cbfe370b5cb45f1e5e4d5db006351efdeced9eda40ce3c1831",
+   "bytes": 100742,
+   "retrieved_at": "2026-11-07T05:09:47+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "fred/DGS10": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS10&observation_start=2010-07-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/fred/DGS10.json",
+   "sha256": "095c4a80d1c8898c189ffd78b2cc3ac4fbdc405605dc6ae81b748e8022d9ebdd",
+   "bytes": 438846,
+   "retrieved_at": "2026-11-07T05:10:11+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "fred/DGS2": {
+   "url": "https://api.stlouisfed.org/fred/series/observations?series_id=DGS2&observation_start=2010-07-01&sort_order=asc&limit=100000&offset=0&file_type=json",
+   "path": "raw/fred/DGS2.json",
+   "sha256": "21a84f53df261b657727613bcc7df8a6add00c1ea5cd07a7f0d36b3a617b4db6",
+   "bytes": 438862,
+   "retrieved_at": "2026-11-07T05:10:10+00:00",
+   "origin": "official",
+   "etag": null,
+   "last_modified": null
+  },
+  "gdpnow/workbook": {
+   "url": "https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/research-and-data/data/gdpnow/GDPTrackingModelDataAndForecasts.xlsx",
+   "path": "raw/gdpnow/GDPTrackingModelDataAndForecasts.xlsx",
+   "sha256": "40bda9f7be07da38d3291b61775985822d2fbbead4ab3dd1283b54df41e13f7d",
+   "bytes": 10982878,
+   "retrieved_at": "2026-11-07T05:10:13+00:00",
+   "origin": "official",
+   "etag": "268318fcf61c4aaba7d1100c0d3e3614",
+   "last_modified": "Wed, 04 Nov 2026 16:20:27 GMT"
+  }
+ }
+}

@@ -1,0 +1,138 @@
+---
+title: "A real-time GDP nowcast against GDPNow"
+subtitle: "A mixed-frequency factor model run on data as published each day, and what its news does to Treasury yields"
+author: "Ian Wachira"
+date: "2026-11-07"
+abstract: "A mixed-frequency dynamic factor model on the New York Fed staff nowcast\u0027s 25 series is run through 61 quarters (2011Q3 to 2026Q3) using only data as published on each day. On the last GDPNow publication day before each advance estimate its RMSE is 3.66 percentage points against 1.15 for GDPNow, not significantly different from GDPNow\u0027s by a Diebold-Mariano test at 5%; without 2020 they are 1.84 and 0.84, significantly higher than GDPNow\u0027s. Every change in the nowcast is split exactly into revisions, the news in each release and re-estimation. On release days the DGS2 yield moves 0.34 basis points per percentage point of the model\u0027s news (t = 0.99), and 1.33 without 2020 (t = 2.72)."
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.4cm
+    fontsize: 10pt
+    section-numbering: "1.1"
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Question
+
+Can a dynamic factor model built only on data as they existed on each day match the Atlanta Fed's GDPNow, and do the model's surprises move Treasury yields on release days? Most macro forecasting code trains on today's revised data, which leaks information nobody had at the time. Here every input is rebuilt as it was published, and the score is kept against a public central-bank benchmark on the days that benchmark published.
+
+# Data
+
+ALFRED, the St. Louis Fed's archive of vintages, gives each value of each series with the days during which it was the published one. For day $d$ the panel holds, for every series and period, the value whose interval contains $d$; a value whose interval starts after $d$ cannot enter, and the build checks this on every panel it makes. The 25 series are the published specification of the New York Fed staff nowcast (Bok et al. 2018): 23 monthly and 2 quarterly, with that specification's transformations (level, change, percent change, annualized quarterly growth) and its blocks (global, soft, real and labor). Data start in 1985.
+
+GDPNow nowcasts come from the Atlanta Fed's workbook, which archives every published nowcast of completed quarters from 2011:Q3. The advance estimate of each quarter is taken from ALFRED: the growth of real GDP in the vintage of the day it was first published. It matches the Atlanta Fed's own record within 0.05 points in 61 of 61 quarters. Daily 2- and 10-year Treasury yields come from FRED.
+
+# Method
+
+## The model
+
+Each monthly series $i$, standardized, is the sum of common factors and an idiosyncratic part,
+$$
+x_{i,t} = \Lambda_i f_t + e_{i,t}, \qquad e_{i,t} = \alpha_i e_{i,t-1} + \varepsilon_{i,t},
+$$
+with one AR(1) factor per block, $f_{b,t} = a_b f_{b,t-1} + u_{b,t}$, and every series loading on the global block and, where the specification assigns one, on its own block. A quarterly growth rate observed in the third month of a quarter is tied to the monthly factors by the Mariano and Murasawa (2003) approximation,
+$$
+y^{Q}_{t} = \Lambda^{Q} \left( f_t + 2 f_{t-1} + 3 f_{t-2} + 2 f_{t-3} + f_{t-4} \right) + e^{Q}_t ,
+$$
+imposed as linear restrictions on the loadings of the factor's lags. The state holds five lags of each factor, the monthly idiosyncratic parts and five lags of each quarterly one: 53 states in all. Measurement error has variance 0.0001 (Doz, Giannone and Reichlin 2012).
+
+## Estimation
+
+EM with the Kalman smoother (Banbura and Modugno 2014) handles every missing value, so the ragged edge needs no filling. Starting values come from principal components on a gap-filled panel. The implementation is a port of the New York Fed's MATLAB code, and on their example vintage it reproduces their published estimates to within 1e-12 in every matrix (1e-14 in the loadings, transition matrix and shock variances; 4e-13 in the initial state). EM stops when the log likelihood changes by less than 1e-05 in relative terms. Each run is accelerated by SQUAREM (Varadhan and Roland 2008): two EM steps are extrapolated along their own direction, and the extrapolated point is kept only when its likelihood is no lower, so the fixed point and the monotone path of EM are unchanged (plain EM is what is checked against the reference). 184 of 184 estimations converged, the slowest in 3861 EM steps. Parameters are re-estimated on the first day of each month on that day's vintage, 184 times, each starting from the previous month's estimates unless a series has entered, when EM starts again from principal components (median 13 iterations; the first estimation took 1949), and held fixed in between. A block whose factor would rest on fewer than two monthly series is left out of that estimation.
+
+Following Lenza and Primiceri (2022), the variance of every shock in the state equation is scaled by $s_t^2$, with $s_t$ free in 2020-03, 2020-04 and 2020-05 and $s_t = 1 + (s_{\text{last}} - 1)\rho^{t - \text{last}}$ after. Given the smoothed moments, the expected log likelihood in the scales is $\sum_t [-k \log s_t - d_t / (2 s_t^2)]$, with $k$ the number of shocks and $d_t$ the expected sum of squared standardized shocks; it is maximized over the free scales and $\rho$ as one more conditional step of EM, and the transition parameters are updated with each period weighted by $1/s_t^2$. Every scale is at least one, the support of their Pareto prior: a free month that is mostly unpublished (May 2020 on the first of June) otherwise has its scale driven to zero, where the likelihood has no maximum. Series are standardized with the means and standard deviations of the months before 2020-03, not of the whole vintage as in the reference code: on the last vintage, Payroll Employment in 2020-04 was 106 standard deviations of a month before the pandemic, and with the pandemic months in, its standard deviation would be 5.1 times larger. Left in, those months set the units, squeeze every other month toward zero, and drive the idiosyncratic variances of the series they hit toward zero, where EM never settles. At the last estimation the scales were 6.47, 53.02, 6.39 with $\rho$ = 0.90.
+
+## News
+
+Between two days with the same parameters, the change in the nowcast $\hat y$ of a quarter splits as
+$$
+\hat y_{\text{new}} - \hat y_{\text{old}} = \left(\hat y_{\text{rev}} - \hat y_{\text{old}}\right) + \sum_j w_j \left( x_j - \mathbb{E}\left[ x_j \mid \Omega_{\text{rev}} \right] \right),
+$$
+where $\Omega_{\text{rev}}$ is the new vintage with the new releases removed (Banbura and Modugno 2010). With the parameters and the pattern of missing data fixed, the smoothed nowcast is linear in the data, so $w_j$ is the exact derivative of $\hat y_{\text{new}}$ with respect to $x_j$, propagated through the stored Kalman and smoother gains. The identity is checked on every day of the run; the largest gap over 2238 days was 7e-12. On re-estimation days the effect of the new parameters is recorded separately.
+
+## Evaluation
+
+Every quarter is tracked from its first day to the day before its advance estimate. Each GDPNow publication is paired with the model's nowcast as of the same day. Pairs are grouped by days before the release (0-14, 15-29, 30-44, 45-59, 60-74, 75-89, 90-119); within a group each quarter contributes the pair closest to the release, so quarters are the independent observations of a Diebold and Mariano (1995) test with the Harvey, Leybourne and Newbold (1997) correction. Squared and absolute errors, on all quarters and without 2020, are reported side by side.
+
+For the market test, the news on a release day is the part of the day's change in the current-quarter nowcast that the releases explain. The daily change in each yield, in basis points, is regressed on it with HC3 standard errors.
+
+# Results
+
+## Accuracy
+
+| Days to release | Quarters | Model RMSE | GDPNow RMSE | DM | p | Model MAE | GDPNow MAE | p (absolute) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0-14 | 59 | 3.72 | 1.12 | 1.85 | 0.07 | 1.99 | 0.74 | 0.00 |
+| 15-29 | 61 | 3.77 | 1.34 | 1.81 | 0.08 | 2.03 | 0.85 | 0.00 |
+| 30-44 | 61 | 3.62 | 1.90 | 1.58 | 0.12 | 1.98 | 1.13 | 0.01 |
+| 45-59 | 61 | 3.55 | 2.67 | 0.92 | 0.36 | 1.93 | 1.38 | 0.09 |
+| 60-74 | 58 | 3.59 | 3.07 | 0.53 | 0.60 | 1.92 | 1.65 | 0.38 |
+| 75-89 | 55 | 3.69 | 2.40 | 1.45 | 0.15 | 2.02 | 1.57 | 0.11 |
+| 90-119 | 34 | 6.36 | 4.81 | 1.21 | 0.23 | 2.78 | 2.19 | 0.17 |
+
+: Errors against the advance estimate, percentage points of annualized growth. Negative DM statistics favour the model. {#tbl-accuracy}
+
+On the last GDPNow day before each release the model's RMSE is 3.66 and GDPNow's 1.15 (@tbl-accuracy, @fig-rmse); without 2020 they are 1.84 and 0.84 (DM p = 0.00). The model has the lower RMSE in 0 of 7 horizon groups.
+
+![RMSE against the advance estimate by days before its release.](../reports/figures/rmse.png){#fig-rmse}
+
+![The last nowcast of each quarter minus its advance estimate.](../reports/figures/errors.png){#fig-errors}
+
+## One quarter
+
+@fig-path follows 2026Q3 from its first day to the advance estimate of 3.37% on 2026-10-29, and @fig-waterfall splits the model's path into the news of each release category, revisions and re-estimation.
+
+![The nowcasts of 2026Q3; the diamond is the advance estimate.](../reports/figures/path.png){#fig-path}
+
+![What moved the model's nowcast of 2026Q3.](../reports/figures/waterfall.png){#fig-waterfall}
+
+## Yields
+
+| Yield | Days | Slope (bp per pp) | 95% interval | t | R² | Slope without 2020 |
+| --- | --- | --- | --- | --- | --- | --- |
+| DGS2 | 1794 | 0.34 | -0.34 to 1.02 | 0.99 | 0.001 | 1.33 |
+| DGS10 | 1794 | 0.33 | -0.54 to 1.20 | 0.74 | 0.001 | 1.08 |
+
+: Daily yield changes on release days regressed on the model's release news. {#tbl-yields}
+
+![Mean yield change by decile of release-day news, with 95% intervals.](../reports/figures/yields.png){#fig-yields}
+
+# Validation
+
+- On the New York Fed's example vintage, EM reproduces their published estimates to within 1e-12 in every matrix; the comparison runs in CI against their files.
+- A panel drawn from a factor model with known loadings, with holes where real releases leave them, is estimated and the factor recovered.
+- Shock scales planted in a simulated pandemic are recovered by the Lenza and Primiceri step.
+- News weights match finite differences of the nowcast, and the decomposition adds up on every day of every run.
+- A test builds panels on many days and fails if any value used on day $d$ was published after $d$.
+- The synthetic fixture writes ALFRED pages, the GDPNow workbook and FRED yields in their exact formats, with a planted yield response to release surprises that the end-to-end test recovers.
+
+# Limitations
+
+ALFRED's record of some series starts years after the series itself. Rather than carry today's history of such a series back to days when nobody had it, a series enters the model at the first re-estimation after ALFRED holds two years of its values (Empire State Mfg Index on 2014-04-01; Philadelphia Fed Mfg Index on 2015-05-01), so the early nowcasts rest on fewer series than the New York Fed's list. The panel is the New York Fed's published list, not a search over series, and its parameters are re-estimated monthly rather than daily. The advance estimate is the target; later revisions of GDP would rank the models differently. GDPNow is read only on its publication days, so its nowcast between publications is not observed. The yield test measures association on release days: a significant slope says markets and the model react to the same surprises, not that the model moves markets.
+
+# References
+
+Banbura, M. and Modugno, M. (2010). Maximum likelihood estimation of factor models on data sets with arbitrary pattern of missing data. ECB Working Paper 1189.
+
+Banbura, M. and Modugno, M. (2014). Maximum likelihood estimation of factor models on datasets with arbitrary pattern of missing data. *Journal of Applied Econometrics* 29(1), 133-160.
+
+Bok, B., Caratelli, D., Giannone, D., Sbordone, A. M. and Tambalotti, A. (2018). Macroeconomic nowcasting and forecasting with big data. *Annual Review of Economics* 10, 615-643.
+
+Diebold, F. X. and Mariano, R. S. (1995). Comparing predictive accuracy. *Journal of Business and Economic Statistics* 13(3), 253-263.
+
+Doz, C., Giannone, D. and Reichlin, L. (2012). A quasi-maximum likelihood approach for large, approximate dynamic factor models. *Review of Economics and Statistics* 94(4), 1014-1024.
+
+Harvey, D., Leybourne, S. and Newbold, P. (1997). Testing the equality of prediction mean squared errors. *International Journal of Forecasting* 13(2), 281-291.
+
+Higgins, P. (2014). GDPNow: a model for GDP "nowcasting". Federal Reserve Bank of Atlanta Working Paper 2014-7.
+
+Lenza, M. and Primiceri, G. E. (2022). How to estimate a vector autoregression after March 2020. *Journal of Applied Econometrics* 37(4), 688-699.
+
+Mariano, R. S. and Murasawa, Y. (2003). A new coincident index of business cycles based on monthly and quarterly series. *Journal of Applied Econometrics* 18(4), 427-443.
+
+Varadhan, R. and Roland, C. (2008). Simple and globally convergent methods for accelerating the convergence of any EM algorithm. *Scandinavian Journal of Statistics* 35(2), 335-353.

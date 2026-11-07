@@ -1,0 +1,33 @@
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Data: raw and derived files are rebuilt from the manifest, which is committed
+data/raw/
+data/processed/
+data/runs/
+
+# Build products
+paper/_output/*
+!paper/_output/paper/
+paper/_output/paper/*
+!paper/_output/paper/paper.pdf
+paper/paper.typ
+paper/paper_files/
+.quarto/
+
+# Notebooks keep code, not outputs
+notebooks/.ipynb_checkpoints/
+
+/.quarto/
+**/*.quarto_ipynb
+
+# Synthetic sources written by `rtn fixture mirror`
+mirror/

@@ -1,0 +1,98 @@
+# Every research choice, with its reason. Loaded and validated by realtime_nowcast.config.
+
+sources:
+  fred_api: https://api.stlouisfed.org/fred          # ALFRED vintages and FRED daily yields
+  fred_key_env: FRED_API_KEY                          # free key from fredaccount.stlouisfed.org
+  # The GDPNow workbook: the link on the GDPNow page, then the paths it lived at before the
+  # site moved; the first that answers is used and recorded in the manifest.
+  gdpnow:
+    - https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/research-and-data/data/gdpnow/GDPTrackingModelDataAndForecasts.xlsx
+    - https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/cqer/researchcq/gdpnow/GDPTrackingModelDataAndForecasts.xlsx
+    - https://www.atlantafed.org/-/media/documents/cqer/researchcq/gdpnow/GDPTrackingModelDataAndForecasts.xlsx
+  official_hosts:
+    - api.stlouisfed.org
+    - www.atlantafed.org
+
+download:
+  retries: 5
+  backoff_seconds: 2.0
+  timeout_seconds: 120.0
+  chunk_bytes: 1048576
+  pause_seconds: 0.6          # FRED allows 120 requests a minute
+  page_limit: 100000          # the API's maximum rows per request
+
+# The panel is the published specification of the New York Fed staff nowcast (Bok,
+# Caratelli, Giannone, Sbordone and Tambalotti, 2018, "Macroeconomic Nowcasting and
+# Forecasting with Big Data", Annual Review of Economics 10), file Spec_US_example.xls in
+# github.com/FRBNY-TimeSeriesAnalysis/Nowcasting at commit 19f365c, rows with Model = 1,
+# in the order of that file. Nothing here was chosen by looking at results. Categories are
+# theirs (only the case of "International trade" is made consistent).
+panel:
+  spec_source: "FRBNY-TimeSeriesAnalysis/Nowcasting@19f365cab8269e3aac3faa11ad091d6e913c5c43:Spec_US_example.xls"
+  observation_start: "1985-01-01"   # the first month of the reference code's data files
+  estimation_start: "1985-04"       # the first month a transformed quarterly value can exist
+  blocks: [global, soft, real, labor]
+  series:
+    - {id: PAYEMS, name: "Payroll Employment", frequency: m, transform: chg, blocks: [global, labor], category: "Labor"}
+    - {id: JTSJOL, name: "Job Openings", frequency: m, transform: chg, blocks: [global, labor], category: "Labor"}
+    - {id: GDPC1, name: "Real Gross Domestic Product", frequency: q, transform: pca, blocks: [global, real], category: "National Accounts"}
+    - {id: CPIAUCSL, name: "Consumer Price Index", frequency: m, transform: pch, blocks: [global], category: "Prices"}
+    - {id: DGORDER, name: "Durable Goods Orders", frequency: m, transform: pch, blocks: [global, real], category: "Manufacturing"}
+    - {id: RSAFS, name: "Retail Sales", frequency: m, transform: pch, blocks: [global, real], category: "Retail and Consumption"}
+    - {id: UNRATE, name: "Unemployment Rate", frequency: m, transform: chg, blocks: [global, labor], category: "Labor"}
+    - {id: HOUST, name: "Housing Starts", frequency: m, transform: pch, blocks: [global, real], category: "Housing and Construction"}
+    - {id: INDPRO, name: "Industrial Production", frequency: m, transform: pch, blocks: [global, real], category: "Manufacturing"}
+    - {id: DSPIC96, name: "Personal Income", frequency: m, transform: pch, blocks: [global, real], category: "National Accounts"}
+    - {id: BOPTEXP, name: "Exports", frequency: m, transform: pch, blocks: [global, real], category: "International Trade"}
+    - {id: BOPTIMP, name: "Imports", frequency: m, transform: pch, blocks: [global, real], category: "International Trade"}
+    - {id: TTLCONS, name: "Construction Spending", frequency: m, transform: pch, blocks: [global, real], category: "Housing and Construction"}
+    - {id: IR, name: "Import Price Index", frequency: m, transform: pch, blocks: [global], category: "International Trade"}
+    - {id: CPILFESL, name: "Core Consumer Price Index", frequency: m, transform: pch, blocks: [global], category: "Prices"}
+    - {id: PCEPILFE, name: "Core PCE Price Index", frequency: m, transform: pch, blocks: [global], category: "Prices"}
+    - {id: PCEPI, name: "PCE Price Index", frequency: m, transform: pch, blocks: [global], category: "Prices"}
+    - {id: PERMIT, name: "Building Permits", frequency: m, transform: chg, blocks: [global, real], category: "Housing and Construction"}
+    - {id: TCU, name: "Capacity Utilization Rate", frequency: m, transform: chg, blocks: [global, real], category: "Manufacturing"}
+    - {id: BUSINV, name: "Business Inventories", frequency: m, transform: pch, blocks: [global, real], category: "International Trade"}
+    - {id: ULCNFB, name: "Unit Labor Cost", frequency: q, transform: pca, blocks: [global, labor], category: "Labor"}
+    - {id: IQ, name: "Export Price Index", frequency: m, transform: pch, blocks: [global], category: "International Trade"}
+    - {id: GACDISA066MSFRBNY, name: "Empire State Mfg Index", frequency: m, transform: lin, blocks: [global, soft], category: "Surveys"}
+    - {id: PCEC96, name: "Real Consumption Spending", frequency: m, transform: pch, blocks: [global, real], category: "Retail and Consumption"}
+    - {id: GACDFSA066MSFRBPHI, name: "Philadelphia Fed Mfg Index", frequency: m, transform: lin, blocks: [global, soft], category: "Surveys"}
+  target: GDPC1
+
+model:
+  threshold: 1.0e-5          # relative change in the log likelihood; the reference code's robust setting
+  max_iter: 5000
+  measurement_variance: 1.0e-4  # fixed, as in the reference code (Doz, Giannone and Reichlin, 2012)
+  reestimate: monthly        # parameters on the vintage of the first day of each month, then held
+  warm_start: true           # each month's EM starts from last month's estimates; the first is cold
+  # SQUAREM (Varadhan and Roland 2008) on top of EM: same fixed point, every step monotone.
+  # Plain EM creeps: its steps fall under the threshold while the likelihood can still rise.
+  accelerate: true
+  # Lenza and Primiceri (2022): free shock scales in March, April and May 2020, then decay.
+  pandemic_free: ["2020-03", "2020-04", "2020-05"]
+  rho_start: 0.5
+
+evaluation:
+  first_quarter: "2011Q3"    # the first quarter in the GDPNow archive
+  # Days before the advance estimate, grouped. Each quarter gives one forecast per group:
+  # the last date in the group on which GDPNow published (the model is read on that date).
+  horizon_edges: [0, 15, 30, 45, 60, 75, 90, 120]
+  excluded_years: [2020]     # the ex-2020 subsample
+  example_quarter: latest    # the quarter drawn in the path and waterfall figures
+
+market:
+  yields: [DGS2, DGS10]      # FRED daily constant-maturity Treasury yields, percent
+  primary: DGS2
+
+plot:
+  dpi: 200
+  palette:
+    this_study: "#2a78d6"
+    benchmark: "#eb6834"
+    secondary: "#1baf7a"
+    premium: "#eda100"
+    surface: "#fcfcfb"
+    text: "#0b0b0b"
+    muted: "#52514e"
+    grid: "#e4e3df"
