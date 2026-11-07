@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pytest
@@ -9,7 +12,9 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 from scipy.stats import norm
 
+from cross_asset_vrp import config as config_mod
 from cross_asset_vrp.models import chain, futures, har, heston, predict, realized, replication
+from cross_asset_vrp.plotting import figures
 
 
 @pytest.fixture(scope="module")
@@ -352,3 +357,18 @@ def test_a_solvent_account_is_unchanged(returns: list[float]) -> None:
     capped, ruin = futures.limited_liability(r)
     assert ruin is None
     pd.testing.assert_series_equal(capped, r.astype(float))
+
+
+def test_futures_figure_marks_only_a_real_wipe_out(tmp_path: Path) -> None:
+    days = pd.bdate_range("2012-01-02", "2019-12-31")
+    path = pd.Series(np.linspace(1.0, 2.0, len(days)), index=days)
+    wiped = path.where(days < pd.Timestamp("2018-02-05"), 0.0)
+    gappy = path.drop(days[800])  # a day this rule lacks is NaN in the shared table
+    pd.DataFrame({"unconditional": path, "premium": wiped, "slope": gappy}).to_csv(
+        tmp_path / "futures_equity.csv", index_label="date"
+    )
+    cfg = config_mod.load(path=Path(__file__).parents[1] / "configs" / "research.yaml")
+    fig = figures.futures_equity(tmp_path, cfg, cfg.plot.palette)
+    marks = [[t.get_text() for t in ax.texts] for ax in fig.axes]
+    plt.close(fig)
+    assert marks == [[], ["account lost 2018-02-05"], []]

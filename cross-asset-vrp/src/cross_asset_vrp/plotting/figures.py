@@ -222,11 +222,14 @@ def futures_equity(tables: Path, config: Config, p: Palette) -> Figure:
     for ax, name in zip(np.atleast_1d(axes), e.columns, strict=True):
         # An account that reached zero holds cash from then on; a log axis cannot show zero,
         # so the line stops on the last solvent day and the wipe-out is marked.
-        solvent = e[name].where(e[name] > 0)
+        # Days missing from this rule's series are NaN in the shared table; only a value at or
+        # below zero marks the wipe-out.
+        series = e[name].dropna()
+        solvent = series.where(series > 0)
         ax.plot(solvent.index, solvent, color=p["this_study"], linewidth=1.3)
         ax.set_yscale("log")
-        if solvent.isna().any():
-            ruin = pd.Timestamp(str(solvent.index[int(np.flatnonzero(solvent.isna())[0])]))
+        if (series <= 0).any():
+            ruin = pd.Timestamp(str(series.index[int(np.flatnonzero(series <= 0)[0])]))
             ax.axvline(ruin, color=p["benchmark"], linewidth=1.2)
             ax.annotate(
                 f"account lost {ruin.date()}",

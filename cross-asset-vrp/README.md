@@ -104,4 +104,4 @@ The key lives only in that PowerShell window and is sent in a request header, ne
 - Rogers, L. C. G. and Satchell, S. E. (1991). Estimating variance from high, low and closing prices. *Annals of Applied Probability* 1(4), 504-512.
 - Yang, D. and Zhang, Q. (2000). Drift-independent volatility estimation based on high, low, open, and close prices. *Journal of Business* 73(3), 477-491.
 
-Author: Ian Wachira. Built 2026-11-07 07:42 UTC from 526 source files (manifest digest `0eabbc765a48`, config `0614ad05051d`).
+Author: Ian Wachira. Built 2026-11-07 08:24 UTC from 526 source files (manifest digest `0eabbc765a48`, config `0614ad05051d`).
